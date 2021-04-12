@@ -1,0 +1,54 @@
+# Chinese translations for IBus Theme Tools package
+# IBus Theme Tools 软件包的简体中文翻译.
+# Copyright (C) 2021 THE IBus Theme Tools'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the IBus Theme Tools package.
+# Hollow Man <hollowman@hollowman.ml>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: IBus Theme Tools 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-12 12:47+0800\n"
+"PO-Revision-Date: 2021-04-12 12:42+0800\n"
+"Last-Translator: Hollow Man <hollowman@hollowman.ml>\n"
+"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: IBus-Theme.py:69
+msgid "Select a theme to apply:"
+msgstr "选择一个主题来应用："
+
+#: IBus-Theme.py:73
+msgid "Exit"
+msgstr "退出"
+
+#: IBus-Theme.py:76 IBus-Theme.py:83
+msgid "Goodbye!"
+msgstr "再见！"
+
+#: IBus-Theme.py:86
+msgid "Error: Wrong selection!\n"
+msgstr "错误：异常的选择！\n"
+
+#: IBus-Theme.py:91
+msgid "To do in the future..."
+msgstr "规划建设中⋯⋯"
+
+#: IBus-Theme.py:92
+msgid ""
+"Currently you can directly use Customize IBus GNOME Shell Extension: https://"
+"extensions.gnome.org/extension/4112/customize-ibus/"
+msgstr ""
+"目前你可以直接使用 Customize IBus GNOME Shell 扩展：https://"
+"extensions.gnome.org/extension/4112/customize-ibus/"
+
+#: IBus-Theme.py:93
+msgid "to change GNOME Shell theme."
+msgstr "来改变GNOME Shell 主题。"
+
+#: IBus-Theme.py:100
+msgid "Error: Not in Linux!"
+msgstr "错误：当前系统非Linux！"

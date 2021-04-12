@@ -1,0 +1,52 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the IBus Theme Tools package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: IBus Theme Tools 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-12 12:56+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: IBus-Theme.py:69
+msgid "Select a theme to apply:"
+msgstr ""
+
+#: IBus-Theme.py:73
+msgid "Exit"
+msgstr ""
+
+#: IBus-Theme.py:76 IBus-Theme.py:83
+msgid "Goodbye!"
+msgstr ""
+
+#: IBus-Theme.py:86
+msgid "Error: Wrong selection!\n"
+msgstr ""
+
+#: IBus-Theme.py:91
+msgid "To do in the future..."
+msgstr ""
+
+#: IBus-Theme.py:92
+msgid ""
+"Currently you can directly use Customize IBus GNOME Shell Extension: https://"
+"extensions.gnome.org/extension/4112/customize-ibus/"
+msgstr ""
+
+#: IBus-Theme.py:93
+msgid "to change GNOME Shell theme."
+msgstr ""
+
+#: IBus-Theme.py:100
+msgid "Error: Not in Linux!"
+msgstr ""
