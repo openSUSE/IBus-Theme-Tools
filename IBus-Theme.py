@@ -11,6 +11,7 @@
   Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option)
   any later version.
 '''
+from gi.repository import GLib
 import os
 
 import gettext
@@ -21,12 +22,18 @@ gettext.textdomain(APP_NAME)
 _ = gettext.gettext
 
 
+def getThemePathList():
+    pathList = []
+    pathList.append(os.path.join(GLib.get_home_dir(), ".themes"))
+    pathList.append(os.path.join(GLib.get_user_data_dir(), "themes"))
+    pathList.extend(list(map(lambda x: os.path.join(
+        x, "themes"), GLib.get_system_data_dirs())))
+    return pathList
+
+
 def getAvailableGTKTheme():
     themeNameList = []
-    pathList = [
-        os.path.join(os.environ["HOME"], ".themes"),
-        "/usr/share/themes"
-    ]
+    pathList = getThemePathList()
     GTKVersionList = ["3.0", "3.20", "4.0"]
     for path in pathList:
         if os.path.isdir(path):
@@ -41,8 +48,7 @@ def getAvailableGTKTheme():
 
 
 def addStartup(themeName):
-    startupDir = os.path.join(
-        os.environ["HOME"], ".config", "autostart")
+    startupDir = os.path.join(GLib.get_user_config_dir(), "autostart")
     if not os.path.exists(startupDir):
         os.makedirs(startupDir)
     with open(os.path.join(startupDir, "org.hollowman.ibus-gtk-theme-customize.desktop"), "w") as f:
@@ -66,7 +72,7 @@ def changeGTKTheme():
     themeNameList = getAvailableGTKTheme()
     count = 1
     while True:
-        print(_("Select a theme to apply:"))
+        print(_("Please select a GTK theme to apply for IBus:"))
         for themeName in themeNameList:
             print("["+str(count)+"] "+themeName)
             count += 1
@@ -80,7 +86,7 @@ def changeGTKTheme():
             os.system("GTK_THEME=" +
                       themeNameList[int(selection)-1] + " ibus-daemon -dx &")
             addStartup(themeNameList[int(selection)-1])
-            print(_("Goodbye!"))
+            print(_("Down! Goodbye!"))
             break
         else:
             print(_("Error: Wrong selection!\n"))
@@ -90,7 +96,7 @@ def changeGTKTheme():
 def exportIBusTheme():
     print(_("To do in the future..."))
     print(_("Currently you can directly use Customize IBus GNOME Shell Extension: https://extensions.gnome.org/extension/4112/customize-ibus/"))
-    print(_("to change GNOME Shell theme."))
+    print(_("to change IBus theme by specifying GNOME Shell theme."))
 
 
 if __name__ == "__main__":

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IBus Theme Tools 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-12 12:56+0800\n"
+"POT-Creation-Date: 2021-04-14 23:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,36 +17,40 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: IBus-Theme.py:69
-msgid "Select a theme to apply:"
+#: IBus-Theme.py:75
+msgid "Please select a GTK theme to apply for IBus:"
 msgstr ""
 
-#: IBus-Theme.py:73
+#: IBus-Theme.py:79
 msgid "Exit"
 msgstr ""
 
-#: IBus-Theme.py:76 IBus-Theme.py:83
+#: IBus-Theme.py:82
 msgid "Goodbye!"
 msgstr ""
 
-#: IBus-Theme.py:86
-msgid "Error: Wrong selection!\n"
-msgstr ""
-
-#: IBus-Theme.py:91
-msgid "To do in the future..."
+#: IBus-Theme.py:89
+msgid "Down! Goodbye!"
 msgstr ""
 
 #: IBus-Theme.py:92
+msgid "Error: Wrong selection!\n"
+msgstr ""
+
+#: IBus-Theme.py:97
+msgid "To do in the future..."
+msgstr ""
+
+#: IBus-Theme.py:98
 msgid ""
 "Currently you can directly use Customize IBus GNOME Shell Extension: https://"
 "extensions.gnome.org/extension/4112/customize-ibus/"
 msgstr ""
 
-#: IBus-Theme.py:93
-msgid "to change GNOME Shell theme."
+#: IBus-Theme.py:99
+msgid "to change IBus theme by specifying GNOME Shell theme."
 msgstr ""
 
-#: IBus-Theme.py:100
+#: IBus-Theme.py:106
 msgid "Error: Not in Linux!"
 msgstr ""

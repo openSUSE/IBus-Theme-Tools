@@ -36,7 +36,7 @@ gtk-font-name=更纱黑体 SC 12
 
 可通过修改上述文件实现改变IBus字体和字号的目的。
 
-至于IBus的配色方案，可以在IBus启动的时候指定其使用特定Gtk3主题，即可实现对IBus配色的自定义。
+至于IBus的配色方案，可以在IBus启动的时候指定其使用特定Gtk主题，即可实现对IBus配色的自定义。
 
 ## 实现功能
 
@@ -86,9 +86,9 @@ _该项目是谷歌编程之夏 (GSoC) 2021 于[OpenSUSE](https://github.com/ope
 
 [Python Library Dependency](../../network/dependencies)
 
-## Pre knowledge
+## Pre-knowledge
 
-In non GNOME Shell desktop environment, the display effect of IBus is determined by the current GTK theme.
+In non-GNOME Shell desktop environment, the display effect of IBus is determined by the current GTK theme.
 
 `$HOME/.config/gtk-3.0/settings.ini` defines the current GTK3 theme and font size.
 
@@ -108,9 +108,9 @@ As for the color scheme of IBus, you can specify that it uses specific GTK theme
 
 ## Implementation function
 
-### Non GNOME desktop
+### Non-GNOME desktop
 
-Change the IBus GTK theme in a non GNOME Shell desktop environment.
+Change the IBus GTK theme in a non-GNOME Shell desktop environment.
 
 Run [`IBus-Theme.py`](IBus-Theme.py) script, select GTK theme according to prompted message.
 
@@ -128,7 +128,7 @@ Then use the [Customize IBus GNOME Shell extension](https://extensions.gnome.org
 
 ## Use custom GTK theme
 
-Create a gtk3 theme called `ibus-custom-theme`:
+Create a GTK3 theme called `ibus-custom-theme`:
 
 `mkdir -p $HOME/.theme/ibus-custom-theme/gtk-3.0`
 
@@ -138,9 +138,9 @@ Example of file content:
 
 ```css
 * {
-  color: #0b141a; /* 字体颜色 */
-  background-color: #ffffff; /* 背景颜色 */
-  -gtk-secondary-caret-color: #d4d4d4; /* 高亮背景颜色 */
+  color: #0b141a; /* Font Color */
+  background-color: #ffffff; /* Background Color */
+  -gtk-secondary-caret-color: #d4d4d4; /* Highlight Background Color */
 }
 ```
 
