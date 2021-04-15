@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IBus Theme Tools 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-14 23:20+0800\n"
+"POT-Creation-Date: 2021-04-16 00:15+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,40 +17,64 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: IBus-Theme.py:75
+#: IBus-Theme.py:76
 msgid "Please select a GTK theme to apply for IBus:"
 msgstr ""
 
-#: IBus-Theme.py:79
+#: IBus-Theme.py:80 IBus-Theme.py:91
 msgid "Exit"
 msgstr ""
 
-#: IBus-Theme.py:82
+#: IBus-Theme.py:81
+msgid "(Empty to exit): "
+msgstr ""
+
+#: IBus-Theme.py:83 IBus-Theme.py:94
 msgid "Goodbye!"
 msgstr ""
 
+#: IBus-Theme.py:87
+msgid "Please select a theme mode (Not guaranteed to work):"
+msgstr ""
+
+#: IBus-Theme.py:88
+msgid "Default"
+msgstr ""
+
 #: IBus-Theme.py:89
-msgid "Down! Goodbye!"
+msgid "Light"
+msgstr ""
+
+#: IBus-Theme.py:90
+msgid "Dark"
 msgstr ""
 
 #: IBus-Theme.py:92
+msgid "(Empty to be default): "
+msgstr ""
+
+#: IBus-Theme.py:108
+msgid "Done! Goodbye!"
+msgstr ""
+
+#: IBus-Theme.py:111 IBus-Theme.py:113
 msgid "Error: Wrong selection!\n"
 msgstr ""
 
-#: IBus-Theme.py:97
+#: IBus-Theme.py:118
 msgid "To do in the future..."
 msgstr ""
 
-#: IBus-Theme.py:98
+#: IBus-Theme.py:119
 msgid ""
 "Currently you can directly use Customize IBus GNOME Shell Extension: https://"
 "extensions.gnome.org/extension/4112/customize-ibus/"
 msgstr ""
 
-#: IBus-Theme.py:99
+#: IBus-Theme.py:120
 msgid "to change IBus theme by specifying GNOME Shell theme."
 msgstr ""
 
-#: IBus-Theme.py:106
+#: IBus-Theme.py:127
 msgid "Error: Not in Linux!"
 msgstr ""

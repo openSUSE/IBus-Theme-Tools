@@ -4,7 +4,7 @@ Name[zh_CN]=ibus-gtk-主题自定义
 GenericName=Customize IBus Theme
 GenericName[zh_CN]=自定义IBus 主题
 Icon=ibus
-Exec=bash -c 'pkill ibus-daemon;GTK_THEME=Adwaita ibus-daemon -dx &'
+Exec=bash -c 'pkill ibus-daemon;GTK_THEME=Adwaita:dark ibus-daemon -dx &'
 Comment=Applying user selected GTK theme for IBus
 Comment[zh_CN]=应用用户选择的IBus GTK主题
 Terminal=false

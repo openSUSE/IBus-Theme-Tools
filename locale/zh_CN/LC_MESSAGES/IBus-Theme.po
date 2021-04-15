@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IBus Theme Tools 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-14 23:19+0800\n"
+"POT-Creation-Date: 2021-04-16 00:15+0800\n"
 "PO-Revision-Date: 2021-04-12 12:42+0800\n"
 "Last-Translator: Hollow Man <hollowman@hollowman.ml>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
@@ -17,31 +17,55 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: IBus-Theme.py:75
+#: IBus-Theme.py:76
 msgid "Please select a GTK theme to apply for IBus:"
 msgstr "请选择一个GTK主题来应用到IBus："
 
-#: IBus-Theme.py:79
+#: IBus-Theme.py:80 IBus-Theme.py:91
 msgid "Exit"
 msgstr "退出"
 
-#: IBus-Theme.py:82
+#: IBus-Theme.py:81
+msgid "(Empty to exit): "
+msgstr "（空选择退出）："
+
+#: IBus-Theme.py:83 IBus-Theme.py:94
 msgid "Goodbye!"
 msgstr "再见！"
 
+#: IBus-Theme.py:87
+msgid "Please select a theme mode (Not guaranteed to work):"
+msgstr "请选择一个主题模式（不保证有效）："
+
+#: IBus-Theme.py:88
+msgid "Default"
+msgstr "默认"
+
 #: IBus-Theme.py:89
-msgid "Down! Goodbye!"
-msgstr "完成！再见！"
+msgid "Light"
+msgstr "亮色"
+
+#: IBus-Theme.py:90
+msgid "Dark"
+msgstr "暗色"
 
 #: IBus-Theme.py:92
+msgid "(Empty to be default): "
+msgstr "（空选择默认）："
+
+#: IBus-Theme.py:108
+msgid "Done! Goodbye!"
+msgstr "完成！再见！"
+
+#: IBus-Theme.py:111 IBus-Theme.py:113
 msgid "Error: Wrong selection!\n"
 msgstr "错误：异常的选择！\n"
 
-#: IBus-Theme.py:97
+#: IBus-Theme.py:118
 msgid "To do in the future..."
 msgstr "规划建设中⋯⋯"
 
-#: IBus-Theme.py:98
+#: IBus-Theme.py:119
 msgid ""
 "Currently you can directly use Customize IBus GNOME Shell Extension: https://"
 "extensions.gnome.org/extension/4112/customize-ibus/"
@@ -49,10 +73,10 @@ msgstr ""
 "目前你可以直接使用 Customize IBus GNOME Shell 扩展：https://extensions.gnome."
 "org/extension/4112/customize-ibus/"
 
-#: IBus-Theme.py:99
+#: IBus-Theme.py:120
 msgid "to change IBus theme by specifying GNOME Shell theme."
 msgstr "来通过指定GNOME Shell 主题改变IBus主题。"
 
-#: IBus-Theme.py:106
+#: IBus-Theme.py:127
 msgid "Error: Not in Linux!"
 msgstr "错误：当前系统非Linux！"

@@ -70,24 +70,45 @@ def addStartup(themeName):
 
 def changeGTKTheme():
     themeNameList = getAvailableGTKTheme()
+    themeNameList.sort()
     count = 1
     while True:
         print(_("Please select a GTK theme to apply for IBus:"))
         for themeName in themeNameList:
-            print("["+str(count)+"] "+themeName)
+            print("["+str(count)+"]\t"+themeName)
             count += 1
-        print("[q] "+_("Exit"))
-        selection = input()
-        if selection == "q":
+        print("[q]\t"+_("Exit"))
+        selection = input(_("(Empty to exit): "))
+        if selection == "q" or not selection:
             print(_("Goodbye!"))
             exit(0)
-        if selection.isdigit() and int(selection) < count and int(selection) > 0:
-            os.system("pkill ibus-daemon")
-            os.system("GTK_THEME=" +
-                      themeNameList[int(selection)-1] + " ibus-daemon -dx &")
-            addStartup(themeNameList[int(selection)-1])
-            print(_("Down! Goodbye!"))
-            break
+        elif selection.isdigit() and int(selection) < count and int(selection) > 0:
+            while True:
+                print(_("Please select a theme mode (Not guaranteed to work):"))
+                print("[0]\t"+_("Default"))
+                print("[1]\t"+_("Light"))
+                print("[2]\t"+_("Dark"))
+                print("[q]\t"+_("Exit"))
+                modeSelection = input(_("(Empty to be default): "))
+                if modeSelection == "q":
+                    print(_("Goodbye!"))
+                    exit(0)
+                elif modeSelection.isdigit() and int(modeSelection) >= 0 and int(modeSelection) <= 2 or not modeSelection:
+                    mode = ""
+                    if not modeSelection or modeSelection == "0":
+                        pass
+                    elif modeSelection == "1":
+                        mode = ":light"
+                    elif modeSelection == "2":
+                        mode = ":dark"
+                    os.system("pkill ibus-daemon")
+                    os.system("GTK_THEME=" +
+                              themeNameList[int(selection)-1] + mode + " ibus-daemon -dx &")
+                    addStartup(themeNameList[int(selection)-1] + mode)
+                    print(_("Done! Goodbye!"))
+                    exit(0)
+                else:
+                    print(_("Error: Wrong selection!\n"))
         else:
             print(_("Error: Wrong selection!\n"))
             count = 1
