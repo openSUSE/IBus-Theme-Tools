@@ -52,11 +52,11 @@ gtk-font-name=更纱黑体 SC 12
 
 ### GNOME桌面
 
-规划中⋯⋯
+从GNOME-Shell主题提取IBus样式，使用Python下CSS解析器tinycss2实现功能，生成额外IBus样式表供用户修改测试使用。
 
-从GNOME-Shell主题提取IBus样式，使用Python下CSS解析器而并非正则表达式实现功能，生成额外IBus样式表供用户修改测试使用。
+随后可以使用[Customize IBus GNOME Shell扩展](https://extensions.gnome.org/extension/4112/customize-ibus/)导入并应用主题。
 
-随后使用[Customize IBus GNOME Shell扩展](https://extensions.gnome.org/extension/4112/customize-ibus/)导入并应用主题。
+*注意：* 如果你在以上扩展中应用了被提取出的样式表后对文件内容作出了改变，请按下 'Alt + F2' 然后按下 'r' 或者重新登录来重新加载 GNOME-Shell 来使改变生效。
 
 ## 使用自定义的GTK主题
 
@@ -122,9 +122,11 @@ Sample startup item file: [org.hollowman.ibus-gtk-theme-customize.desktop](org.h
 
 To do in the future...
 
-Extracting IBus style from GNOME Shell theme, implement it using CSS parser libraries in Python instead of regular expression. Additional IBus style sheets are generated for users to modify and test.
+Extracting IBus style from GNOME Shell theme, implement it using CSS parser library tinycss2 in Python. Additional IBus style sheets are generated for users to modify and test.
 
 Then use the [Customize IBus GNOME Shell extension](https://extensions.gnome.org/extension/4112/customize-ibus/) to import and apply themes.
+
+*Note:* If you make any changes to the extracted stylesheet after applying the file in above extension, please press 'Alt + F2' and then 'r' or re-login to reload the GNOME-Shell to make the changes take effect.
 
 ## Use custom GTK theme
 
