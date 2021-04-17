@@ -56,7 +56,9 @@ gtk-font-name=更纱黑体 SC 12
 
 随后可以使用[Customize IBus GNOME Shell扩展](https://extensions.gnome.org/extension/4112/customize-ibus/)导入并应用主题。
 
-*注意：* 如果你在以上扩展中应用了被提取出的样式表后对文件内容作出了改变，请按下 'Alt + F2' 然后按下 'r' 或者重新登录来重新加载 GNOME-Shell 来使改变生效。
+*注意：* 如果你在以上扩展中应用了被提取出的样式表后对文件内容作出了改变，请按下 `Alt + F2` 然后按下 `r` 或者重新登录来重新加载 GNOME-Shell 来使改变生效。
+
+示例提取出的样式表文件：[exportedIBusTheme.css](exportedIBusTheme.css)
 
 ## 使用自定义的GTK主题
 
@@ -126,7 +128,9 @@ Extracting IBus style from GNOME Shell theme, implement it using CSS parser libr
 
 Then use the [Customize IBus GNOME Shell extension](https://extensions.gnome.org/extension/4112/customize-ibus/) to import and apply themes.
 
-*Note:* If you make any changes to the extracted stylesheet after applying the file in above extension, please press 'Alt + F2' and then 'r' or re-login to reload the GNOME-Shell to make the changes take effect.
+*Note:* If you make any changes to the extracted stylesheet after applying the file in above extension, please press `Alt + F2` and then `r` or re-login to reload the GNOME-Shell to make the changes take effect.
+
+Sample extracted stylesheet: [exportedIBusTheme.css](exportedIBusTheme.css)
 
 ## Use custom GTK theme
 
