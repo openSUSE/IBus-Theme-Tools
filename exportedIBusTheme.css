@@ -99,7 +99,6 @@
 
 /* Unify system page button and IBus style page button */
 .candidate-page-button {
-  border-radius: 8px;
   border-style: solid;
   border-width: 1px;
   min-height: 22px;
