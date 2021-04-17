@@ -80,23 +80,26 @@ def changeGTKTheme():
     themeNameList.sort()
     count = 1
     while True:
-        print(_("Please select a GTK theme to apply for IBus:"))
+        print("\033[1;36;45m" +
+              _("Please select a GTK theme to apply for IBus:") + "\033[0m")
         for themeName in themeNameList:
-            print("["+str(count)+"]\t"+themeName)
+            print("[\033[1;36;45m"+str(count)+"\033[0m]\t"+themeName)
             count += 1
-        print("[q]\t"+_("Exit"))
-        selection = input(_("(Empty to exit): "))
+        print("[\033[1;36;45mq\033[0m]\t\033[1;33;41m" + _("Exit") + "\033[0m")
+        selection = input("\033[1;33;44m" + _("(Empty to exit): ") + "\033[0m")
         if selection == "q" or not selection:
             print(_("Goodbye!"))
             exit(0)
         elif selection.isdigit() and int(selection) < count and int(selection) > 0:
             while True:
-                print(_("Please select a theme mode (Not guaranteed to work):"))
-                print("[0]\t"+_("Default"))
-                print("[1]\t"+_("Light"))
-                print("[2]\t"+_("Dark"))
-                print("[q]\t"+_("Exit"))
-                modeSelection = input(_("(Empty to be default): "))
+                print(
+                    "\033[1;36;45m" + _("Please select a theme mode (Not guaranteed to work):") + "\033[0m")
+                print("[\033[1;36;45m0\033[0m]\t"+_("Default"))
+                print("[\033[1;36;45m1\033[0m]\t"+_("Light"))
+                print("[\033[1;36;45m2\033[0m]\t"+_("Dark"))
+                print("[\033[1;36;45mq\033[0m]\t\033[1;33;41m" + _("Exit") + "\033[0m")
+                modeSelection = input(
+                    "\033[1;33;44m" + _("(Empty to be default): ") + "\033[0m")
                 if modeSelection == "q":
                     print(_("Goodbye!"))
                     exit(0)
@@ -115,9 +118,10 @@ def changeGTKTheme():
                     print(_("Done! Goodbye!"))
                     exit(0)
                 else:
-                    print(_("Error: Wrong selection!\n"))
+                    print("\033[1;33;41m" +
+                          _("Error: Wrong selection!") + "\033[0m\n")
         else:
-            print(_("Error: Wrong selection!\n"))
+            print("\033[1;33;41m" + _("Error: Wrong selection!") + "\033[0m\n")
             count = 1
 
 # For GNOME Desktop
@@ -293,33 +297,36 @@ def exportIBusTheme():
     themeList.sort()
     count = 1
     while True:
-        print(_("Please select a GNOME theme to extract style sheet for IBus:"))
+        print("\033[1;36;45m" +
+              _("Please select a GNOME theme to extract style sheet for IBus:") + "\033[0m")
         for theme in themeList:
-            print("["+str(count)+"]\t"+theme)
+            print("[\033[1;36;45m"+str(count)+"\033[0m]\t"+theme)
             count += 1
-        print("[q]\t"+_("Exit"))
-        selection = input(_("(Empty to exit): "))
+        print("[\033[1;36;45mq\033[0m]\t\033[1;33;41m" + _("Exit") + "\033[0m")
+        selection = input("\033[1;33;44m" + _("(Empty to exit): ") + "\033[0m")
         if selection == "q" or not selection:
             print(_("Goodbye!"))
             exit(0)
         elif selection.isdigit() and int(selection) < count and int(selection) > 0:
-            print(_("Please enter the path to store generated stylesheet:"))
+            print(
+                "\033[1;36;45m" + _("Please enter the path to store generated stylesheet:") + "\033[0m")
             path = input(
-                _("(Empty to be 'exportedIBusTheme.css' in current directory): "))
+                "\033[1;33;44m" + _("(Empty to be 'exportedIBusTheme.css' in current directory): ") + "\033[0m")
             if not path:
                 path = "exportedIBusTheme.css"
             newCSS = exportIBusGNOMEThemeCSS(themeList[int(selection)-1])
             with open(path, "w") as f:
                 f.write(newCSS)
-            print(
-                _("\nNow you can use Customize IBus GNOME Shell Extension:\n") + EXTENSION_URL)
+            print("\n\033[1;33;44m" +
+                  _("\nNow you can use Customize IBus GNOME Shell Extension:\n") + EXTENSION_URL)
             print(_("to change IBus theme by selecting the extracted stylesheet."))
             print(_("\nIf you make any changes to the extracted stylesheet after applying the file in above extension,"))
-            print(_("please press 'Alt + F2' and then 'r' or re-login to reload the GNOME-Shell to make the changes take effect."))
+            print(
+                _("please press 'Alt + F2' and then 'r' or re-login to reload the GNOME-Shell to make the changes take effect.") + "\033[0m\n")
             print(_("\nDone! Goodbye!"))
             exit(0)
         else:
-            print(_("Error: Wrong selection!\n"))
+            print("\033[1;33;41m" + _("Error: Wrong selection!") + "\033[0m\n")
             count = 1
 
 
@@ -327,9 +334,29 @@ if __name__ == "__main__":
     try:
         desktopEnv = os.environ["XDG_CURRENT_DESKTOP"].split(":")
     except Exception:
-        print(_("Error: Not in Linux!"))
+        print("\033[1;33;41m" + _("Error: Not in Linux!") + "\033[0m")
         exit(1)
     if "GNOME" in desktopEnv:
         exportIBusTheme()
     else:
-        changeGTKTheme()
+        while True:
+            print("\033[1;36;45m" + _("Please select a mode:") + "\033[0m")
+            print("[\033[1;36;45m1\033[0m]\t"+_("Change GTK theme for IBus"))
+            print("[\033[1;36;45m2\033[0m]\t" +
+                  _("Extract an IBus-related GNOME theme stylesheet"))
+            print("[\033[1;36;45mq\033[0m]\t\033[1;33;41m" + _("Exit") + "\033[0m")
+            modeSelection = input(
+                "\033[1;33;44m" + _("(Empty to be 1): ") + "\033[0m")
+            if modeSelection == "q":
+                print(_("Goodbye!"))
+                exit(0)
+            elif modeSelection.isdigit() and int(modeSelection) >= 1 and int(modeSelection) <= 2 or not modeSelection:
+                if not modeSelection or modeSelection == "1":
+                    changeGTKTheme()
+                elif modeSelection == "2":
+                    print(
+                        "\n\033[1;33;44m" + _("Note: You can only apply the stylesheet under GNOME.") + "\033[0m\n")
+                    exportIBusTheme()
+            else:
+                print("\033[1;33;41m" +
+                      _("Error: Wrong selection!") + "\033[0m\n")

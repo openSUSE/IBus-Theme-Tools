@@ -42,13 +42,15 @@ gtk-font-name=更纱黑体 SC 12
 
 ### 非GNOME桌面
 
-在非 GNOME Shell 桌面环境中更改IBus GTK主题。
+在非 GNOME Shell 桌面环境中，可以更改IBus GTK主题。
 
 运行[`IBus-Theme.py`](IBus-Theme.py)脚本，按提示操作选择GTK主题即可。
 
 更改GTK主题后，程序会自动将更改IBus GTK主题的启动项加入当前用户的`$HOME/.config/autostart/`目录下。
 
 示例启动项文件：[org.hollowman.ibus-gtk-theme-customize.desktop](org.hollowman.ibus-gtk-theme-customize.desktop)
+
+如果你安装了支持GNOME-Shell样式的主题，你还可以选择提取IBus样式，但是只能在GNOME桌面使用。
 
 ### GNOME桌面
 
@@ -121,6 +123,8 @@ Run [`IBus-Theme.py`](IBus-Theme.py) script, select GTK theme according to promp
 After changing the GTK theme, the program will automatically add the startup item of changing IBus GTK theme to the current user's `$HOME/.config/autostart/` directory.
 
 Sample startup item file: [org.hollowman.ibus-gtk-theme-customize.desktop](org.hollowman.ibus-gtk-theme-customize.desktop)
+
+If you install themes that support GNOME shell style, you can also choose to extract IBus style, but you can only use it on GNOME desktop.
 
 ### GNOME desktop
 
