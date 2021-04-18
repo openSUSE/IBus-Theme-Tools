@@ -45,7 +45,7 @@ def getThemePathList():
 # For Non-GNOME Desktop
 
 
-def getAvailableGTKTheme():
+def getAvailableGTKTheme(appendix="", fileName="gtk.css"):
     themeNameList = []
     pathList = getThemePathList()
     GTKVersionList = ["3.0", "3.20", "4.0"]
@@ -55,8 +55,8 @@ def getAvailableGTKTheme():
             for p in files:
                 if os.path.isdir(os.path.join(path, p)):
                     for version in GTKVersionList:
-                        if os.path.isfile(os.path.join(path, p, "gtk-"+version, "gtk.css")):
-                            themeNameList.append(p)
+                        if os.path.isfile(os.path.join(path, p, "gtk-"+version, fileName)):
+                            themeNameList.append(p + appendix)
                             break
     return themeNameList
 
@@ -84,6 +84,7 @@ def addStartup(themeName):
 
 def changeGTKTheme():
     themeNameList = getAvailableGTKTheme()
+    themeNameList.extend(getAvailableGTKTheme(":dark", "gtk-dark.css"))
     themeNameList.sort()
     count = 1
     while True:
@@ -100,39 +101,12 @@ def changeGTKTheme():
             print(_("Goodbye!"))
             exit(0)
         elif selection.isdigit() and int(selection) < count and int(selection) > 0:
-            while True:
-                print(
-                    BLACK_CYAN + _("Please select a theme mode (Not guaranteed to work):") + OUTPUT_END)
-                print("[" + BLACK_CYAN + "0" + OUTPUT_END + "]\t" +
-                      UNDER_LINE + _("Default") + OUTPUT_END)
-                print("[" + BLACK_CYAN + "1" + OUTPUT_END + "]\t" +
-                      UNDER_LINE + _("Light") + OUTPUT_END)
-                print("[" + BLACK_CYAN + "2" + OUTPUT_END + "]\t" +
-                      UNDER_LINE + _("Dark") + OUTPUT_END)
-                print("[" + BLACK_CYAN + "q" + OUTPUT_END + "]\t" +
-                      READ_YELLOW + _("Exit") + OUTPUT_END)
-                modeSelection = input(
-                    YELLOW_BLUE + _("(Empty to be default): ") + OUTPUT_END)
-                if modeSelection == "q":
-                    print(_("Goodbye!"))
-                    exit(0)
-                elif modeSelection.isdigit() and int(modeSelection) >= 0 and int(modeSelection) <= 2 or not modeSelection:
-                    mode = ""
-                    if not modeSelection or modeSelection == "0":
-                        pass
-                    elif modeSelection == "1":
-                        mode = ":light"
-                    elif modeSelection == "2":
-                        mode = ":dark"
-                    os.system("pkill ibus-daemon")
-                    os.system("GTK_THEME=" +
-                              themeNameList[int(selection)-1] + mode + " ibus-daemon -dx &")
-                    addStartup(themeNameList[int(selection)-1] + mode)
-                    print(_("Done! Goodbye!"))
-                    exit(0)
-                else:
-                    print(READ_YELLOW +
-                          _("Error: Wrong selection!") + OUTPUT_END + "\n")
+            os.system("pkill ibus-daemon")
+            os.system("GTK_THEME=" +
+                      themeNameList[int(selection)-1] + " ibus-daemon -dx &")
+            addStartup(themeNameList[int(selection)-1])
+            print(_("Done! Goodbye!"))
+            exit(0)
         else:
             print(READ_YELLOW + _("Error: Wrong selection!") + OUTPUT_END + "\n")
             count = 1
