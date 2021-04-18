@@ -236,14 +236,14 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
                 if ".candidate-box" in cleanClassList:
                     contentStr = tinycss2.serialize(token.content)
                     if not (" color:" in contentStr or "\ncolor:" in contentStr):
-                        boxContent = contentStr
+                        boxContent += contentStr
                         cleanClassList.remove(".candidate-box")
                         classStr = ", ".join(cleanClassList) + " "
 
                 if ".candidate-popup-content" in cleanClassList:
                     contentStr = tinycss2.serialize(token.content)
                     if not (" color:" in contentStr or "\ncolor:" in contentStr):
-                        popupContent = contentStr
+                        popupContent += contentStr
                         cleanClassList.remove(".candidate-popup-content")
                         classStr = ", ".join(cleanClassList) + " "
 
@@ -251,7 +251,7 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
                 if ".candidate-popup-boxpointer" in cleanClassList:
                     contentStr = tinycss2.serialize(token.content)
                     if not (" border-image:" in contentStr or "\nborder-image:" in contentStr):
-                        popupBoxpointerContent = contentStr
+                        popupBoxpointerContent += contentStr
                         cleanClassList.remove(".candidate-popup-boxpointer")
                         classStr = ", ".join(cleanClassList) + " "
 
