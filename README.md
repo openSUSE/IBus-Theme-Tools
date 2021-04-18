@@ -20,9 +20,9 @@
 
 ## 前置知识
 
-非Gnome桌面环境下，IBus的显示效果是由当前Gtk主题确定的。
+非GNOME桌面环境下，IBus的显示效果是由当前GTK主题确定的。
 
-`$HOME/.config/gtk-3.0/settings.ini`文件定义了当前的Gtk3主题及字体字号。
+`$HOME/.config/gtk-3.0/settings.ini`文件定义了当前的GTK3主题及字体字号。
 
 该文件的部分内容示例如下：
 
@@ -32,11 +32,11 @@ gtk-theme-name=Materia-light
 gtk-font-name=更纱黑体 SC 12
 ```
 
-上述表述中，`gtk-theme-name`指定了当前Gtk主题为`Materia-light`，`gtk-font-name`指定了当前的字体为`更纱黑体 SC`，字号为`12`。
+上述表述中，`gtk-theme-name`指定了当前GTK主题为`Materia-light`，`gtk-font-name`指定了当前的字体为`更纱黑体 SC`，字号为`12`。
 
 可通过修改上述文件实现改变IBus字体和字号的目的。
 
-至于IBus的配色方案，可以在IBus启动的时候指定其使用特定Gtk主题，即可实现对IBus配色的自定义。
+至于IBus的配色方案，可以在IBus启动的时候指定其使用特定GTK主题，即可实现对IBus配色的自定义。
 
 ## 实现功能
 
@@ -54,7 +54,7 @@ gtk-font-name=更纱黑体 SC 12
 
 ### GNOME桌面
 
-从GNOME-Shell主题提取IBus样式，使用Python下CSS解析器tinycss2实现功能，生成额外IBus样式表供用户修改测试使用。
+从GNOME-Shell主题提取IBus样式，使用Python下CSS解析器[tinycss2](https://github.com/Kozea/tinycss2)实现功能，生成额外IBus样式表供用户修改测试使用。
 
 当用户从主题列表中选中一个主题，本程序会首先读取该主题的定义 CSS 文件，从中提取出定义 IBus 皮肤的类样式(`.candidate-*`)以及其他的额外操作，然后将其写入样式表文件。
 
@@ -66,7 +66,7 @@ gtk-font-name=更纱黑体 SC 12
 
 ## 使用自定义的GTK主题
 
-创建一个名为`ibus-custom-theme`的Gtk3主题：
+创建一个名为`ibus-custom-theme`的GTK3主题：
 
 `mkdir -p $HOME/.theme/ibus-custom-theme/gtk-3.0`
 
@@ -128,7 +128,7 @@ If you install themes that support GNOME shell style, you can also choose to ext
 
 ### GNOME desktop
 
-Extracting IBus style from GNOME Shell theme, implement it using CSS parser library tinycss2 in Python. Additional IBus style sheets are generated for users to modify and test.
+Extracting IBus style from GNOME Shell theme, implement it using CSS parser library [tinycss2](https://github.com/Kozea/tinycss2) in Python. Additional IBus style sheets are generated for users to modify and test.
 
 When user chooses a theme from the list, this script will first read the theme CSS file, extract the IBus related style classes (`.candidate-*`), then write it to stylesheet.
 
