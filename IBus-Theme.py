@@ -205,6 +205,10 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
                         color = re.findall(r'\ncolor:(.+?);', contentStr)
                         if color:
                             globalColor = color[0]
+                        else:
+                            color = re.findall(r'\tcolor:(.+?);', contentStr)
+                            if color:
+                                globalColor = color[0]
 
                 # For check if need to fix candidate color
                 if ".candidate-box" in cleanClassList:

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IBus Theme Tools 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-18 14:33+0800\n"
+"POT-Creation-Date: 2021-04-18 19:59+0800\n"
 "PO-Revision-Date: 2021-04-12 12:42+0800\n"
 "Last-Translator: Hollow Man <hollowman@hollowman.ml>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
@@ -21,15 +21,15 @@ msgstr ""
 msgid "Please select a GTK theme to apply for IBus:"
 msgstr "请选择一个GTK主题来应用到IBus："
 
-#: IBus-Theme.py:98 IBus-Theme.py:295 IBus-Theme.py:340
+#: IBus-Theme.py:98 IBus-Theme.py:299 IBus-Theme.py:344
 msgid "Exit"
 msgstr "退出"
 
-#: IBus-Theme.py:99 IBus-Theme.py:296
+#: IBus-Theme.py:99 IBus-Theme.py:300
 msgid "(Empty to exit): "
 msgstr "（空选择退出）："
 
-#: IBus-Theme.py:101 IBus-Theme.py:298 IBus-Theme.py:344
+#: IBus-Theme.py:101 IBus-Theme.py:302 IBus-Theme.py:348
 msgid "Goodbye!"
 msgstr "再见！"
 
@@ -37,7 +37,7 @@ msgstr "再见！"
 msgid "Done! Goodbye!"
 msgstr "完成！再见！"
 
-#: IBus-Theme.py:111 IBus-Theme.py:320 IBus-Theme.py:356
+#: IBus-Theme.py:111 IBus-Theme.py:324 IBus-Theme.py:360
 msgid "Error: Wrong selection!"
 msgstr "错误：异常的选择！"
 
@@ -102,11 +102,11 @@ msgstr ""
 "/*\n"
 " 引入自样式表文件： "
 
-#: IBus-Theme.py:234
+#: IBus-Theme.py:238
 msgid "  /* IBus style page button */"
 msgstr "  /* IBUS样式的调页按钮 */"
 
-#: IBus-Theme.py:258
+#: IBus-Theme.py:262
 msgid ""
 "\n"
 "/* EOF */\n"
@@ -114,31 +114,31 @@ msgstr ""
 "\n"
 "/* 文件结束 */\n"
 
-#: IBus-Theme.py:262
+#: IBus-Theme.py:266
 msgid "  /* Fix candidate color */"
 msgstr "  /* 修复候选词颜色 */"
 
-#: IBus-Theme.py:272
+#: IBus-Theme.py:276
 msgid "  /* Fix black border at pointer when system theme is black */\n"
 msgstr "  /* 修复当系统主题为黑色时指示框黑边 */\n"
 
-#: IBus-Theme.py:277
+#: IBus-Theme.py:281
 msgid "/* Unify system page button and IBus style page button */\n"
 msgstr "/* 结合系统调页按钮和IBUS样式的调页按钮 */\n"
 
-#: IBus-Theme.py:289
+#: IBus-Theme.py:293
 msgid "Please select a GNOME theme to extract style sheet for IBus:"
 msgstr "请选择一个GNOME主题来为IBus提取样式表："
 
-#: IBus-Theme.py:302
+#: IBus-Theme.py:306
 msgid "Please enter the path to store generated stylesheet:"
 msgstr "请输入要存储生成的样式表的路径："
 
-#: IBus-Theme.py:304
+#: IBus-Theme.py:308
 msgid "(Empty to be 'exportedIBusTheme.css' in current directory): "
 msgstr "（空则为当前目录下的 'exportedIBusTheme.css' 文件）： "
 
-#: IBus-Theme.py:311
+#: IBus-Theme.py:315
 msgid ""
 "\n"
 "Now you can use Customize IBus GNOME Shell Extension:\n"
@@ -146,11 +146,11 @@ msgstr ""
 "\n"
 "现在你可以使用 自定义 IBus GNOME Shell 扩展：\n"
 
-#: IBus-Theme.py:313
+#: IBus-Theme.py:317
 msgid "to change IBus theme by selecting the extracted stylesheet."
 msgstr "来通过选定被提取出的样式表改变IBus主题。"
 
-#: IBus-Theme.py:314
+#: IBus-Theme.py:318
 msgid ""
 "\n"
 "If you make any changes to the extracted stylesheet after applying the file "
@@ -159,7 +159,7 @@ msgstr ""
 "\n"
 "如果你在以上扩展中应用了被提取出的样式表后对文件内容作出了改变，"
 
-#: IBus-Theme.py:316
+#: IBus-Theme.py:320
 msgid ""
 "please press 'Alt + F2' and then 'r' or re-login to reload the GNOME-Shell "
 "to make the changes take effect."
@@ -167,7 +167,7 @@ msgstr ""
 "请按下 'Alt + F2' 然后按下 'r' 或者重新登录来重新加载 GNOME-Shell 来使改变生"
 "效。"
 
-#: IBus-Theme.py:317
+#: IBus-Theme.py:321
 msgid ""
 "\n"
 "Done! Goodbye!"
@@ -175,26 +175,26 @@ msgstr ""
 "\n"
 "完成！再见！"
 
-#: IBus-Theme.py:328
+#: IBus-Theme.py:332
 msgid "Error: Not in Linux!"
 msgstr "错误：当前系统非Linux！"
 
-#: IBus-Theme.py:334
+#: IBus-Theme.py:338
 msgid "Please select a mode:"
 msgstr "请选择一个模式："
 
-#: IBus-Theme.py:336
+#: IBus-Theme.py:340
 msgid "Change GTK theme for IBus"
 msgstr "更改IBus的GTK主题"
 
-#: IBus-Theme.py:338
+#: IBus-Theme.py:342
 msgid "Extract an IBus-related GNOME theme stylesheet"
 msgstr "提取IBus相关GNOME主题到一个样式表"
 
-#: IBus-Theme.py:342
+#: IBus-Theme.py:346
 msgid "(Empty to be 1): "
 msgstr "（空选择1）："
 
-#: IBus-Theme.py:352
+#: IBus-Theme.py:356
 msgid "Note: You can only apply the stylesheet under GNOME."
 msgstr "注意：你仅可以将样式表应用于GNOME桌面。"
