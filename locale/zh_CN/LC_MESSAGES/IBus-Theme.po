@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IBus Theme Tools 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-18 19:59+0800\n"
+"POT-Creation-Date: 2021-04-20 13:12+0800\n"
 "PO-Revision-Date: 2021-04-12 12:42+0800\n"
 "Last-Translator: Hollow Man <hollowman@hollowman.ml>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
@@ -88,11 +88,10 @@ msgstr ""
 
 #: IBus-Theme.py:158
 msgid ""
-" please press 'Alt + F2' and then 'r' or re-login to reload the GNOME-Shell "
-"to make the changes take effect.\n"
+" please disable and then enable 'custom IME theme' again to make the changes "
+"take effect.\n"
 msgstr ""
-" 请按下 'Alt + F2' 然后按下 'r' 或者重新登录来重新加载 GNOME-Shell 来使改变生"
-"效。\n"
+" 请关闭并重新开启'自定义主题'来使改变生效。\n"
 
 #: IBus-Theme.py:161
 msgid ""
@@ -161,11 +160,10 @@ msgstr ""
 
 #: IBus-Theme.py:320
 msgid ""
-"please press 'Alt + F2' and then 'r' or re-login to reload the GNOME-Shell "
-"to make the changes take effect."
+"please disable and then enable 'custom IME theme' again to make the changes "
+"take effect."
 msgstr ""
-"请按下 'Alt + F2' 然后按下 'r' 或者重新登录来重新加载 GNOME-Shell 来使改变生"
-"效。"
+"请关闭并重新开启'自定义主题'来使改变生效。"
 
 #: IBus-Theme.py:321
 msgid ""
