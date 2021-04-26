@@ -220,10 +220,9 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
 
                 if ".candidate-popup-content" in cleanClassList:
                     contentStr = tinycss2.serialize(token.content)
-                    if not (" color:" in contentStr or "\ncolor:" in contentStr):
-                        popupContent += contentStr
-                        cleanClassList.remove(".candidate-popup-content")
-                        classStr = ", ".join(cleanClassList) + " "
+                    popupContent += contentStr
+                    cleanClassList.remove(".candidate-popup-content")
+                    classStr = ", ".join(cleanClassList) + " "
 
                 # For check if need to fix border at pointer
                 if ".candidate-popup-boxpointer" in cleanClassList:
@@ -262,18 +261,25 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
                             url, True) + _("\n/* EOF */\n")
                         break
 
-    # Fix candidate color
-    colorString = _("  /* Fix candidate color */") + \
-        "\n  color:" + globalColor + ";\n"
-    if boxContent:
-        newCSS += ".candidate-box {" + boxContent + colorString + "}\n\n"
+    # Fix system IBus theme inherited in replaced theme
     if popupContent:
         if not "background" in popupContent:
             popupContent += _("  /* Fix system IBus theme background inherited in replaced theme */") + \
-                "\n  background: none;\n"
+                "\n  background: transparent;\n"
         if not "border" in popupContent:
             popupContent += _("  /* Fix system IBus theme candidate window border inherited in replaced theme */") + \
                 "\n  border: transparent;\n"
+
+    # Fix candidate color
+    colorString = _("  /* Fix candidate color */") + \
+        "\n  color:" + globalColor + ";\n"
+    if not globalColor:
+        colorString = ""
+    if boxContent:
+        newCSS += ".candidate-box {" + boxContent + colorString + "}\n\n"
+    if " color:" in popupContent or "\ncolor:" in popupContent:
+        colorString = ""
+    if popupContent:
         newCSS += ".candidate-popup-content {" + \
             popupContent + colorString + "}\n\n"
 

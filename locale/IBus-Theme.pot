@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: IBus Theme Tools 1\n"
+"Project-Id-Version: IBus Theme Tools 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-26 00:10+0800\n"
+"POT-Creation-Date: 2021-04-26 10:27+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,15 +21,15 @@ msgstr ""
 msgid "Please select a GTK theme to apply for IBus:"
 msgstr ""
 
-#: IBus-Theme.py:98 IBus-Theme.py:305 IBus-Theme.py:350
+#: IBus-Theme.py:98 IBus-Theme.py:311 IBus-Theme.py:356
 msgid "Exit"
 msgstr ""
 
-#: IBus-Theme.py:99 IBus-Theme.py:306
+#: IBus-Theme.py:99 IBus-Theme.py:312
 msgid "(Empty to exit): "
 msgstr ""
 
-#: IBus-Theme.py:101 IBus-Theme.py:308 IBus-Theme.py:354
+#: IBus-Theme.py:101 IBus-Theme.py:314 IBus-Theme.py:360
 msgid "Goodbye!"
 msgstr ""
 
@@ -37,7 +37,7 @@ msgstr ""
 msgid "Done! Goodbye!"
 msgstr ""
 
-#: IBus-Theme.py:111 IBus-Theme.py:330 IBus-Theme.py:366
+#: IBus-Theme.py:111 IBus-Theme.py:336 IBus-Theme.py:372
 msgid "Error: Wrong selection!"
 msgstr ""
 
@@ -92,99 +92,99 @@ msgid ""
 " Imported from CSS Source File: "
 msgstr ""
 
-#: IBus-Theme.py:238
+#: IBus-Theme.py:237
 msgid "  /* IBus style page button */"
 msgstr ""
 
-#: IBus-Theme.py:262
+#: IBus-Theme.py:261
 msgid ""
 "\n"
 "/* EOF */\n"
 msgstr ""
 
-#: IBus-Theme.py:266
-msgid "  /* Fix candidate color */"
-msgstr ""
-
-#: IBus-Theme.py:272
+#: IBus-Theme.py:267
 msgid "  /* Fix system IBus theme background inherited in replaced theme */"
 msgstr ""
 
-#: IBus-Theme.py:275
+#: IBus-Theme.py:270
 msgid ""
 "  /* Fix system IBus theme candidate window border inherited in replaced "
 "theme */"
 msgstr ""
 
-#: IBus-Theme.py:282
+#: IBus-Theme.py:274
+msgid "  /* Fix candidate color */"
+msgstr ""
+
+#: IBus-Theme.py:288
 msgid "  /* Fix black border at pointer when system theme is black */\n"
 msgstr ""
 
-#: IBus-Theme.py:287
+#: IBus-Theme.py:293
 msgid "/* Unify system page button and IBus style page button */\n"
 msgstr ""
 
-#: IBus-Theme.py:299
+#: IBus-Theme.py:305
 msgid "Please select a GNOME theme to extract style sheet for IBus:"
 msgstr ""
 
-#: IBus-Theme.py:312
+#: IBus-Theme.py:318
 msgid "Please enter the path to store generated stylesheet:"
 msgstr ""
 
-#: IBus-Theme.py:314
+#: IBus-Theme.py:320
 msgid "(Empty to be 'exportedIBusTheme.css' in current directory): "
 msgstr ""
 
-#: IBus-Theme.py:321
+#: IBus-Theme.py:327
 msgid ""
 "\n"
 "Now you can use Customize IBus GNOME Shell Extension:\n"
 msgstr ""
 
-#: IBus-Theme.py:323
+#: IBus-Theme.py:329
 msgid "to change IBus theme by selecting the extracted stylesheet."
 msgstr ""
 
-#: IBus-Theme.py:324
+#: IBus-Theme.py:330
 msgid ""
 "\n"
 "If you make any changes to the extracted stylesheet after applying the file "
 "in above extension,"
 msgstr ""
 
-#: IBus-Theme.py:326
+#: IBus-Theme.py:332
 msgid ""
 "please disable and then enable 'custom IME theme' again to make the changes "
 "take effect."
 msgstr ""
 
-#: IBus-Theme.py:327
+#: IBus-Theme.py:333
 msgid ""
 "\n"
 "Done! Goodbye!"
 msgstr ""
 
-#: IBus-Theme.py:338
+#: IBus-Theme.py:344
 msgid "Error: Not in Linux!"
 msgstr ""
 
-#: IBus-Theme.py:344
+#: IBus-Theme.py:350
 msgid "Please select a mode:"
 msgstr ""
 
-#: IBus-Theme.py:346
+#: IBus-Theme.py:352
 msgid "Change GTK theme for IBus"
 msgstr ""
 
-#: IBus-Theme.py:348
+#: IBus-Theme.py:354
 msgid "Extract an IBus-related GNOME theme stylesheet"
 msgstr ""
 
-#: IBus-Theme.py:352
+#: IBus-Theme.py:358
 msgid "(Empty to be 1): "
 msgstr ""
 
-#: IBus-Theme.py:362
+#: IBus-Theme.py:368
 msgid "Note: You can only apply the stylesheet under GNOME."
 msgstr ""
