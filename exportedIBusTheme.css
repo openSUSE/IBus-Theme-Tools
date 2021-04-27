@@ -10,7 +10,7 @@
  to change IBus theme by selecting this file.
 
  If you make any changes to this content after applying this file in above extension, 
- please press 'Alt + F2' and then 'r' or re-login to reload the GNOME-Shell to make the changes take effect.
+ please disable and then enable 'custom IME theme' again to make the changes take effect.
 */
 
 /*
@@ -65,29 +65,33 @@
     padding-left: 0.5em; }
 
 .candidate-page-button-previous {
-  border-radius: 8px 0px 0px 8px;
+  border-radius: 5px 0px 0px 5px;
   border-right-width: 0; }
 
 .candidate-page-button-next {
-  border-radius: 0px 8px 8px 0px; }
+  border-radius: 0px 5px 5px 0px; }
 
 .candidate-page-button-icon {
   icon-size: 1em; }
 
 .candidate-box {
   padding: 0.3em 0.5em 0.3em 0.5em;
-  border-radius: 8px;   /* Fix candidate color */
+  border-radius: 5px;   /* Fix candidate color */
   color: #2e3436;
 }
 
 .candidate-popup-content {
   padding: 0.5em;
-  spacing: 0.3em;   /* Fix candidate color */
+  spacing: 0.3em;   /* Fix system IBus theme background inherited in replaced theme */
+  background: transparent;
+  /* Fix system IBus theme candidate window border inherited in replaced theme */
+  border: transparent;
+  /* Fix candidate color */
   color: #2e3436;
 }
 
 .candidate-popup-boxpointer {
-  -arrow-border-radius: 12px;
+  -arrow-border-radius: 9px;
   -arrow-background-color: #f6f5f4;
   -arrow-border-width: 1px;
   -arrow-border-color: #cdc7c2;
