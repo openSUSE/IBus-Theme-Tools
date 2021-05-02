@@ -123,7 +123,6 @@ msgid ""
 msgstr "  /* 修复系统主题IBus边框部分被替换的主题继承 */"
 
 #: IBus-Theme.py:273
-#, fuzzy
 msgid ""
 "  /* Fix system IBus theme candidate box shadow inherited in replaced theme "
 "*/"
