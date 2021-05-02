@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IBus Theme Tools 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-26 10:27+0800\n"
+"POT-Creation-Date: 2021-05-02 11:18+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,15 +21,15 @@ msgstr ""
 msgid "Please select a GTK theme to apply for IBus:"
 msgstr ""
 
-#: IBus-Theme.py:98 IBus-Theme.py:311 IBus-Theme.py:356
+#: IBus-Theme.py:98 IBus-Theme.py:314 IBus-Theme.py:359
 msgid "Exit"
 msgstr ""
 
-#: IBus-Theme.py:99 IBus-Theme.py:312
+#: IBus-Theme.py:99 IBus-Theme.py:315
 msgid "(Empty to exit): "
 msgstr ""
 
-#: IBus-Theme.py:101 IBus-Theme.py:314 IBus-Theme.py:360
+#: IBus-Theme.py:101 IBus-Theme.py:317 IBus-Theme.py:363
 msgid "Goodbye!"
 msgstr ""
 
@@ -37,7 +37,7 @@ msgstr ""
 msgid "Done! Goodbye!"
 msgstr ""
 
-#: IBus-Theme.py:111 IBus-Theme.py:336 IBus-Theme.py:372
+#: IBus-Theme.py:111 IBus-Theme.py:339 IBus-Theme.py:375
 msgid "Error: Wrong selection!"
 msgstr ""
 
@@ -112,79 +112,85 @@ msgid ""
 "theme */"
 msgstr ""
 
-#: IBus-Theme.py:274
+#: IBus-Theme.py:273
+msgid ""
+"  /* Fix system IBus theme candidate box shadow inherited in replaced theme "
+"*/"
+msgstr ""
+
+#: IBus-Theme.py:277
 msgid "  /* Fix candidate color */"
 msgstr ""
 
-#: IBus-Theme.py:288
+#: IBus-Theme.py:291
 msgid "  /* Fix black border at pointer when system theme is black */\n"
 msgstr ""
 
-#: IBus-Theme.py:293
+#: IBus-Theme.py:296
 msgid "/* Unify system page button and IBus style page button */\n"
 msgstr ""
 
-#: IBus-Theme.py:305
+#: IBus-Theme.py:308
 msgid "Please select a GNOME theme to extract style sheet for IBus:"
 msgstr ""
 
-#: IBus-Theme.py:318
+#: IBus-Theme.py:321
 msgid "Please enter the path to store generated stylesheet:"
 msgstr ""
 
-#: IBus-Theme.py:320
+#: IBus-Theme.py:323
 msgid "(Empty to be 'exportedIBusTheme.css' in current directory): "
 msgstr ""
 
-#: IBus-Theme.py:327
+#: IBus-Theme.py:330
 msgid ""
 "\n"
 "Now you can use Customize IBus GNOME Shell Extension:\n"
 msgstr ""
 
-#: IBus-Theme.py:329
+#: IBus-Theme.py:332
 msgid "to change IBus theme by selecting the extracted stylesheet."
 msgstr ""
 
-#: IBus-Theme.py:330
+#: IBus-Theme.py:333
 msgid ""
 "\n"
 "If you make any changes to the extracted stylesheet after applying the file "
 "in above extension,"
 msgstr ""
 
-#: IBus-Theme.py:332
+#: IBus-Theme.py:335
 msgid ""
 "please disable and then enable 'custom IME theme' again to make the changes "
 "take effect."
 msgstr ""
 
-#: IBus-Theme.py:333
+#: IBus-Theme.py:336
 msgid ""
 "\n"
 "Done! Goodbye!"
 msgstr ""
 
-#: IBus-Theme.py:344
+#: IBus-Theme.py:347
 msgid "Error: Not in Linux!"
 msgstr ""
 
-#: IBus-Theme.py:350
+#: IBus-Theme.py:353
 msgid "Please select a mode:"
 msgstr ""
 
-#: IBus-Theme.py:352
+#: IBus-Theme.py:355
 msgid "Change GTK theme for IBus"
 msgstr ""
 
-#: IBus-Theme.py:354
+#: IBus-Theme.py:357
 msgid "Extract an IBus-related GNOME theme stylesheet"
 msgstr ""
 
-#: IBus-Theme.py:358
+#: IBus-Theme.py:361
 msgid "(Empty to be 1): "
 msgstr ""
 
-#: IBus-Theme.py:368
+#: IBus-Theme.py:371
 msgid "Note: You can only apply the stylesheet under GNOME."
 msgstr ""

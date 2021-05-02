@@ -86,6 +86,8 @@
   background: transparent;
   /* Fix system IBus theme candidate window border inherited in replaced theme */
   border: transparent;
+  /* Fix system IBus theme candidate box shadow inherited in replaced theme */
+  box-shadow: none;
   /* Fix candidate color */
   color: #2e3436;
 }
