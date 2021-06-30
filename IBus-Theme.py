@@ -24,7 +24,7 @@ gettext.textdomain(APP_NAME)
 _ = gettext.gettext
 
 EXTENSION_URL = "https://extensions.gnome.org/extension/4112/customize-ibus/"
-SOURCE_CODE_URL = "https://github.com/HollowMan6/IBus-Theme"
+SOURCE_CODE_URL = "https://github.com/openSUSE/IBus-Theme-Tools"
 
 # Output Style
 BLACK_CYAN = "\033[1;30;46m"
