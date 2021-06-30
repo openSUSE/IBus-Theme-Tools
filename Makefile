@@ -33,4 +33,6 @@ potfile:
 pofile: $(MSGSRC)
 
 mergepo: potfile pofile
-	msgmerge -U $(MSGSRC) $(MSGPOT)
+	msgmerge -U $(MSGSRC) $(MSGPOT); \
+	rm -fR $(MSGPOT); \
+	rm -fR $(MSGDIR)/*po~
