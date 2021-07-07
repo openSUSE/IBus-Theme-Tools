@@ -14,7 +14,9 @@
 
 ## Pre-knowledge
 
-In non-GNOME Shell desktop environment, the display effect of IBus is determined by the current GTK theme.
+IBus has its front-end based on GTK, and GNOME replace that front-end with its GJS version to make it more unified with GNOME.
+
+As a result, in non-GNOME Shell desktop environment, the display effect of IBus is determined by the current GTK theme.
 
 `$HOME/.config/gtk-3.0/settings.ini` defines the current GTK3 theme and font size.
 
@@ -46,27 +48,16 @@ Sample startup item file: [org.hollowman.ibus-gtk-theme-customize.desktop](org.h
 
 If you install themes that support GNOME shell style, you can also choose to extract IBus style, but you can only use it on GNOME desktop.
 
-### GNOME desktop
+#### Customize IBus colors (Create a GTK theme)
 
-Extracting IBus style from GNOME Shell theme, implement it using CSS parser library [tinycss2](https://github.com/Kozea/tinycss2) in Python. Additional IBus style sheets are generated for users to modify and test.
+Create a GTK3 theme called `ibus-custom-theme` by running:
 
-When user chooses a theme from the list, this script will first read the theme CSS file, extract the IBus related style classes (`.candidate-*`), then write it to stylesheet.
+```bash
+mkdir -p $HOME/.themes/ibus-custom-theme/gtk-3.0
+$EDITOR $HOME/.themes/ibus-custom-theme/gtk-3.0/gtk.css
+```
 
-Then use the [Customize IBus GNOME Shell extension](https://extensions.gnome.org/extension/4112/customize-ibus/) to import and apply themes.
-
-*Note:* If you make any changes to the extracted stylesheet after applying the file in above extension, please disable and then enable `custom IME theme` again to make the changes take effect.
-
-Sample extracted stylesheet: [exportedIBusTheme.css](exportedIBusTheme.css)
-
-## Use custom GTK theme
-
-Create a GTK3 theme called `ibus-custom-theme`:
-
-`mkdir -p $HOME/.themes/ibus-custom-theme/gtk-3.0`
-
-`$EDITOR $HOME/.themes/ibus-custom-theme/gtk-3.0/gtk.css`
-
-Example of file content:
+then edit the file content. An example can be:
 
 ```css
 * {
@@ -76,7 +67,21 @@ Example of file content:
 }
 ```
 
-Then select the IBus custom theme in the program.
+After that, run the program, then select the theme `ibus-custom-theme` which you just created.
+
+### GNOME desktop
+
+Extracting IBus style from GNOME Shell theme, implement it using CSS parser library [tinycss2](https://github.com/Kozea/tinycss2) in Python. Additional IBus style sheets are generated for users to modify and test.
+
+Run [`IBus-Theme.py`](IBus-Theme.py) script, operate according to prompted message.
+
+When user chooses a theme from the list, this script will first read the theme CSS file, extract the IBus related style classes (`.candidate-*`), then write it to stylesheet.
+
+Then use the [Customize IBus GNOME Shell extension](https://extensions.gnome.org/extension/4112/customize-ibus/) to import and apply themes.
+
+*Note:* If you make any changes to the extracted stylesheet after applying the file in above extension, please disable and then enable `custom IME theme` again to make the changes take effect.
+
+Sample extracted stylesheet: [exportedIBusTheme.css](exportedIBusTheme.css)
 
 ## Note
 

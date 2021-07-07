@@ -14,7 +14,9 @@
 
 ## 前置知识
 
-非GNOME桌面环境下，IBus的显示效果是由当前GTK主题确定的。
+IBus 的前端是基于 GTK 的，而 GNOME 用它的 GJS 版本取代了这个前端，使其与 GNOME 更加统一。
+
+因而，对于非GNOME桌面环境，IBus的显示效果是由当前GTK主题确定的。
 
 `$HOME/.config/gtk-3.0/settings.ini`文件定义了当前的GTK3主题及字体字号。
 
@@ -46,27 +48,16 @@ gtk-font-name=更纱黑体 SC 12
 
 如果你安装了支持GNOME-Shell样式的主题，你还可以选择提取IBus样式，但是只能在GNOME桌面使用。
 
-### GNOME桌面
+#### 自定义 IBus 色调（创建一个GTK主题）
 
-从GNOME-Shell主题提取IBus样式，使用Python下CSS解析器[tinycss2](https://github.com/Kozea/tinycss2)实现功能，生成额外IBus样式表供用户修改测试使用。
+创建一个名为`ibus-custom-theme`的GTK3主题，运行：
 
-当用户从主题列表中选中一个主题，本程序会首先读取该主题的定义 CSS 文件，从中提取出定义 IBus 皮肤的类样式(`.candidate-*`)以及其他的额外操作，然后将其写入样式表文件。
+```bash
+mkdir -p $HOME/.themes/ibus-custom-theme/gtk-3.0
+$EDITOR $HOME/.themes/ibus-custom-theme/gtk-3.0/gtk.css
+```
 
-随后可以使用[自定义 IBus GNOME Shell 扩展](https://extensions.gnome.org/extension/4112/customize-ibus/)导入并应用主题。
-
-*注意：* 如果你在以上扩展中应用了被提取出的样式表后对文件内容作出了改变，请关闭并重新开启`自定义主题`来使改变生效。
-
-示例提取出的样式表文件：[exportedIBusTheme.css](exportedIBusTheme.css)
-
-## 使用自定义的GTK主题
-
-创建一个名为`ibus-custom-theme`的GTK3主题：
-
-`mkdir -p $HOME/.themes/ibus-custom-theme/gtk-3.0`
-
-`$EDITOR $HOME/.themes/ibus-custom-theme/gtk-3.0/gtk.css`
-
-文件内容示例：
+然后进行文件内容的编辑，文件内容示例：
 
 ```css
 * {
@@ -76,7 +67,21 @@ gtk-font-name=更纱黑体 SC 12
 }
 ```
 
-然后在程序中选择`ibus-custom-theme`主题即可。
+然后运行程序，选择刚刚创建的`ibus-custom-theme`主题即可。
+
+### GNOME桌面
+
+从GNOME-Shell主题提取IBus样式，使用Python下CSS解析器[tinycss2](https://github.com/Kozea/tinycss2)实现功能，生成额外IBus样式表供用户修改测试使用。
+
+运行[`IBus-Theme.py`](IBus-Theme.py)脚本，按提示操作即可。
+
+当用户从主题列表中选中一个主题，本程序会首先读取该主题的定义 CSS 文件，从中提取出定义 IBus 皮肤的类样式(`.candidate-*`)以及其他的额外操作，然后将其写入样式表文件。
+
+随后可以使用[自定义 IBus GNOME Shell 扩展](https://extensions.gnome.org/extension/4112/customize-ibus/)导入并应用主题。
+
+*注意：* 如果你在以上扩展中应用了被提取出的样式表后对文件内容作出了改变，请关闭并重新开启`自定义主题`来使改变生效。
+
+示例提取出的样式表文件：[exportedIBusTheme.css](exportedIBusTheme.css)
 
 ## 说明
 
