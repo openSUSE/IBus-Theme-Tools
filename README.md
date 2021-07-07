@@ -62,9 +62,9 @@ Sample extracted stylesheet: [exportedIBusTheme.css](exportedIBusTheme.css)
 
 Create a GTK3 theme called `ibus-custom-theme`:
 
-`mkdir -p $HOME/.theme/ibus-custom-theme/gtk-3.0`
+`mkdir -p $HOME/.themes/ibus-custom-theme/gtk-3.0`
 
-`$EDITOR $HOME/.theme/ibus-custom-theme/gtk-3.0/gtk.css`
+`$EDITOR $HOME/.themes/ibus-custom-theme/gtk-3.0/gtk.css`
 
 Example of file content:
 

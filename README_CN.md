@@ -62,9 +62,9 @@ gtk-font-name=更纱黑体 SC 12
 
 创建一个名为`ibus-custom-theme`的GTK3主题：
 
-`mkdir -p $HOME/.theme/ibus-custom-theme/gtk-3.0`
+`mkdir -p $HOME/.themes/ibus-custom-theme/gtk-3.0`
 
-`$EDITOR $HOME/.theme/ibus-custom-theme/gtk-3.0/gtk.css`
+`$EDITOR $HOME/.themes/ibus-custom-theme/gtk-3.0/gtk.css`
 
 文件内容示例：
 
