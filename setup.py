@@ -1,3 +1,16 @@
+#!/usr/bin/python3
+# vim: set fileencoding=utf-8 :
+# vim: set et ts=4 sw=4:
+'''
+  IBus Theme Tools
+  Author:  Hollow Man <hollowman@hollowman.ml>
+
+  Copyright © 2021 Hollow Man(@HollowMan6). All rights reserved.
+
+  This document is free software; you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option)
+  any later version.
+'''
 from setuptools import setup
 
 setup(name='ibus-theme-tools',
