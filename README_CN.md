@@ -37,8 +37,18 @@ gtk-font-name=更纱黑体 SC 12
 ## 安装
 
 ```bash
-python3 setup.py install
+git clone https://github.com/openSUSE/IBus-Theme-Tools.git
+cd IBus-Theme-Tools && python3 setup.py install
+ibus-theme-tools
 ```
+
+如果你使用 Arch Linux, 也可使用 AUR 安装为系统插件:
+
+```bash
+yay -S ibus-theme-tools
+```
+
+[![AUR](https://aur.archlinux.org/css/archnavbar/aurlogo.png)](https://aur.archlinux.org/packages/ibus-theme-tools/)
 
 ## 实现功能
 

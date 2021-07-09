@@ -19,6 +19,8 @@ clean:
 	-rm -fR $(MSGPOS:.po=.po~)
 	-rm -fR dist
 	-rm -fR build
+	-rm -fR deb_dist
+	-rm -fR *.tar.gz
 	-rm -fR $(PYPACK).egg-info
 
 %.mo: %.po
@@ -48,3 +50,10 @@ mergepo: potfile pofile
 
 rpm:
 	python3 setup.py bdist_rpm
+
+deb:
+	python3 setup.py --command-packages=stdeb.command bdist_deb
+	
+arch:
+	makepkg --printsrcinfo > .SRCINFO
+	makepkg
