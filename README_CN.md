@@ -1,6 +1,7 @@
 # IBus 主题工具
 
 [![last-commit](https://img.shields.io/github/last-commit/openSUSE/IBus-Theme-Tools)](https://github.com/openSUSE/IBus-Theme-Tools/graphs/commit-activity)
+[![pipy](https://img.shields.io/pypi/v/ibus-theme-tools.svg)](https://pypi.org/project/ibus-theme-tools/)
 
 [![GPL Licence](https://img.shields.io/badge/license-GPL-blue)](https://opensource.org/licenses/GPL-3.0/)
 [![Repo-Size](https://img.shields.io/github/repo-size/openSUSE/IBus-Theme-Tools.svg)](https://github.com/openSUSE/IBus-Theme-Tools/archive/main.zip)
@@ -35,6 +36,15 @@ gtk-font-name=更纱黑体 SC 12
 至于IBus的配色方案，可以在IBus启动的时候指定其使用特定GTK主题，即可实现对IBus配色的自定义。
 
 ## 安装
+
+你可以直接使用pip安装：
+
+```bash
+pip install ibus-theme-tools
+ibus-theme-tools
+```
+
+或者也可以手动安装：
 
 ```bash
 git clone https://github.com/openSUSE/IBus-Theme-Tools.git

@@ -57,3 +57,8 @@ deb:
 arch:
 	makepkg --printsrcinfo > .SRCINFO
 	makepkg
+
+upload:
+	python3 -m build
+	python3 -m twine check dist/*
+	python3 -m twine upload dist/*

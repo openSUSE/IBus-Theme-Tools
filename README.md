@@ -1,6 +1,7 @@
 # IBus Theme Tools
 
 [![last-commit](https://img.shields.io/github/last-commit/openSUSE/IBus-Theme-Tools)](https://github.com/openSUSE/IBus-Theme-Tools/graphs/commit-activity)
+[![pipy](https://img.shields.io/pypi/v/ibus-theme-tools.svg)](https://pypi.org/project/ibus-theme-tools/)
 
 [![GPL Licence](https://img.shields.io/badge/license-GPL-blue)](https://opensource.org/licenses/GPL-3.0/)
 [![Repo-Size](https://img.shields.io/github/repo-size/openSUSE/IBus-Theme-Tools.svg)](https://github.com/openSUSE/IBus-Theme-Tools/archive/main.zip)
@@ -35,6 +36,15 @@ The IBus font and font size can be changed by modifying the above documents.
 As for the color scheme of IBus, you can specify that it uses specific GTK theme when IBus starts, and then customize the color matching of IBus.
 
 ## Installation
+
+You can directly use pip to install:
+
+```bash
+pip install ibus-theme-tools
+ibus-theme-tools
+```
+
+Or just install manually:
 
 ```bash
 git clone https://github.com/openSUSE/IBus-Theme-Tools.git
