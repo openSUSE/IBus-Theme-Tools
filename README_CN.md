@@ -1,4 +1,4 @@
-# IBus 主题
+# IBus 主题工具
 
 [![last-commit](https://img.shields.io/github/last-commit/openSUSE/IBus-Theme-Tools)](https://github.com/openSUSE/IBus-Theme-Tools/graphs/commit-activity)
 
@@ -34,13 +34,19 @@ gtk-font-name=更纱黑体 SC 12
 
 至于IBus的配色方案，可以在IBus启动的时候指定其使用特定GTK主题，即可实现对IBus配色的自定义。
 
+## 安装
+
+```bash
+python3 setup.py install
+```
+
 ## 实现功能
 
 ### 非GNOME桌面
 
 在非 GNOME Shell 桌面环境中，可以更改IBus GTK主题。
 
-运行[`IBus-Theme.py`](IBus-Theme.py)脚本，按提示操作选择GTK主题即可。
+运行[`ibus_theme_tools.py`](ibus_theme_tools/ibus_theme_tools.py)脚本，按提示操作选择GTK主题即可。
 
 更改GTK主题后，程序会自动将更改IBus GTK主题的启动项加入当前用户的`$HOME/.config/autostart/`目录下。
 
@@ -73,7 +79,7 @@ $EDITOR $HOME/.themes/ibus-custom-theme/gtk-3.0/gtk.css
 
 从GNOME-Shell主题提取IBus样式，使用Python下CSS解析器[tinycss2](https://github.com/Kozea/tinycss2)实现功能，生成额外IBus样式表供用户修改测试使用。
 
-运行[`IBus-Theme.py`](IBus-Theme.py)脚本，按提示操作即可。
+运行[`ibus_theme_tools.py`](ibus_theme_tools/ibus_theme_tools.py)脚本，按提示操作即可。
 
 当用户从主题列表中选中一个主题，本程序会首先读取该主题的定义 CSS 文件，从中提取出定义 IBus 皮肤的类样式(`.candidate-*`)以及其他的额外操作，然后将其写入样式表文件。
 

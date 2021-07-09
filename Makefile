@@ -1,7 +1,8 @@
 NAME = IBus-Theme
 PACK = IBus Theme Tools
-VERSION = 1
-MSGPOS = $(wildcard locale/*/LC_MESSAGES/*.po)
+PYPACK = ibus_theme_tools
+VERSION = 3
+MSGPOS = $(wildcard $(PYPACK)/locale/*/LC_MESSAGES/*.po)
 
 # for translators: `make mergepo` or `make LANG=YOUR_LANG mergepo`
 # The command line passed variable LANG is used to localize pot file.
@@ -15,24 +16,35 @@ MSGAIM = $(MSGDIR)/$(NAME).mo
 all: _build
 
 clean:
-	-rm -fR $(MSGPOS:.po=.mo)
 	-rm -fR $(MSGPOS:.po=.po~)
+	-rm -fR dist
+	-rm -fR build
+	-rm -fR $(PYPACK).egg-info
 
 %.mo: %.po
 	msgfmt $< -o $@
 
-install: $(MSGPOS:.po=.mo)
+build: $(MSGPOS:.po=.mo)
 
-$(MSGSRC):
+install:
+	python3 setup.py install
+
+$(PYPACK)/$(MSGSRC):
 	mkdir -p $(MSGDIR); \
 	msginit --no-translator --locale $(LANGUAGE).UTF-8 -i ./$(MSGPOT) -o ./$(MSGSRC)
 
 potfile:
-	xgettext -k --keyword=_ --from-code=utf-8 --package-name="$(PACK)" --package-version=$(VERSION) --add-comments='Translators:' --output ./$(MSGPOT) *.py
+	cd $(PYPACK); \
+		xgettext -k --keyword=_ --from-code=utf-8 --package-name="$(PACK)" --package-version=$(VERSION) --add-comments='Translators:' --output ./$(MSGPOT) *.py
 
-pofile: $(MSGSRC)
+pofile: $(PYPACK)/$(MSGSRC)
 
 mergepo: potfile pofile
-	msgmerge -U $(MSGSRC) $(MSGPOT); \
-	rm -fR $(MSGPOT); \
-	rm -fR $(MSGDIR)/*po~
+	cd $(PYPACK); \
+		msgmerge -U $(MSGSRC) $(MSGPOT); \
+		rm -fR $(MSGPOT); \
+		rm -fR $(MSGDIR)/*mo
+		rm -fR $(MSGDIR)/*po~
+
+rpm:
+	python3 setup.py bdist_rpm

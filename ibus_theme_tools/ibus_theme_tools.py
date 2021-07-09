@@ -11,6 +11,7 @@
   Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option)
   any later version.
 '''
+import sys
 import re
 import tinycss2
 from gi.repository import GLib
@@ -18,7 +19,7 @@ import os
 
 import gettext
 APP_NAME = "IBus-Theme"
-LOCALE_DIR = os.path.abspath("locale")
+LOCALE_DIR = os.path.join(os.path.dirname(__file__), "locale")
 gettext.bindtextdomain(APP_NAME, LOCALE_DIR)
 gettext.textdomain(APP_NAME)
 _ = gettext.gettext
@@ -340,7 +341,7 @@ def exportIBusTheme():
             count = 1
 
 
-if __name__ == "__main__":
+def main():
     try:
         desktopEnv = os.environ["XDG_CURRENT_DESKTOP"].split(":")
     except Exception:
@@ -373,3 +374,7 @@ if __name__ == "__main__":
             else:
                 print(READ_YELLOW +
                       _("Error: Wrong selection!") + OUTPUT_END + "\n")
+
+
+if __name__ == "__main__":
+    main()

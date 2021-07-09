@@ -34,13 +34,19 @@ The IBus font and font size can be changed by modifying the above documents.
 
 As for the color scheme of IBus, you can specify that it uses specific GTK theme when IBus starts, and then customize the color matching of IBus.
 
-## Implementation function
+## Installation
+
+```bash
+python3 setup.py install
+```
+
+## Functionality
 
 ### Non-GNOME desktop
 
 Change the IBus GTK theme in a non-GNOME Shell desktop environment.
 
-Run [`IBus-Theme.py`](IBus-Theme.py) script, select GTK theme according to prompted message.
+Run [`ibus_theme_tools.py`](ibus_theme_tools/ibus_theme_tools.py) script, select GTK theme according to prompted message.
 
 After changing the GTK theme, the program will automatically add the startup item of changing IBus GTK theme to the current user's `$HOME/.config/autostart/` directory.
 
@@ -73,7 +79,7 @@ After that, run the program, then select the theme `ibus-custom-theme` which you
 
 Extracting IBus style from GNOME Shell theme, implement it using CSS parser library [tinycss2](https://github.com/Kozea/tinycss2) in Python. Additional IBus style sheets are generated for users to modify and test.
 
-Run [`IBus-Theme.py`](IBus-Theme.py) script, operate according to prompted message.
+Run [`ibus_theme_tools.py`](ibus_theme_tools/ibus_theme_tools.py) script, operate according to prompted message.
 
 When user chooses a theme from the list, this script will first read the theme CSS file, extract the IBus related style classes (`.candidate-*`), then write it to stylesheet.
 
