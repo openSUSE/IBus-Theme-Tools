@@ -9,9 +9,9 @@
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/openSUSE/IBus-Theme-Tools.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/openSUSE/IBus-Theme-Tools/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/openSUSE/IBus-Theme-Tools.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/openSUSE/IBus-Theme-Tools/context:python)
 
-[中文 Chinese](README_CN.md)
+[中文 Chinese](https://github.com/openSUSE/IBus-Theme-Tools/blob/main/README_CN.md)
 
-[Python Library Dependency](../../network/dependencies)
+[Python Library Dependency](https://github.com/openSUSE/IBus-Theme-Tools/network/dependencies)
 
 ## Pre-knowledge
 
@@ -66,11 +66,11 @@ yay -S ibus-theme-tools
 
 Change the IBus GTK theme in a non-GNOME Shell desktop environment.
 
-Run [`ibus_theme_tools.py`](ibus_theme_tools/ibus_theme_tools.py) script, select GTK theme according to prompted message.
+Run [`ibus_theme_tools.py`](https://github.com/openSUSE/IBus-Theme-Tools/blob/main/ibus_theme_tools/ibus_theme_tools.py) script, select GTK theme according to prompted message.
 
 After changing the GTK theme, the program will automatically add the startup item of changing IBus GTK theme to the current user's `$HOME/.config/autostart/` directory.
 
-Sample startup item file: [org.hollowman.ibus-gtk-theme-customize.desktop](org.hollowman.ibus-gtk-theme-customize.desktop)
+Sample startup item file: [org.hollowman.ibus-gtk-theme-customize.desktop](https://github.com/openSUSE/IBus-Theme-Tools/blob/main/org.hollowman.ibus-gtk-theme-customize.desktop)
 
 If you install themes that support GNOME shell style, you can also choose to extract IBus style, but you can only use it on GNOME desktop.
 
@@ -99,7 +99,7 @@ After that, run the program, then select the theme `ibus-custom-theme` which you
 
 Extracting IBus style from GNOME Shell theme, implement it using CSS parser library [tinycss2](https://github.com/Kozea/tinycss2) in Python. Additional IBus style sheets are generated for users to modify and test.
 
-Run [`ibus_theme_tools.py`](ibus_theme_tools/ibus_theme_tools.py) script, operate according to prompted message.
+Run [`ibus_theme_tools.py`](https://github.com/openSUSE/IBus-Theme-Tools/blob/main/ibus_theme_tools/ibus_theme_tools.py) script, operate according to prompted message.
 
 When user chooses a theme from the list, this script will first read the theme CSS file, extract the IBus related style classes (`.candidate-*`), then write it to stylesheet.
 
@@ -107,7 +107,7 @@ Then use the [Customize IBus GNOME Shell extension](https://extensions.gnome.org
 
 *Note:* If you make any changes to the extracted stylesheet after applying the file in above extension, please disable and then enable `custom IME theme` again to make the changes take effect.
 
-Sample extracted stylesheet: [exportedIBusTheme.css](exportedIBusTheme.css)
+Sample extracted stylesheet: [exportedIBusTheme.css](https://github.com/openSUSE/IBus-Theme-Tools/blob/main/exportedIBusTheme.css)
 
 ## Note
 

@@ -1,6 +1,6 @@
 pkgbase = ibus-theme-tools
 	pkgdesc = Change the IBus GTK theme or extracting IBus style from GNOME Shell theme.
-	pkgver = 3
+	pkgver = 3.1.0
 	pkgrel = 1
 	epoch = 0
 	url = https://github.com/openSUSE/IBus-Theme-Tools

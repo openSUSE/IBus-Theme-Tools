@@ -13,6 +13,7 @@
 '''
 
 import re
+import glob
 import tinycss2
 from gi.repository import GLib
 import os
@@ -46,19 +47,19 @@ def getThemePathList():
 # For Non-GNOME Desktop
 
 
-def getAvailableGTKTheme(appendix="", fileName="gtk.css"):
+def getAvailableGTKTheme():
     themeNameList = []
+    GtkThemePath = []
     pathList = getThemePathList()
-    GTKVersionList = ["3.0", "3.20", "4.0"]
     for path in pathList:
-        if os.path.isdir(path):
-            files = os.listdir(path)
-            for p in files:
-                if os.path.isdir(os.path.join(path, p)):
-                    for version in GTKVersionList:
-                        if os.path.isfile(os.path.join(path, p, "gtk-"+version, fileName)):
-                            themeNameList.append(p + appendix)
-                            break
+        GtkThemePath.extend(glob.glob(path + "/*/*/gtk*.css"))
+    for path in GtkThemePath:
+        filename = os.path.basename(path)
+        appendix = ""
+        if "gtk-" in filename:
+            appendix = ":" + filename.replace("gtk-", "").replace(".css", "")
+        themeNameList.append(os.path.basename(
+            os.path.dirname(os.path.dirname(path))) + appendix)
     return themeNameList
 
 
@@ -85,7 +86,7 @@ def addStartup(themeName):
 
 def changeGTKTheme():
     themeNameList = getAvailableGTKTheme()
-    themeNameList.extend(getAvailableGTKTheme(":dark", "gtk-dark.css"))
+    themeNameList = list(set(themeNameList))
     themeNameList.sort()
     count = 1
     while True:
@@ -119,22 +120,11 @@ def getAvailableGNOMETheme():
     themeList = []
     pathList = getThemePathList()
     for path in pathList:
-        if os.path.isdir(path):
-            files = os.listdir(path)
-            for p in files:
-                if os.path.isdir(os.path.join(path, p)):
-                    if os.path.isfile(os.path.join(path, p, "gnome-shell", "gnome-shell.css")):
-                        themeList.append(os.path.join(
-                            path, p, "gnome-shell", "gnome-shell.css"))
+        themeList.extend(glob.glob(path + "/*/gnome-shell/gnome-shell.css"))
     pathList = list(map(lambda x: os.path.join(
         x, "gnome-shell", "theme"), GLib.get_system_data_dirs()))
     for path in pathList:
-        if os.path.isdir(path):
-            files = os.listdir(path)
-            for p in files:
-                if os.path.isfile(os.path.join(path, p)) and os.path.splitext(os.path.join(path, p))[-1] == ".css":
-                    if os.path.isfile(os.path.join(path, p)):
-                        themeList.append(os.path.join(path, p))
+        themeList.extend(glob.glob(path + "/*.css"))
     return themeList
 
 
@@ -302,6 +292,7 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
 
 def exportIBusTheme():
     themeList = getAvailableGNOMETheme()
+    themeList = list(set(themeList))
     themeList.sort()
     count = 1
     while True:
@@ -347,7 +338,7 @@ def main():
     except Exception:
         print(READ_YELLOW + _("Error: Not in Linux!") + OUTPUT_END)
         exit(1)
-    if "GNOME" in desktopEnv:
+    if "GNOM" in desktopEnv:
         exportIBusTheme()
     else:
         while True:
