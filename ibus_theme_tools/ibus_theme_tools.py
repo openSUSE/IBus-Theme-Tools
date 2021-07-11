@@ -338,7 +338,7 @@ def main():
     except Exception:
         print(READ_YELLOW + _("Error: Not in Linux!") + OUTPUT_END)
         exit(1)
-    if "GNOM" in desktopEnv:
+    if "GNOME" in desktopEnv:
         exportIBusTheme()
     else:
         while True:
