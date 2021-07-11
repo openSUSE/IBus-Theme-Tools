@@ -3,7 +3,7 @@
 
 pkgname=ibus-theme-tools
 _pkgname=IBus-Theme-Tools
-_commit=0168e1c488717ab6b82b9bf82b1c9d846c73a2f5
+_commit=797a21de0f31e7e4d8745437a82907493d06abb1
 pkgver=3.1.1
 pkgrel=1
 epoch=0
