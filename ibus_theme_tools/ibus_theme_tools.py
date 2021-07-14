@@ -74,7 +74,7 @@ def addStartup(themeName):
             "GenericName=Customize IBus Theme\n" + \
             "GenericName[zh_CN]=自定义IBus 主题\n" + \
             "Icon=ibus\n" + \
-            "Exec=bash -c 'pkill ibus-daemon;GTK_THEME=" + themeName + " ibus-daemon -dx &'\n" + \
+            "Exec=bash -c 'ibus exit;GTK_THEME=" + themeName + " ibus-daemon -dx &'\n" + \
             "Comment=Applying user selected GTK theme for IBus\n" + \
             "Comment[zh_CN]=应用用户选择的IBus GTK主题\n" + \
             "Terminal=false\n" + \
@@ -103,7 +103,7 @@ def changeGTKTheme():
             print(_("Goodbye!"))
             exit(0)
         elif selection.isdigit() and int(selection) < count and int(selection) > 0:
-            os.system("pkill ibus-daemon")
+            os.system("ibus exit")
             os.system("GTK_THEME=" +
                       themeNameList[int(selection)-1] + " ibus-daemon -dx &")
             addStartup(themeNameList[int(selection)-1])
