@@ -45,7 +45,7 @@ mergepo: potfile pofile
 	cd $(PYPACK); \
 		msgmerge -U $(MSGSRC) $(MSGPOT); \
 		rm -fR $(MSGPOT); \
-		rm -fR $(MSGDIR)/*mo
+		rm -fR $(MSGDIR)/*mo; \
 		rm -fR $(MSGDIR)/*po~
 
 rpm:
@@ -53,7 +53,12 @@ rpm:
 
 deb:
 	python3 setup.py --command-packages=stdeb.command bdist_deb
-	
+
+ppa: deb
+	cd deb_dist; \
+		debsign *source.changes; \
+		dput ibus-theme-tools *source.changes
+
 arch:
 	makepkg --printsrcinfo > .SRCINFO
 	makepkg
