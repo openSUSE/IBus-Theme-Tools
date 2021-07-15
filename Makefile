@@ -52,7 +52,7 @@ rpm:
 	python3 setup.py bdist_rpm
 
 deb:
-	python3 setup.py --command-packages=stdeb.command bdist_deb
+	python3 setup.py --command-packages=stdeb.command sdist_dsc --default-distribution hirsute --copyright-file LICENSE bdist_deb
 
 ppa: deb
 	cd deb_dist; \
