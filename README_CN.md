@@ -60,6 +60,8 @@ yay -S ibus-theme-tools
 
 [![AUR](https://aur.archlinux.org/css/archnavbar/aurlogo.png)](https://aur.archlinux.org/packages/ibus-theme-tools/)
 
+[Ubuntu PPA](https://launchpad.net/~hollowman86/+archive/ubuntu/ibus-theme-tools)
+
 ## 实现功能
 
 ### 非GNOME桌面
