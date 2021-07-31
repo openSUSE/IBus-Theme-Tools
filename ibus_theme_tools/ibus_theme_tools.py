@@ -168,7 +168,7 @@ def RMUnrelatedGTKStyleClass(string, widgetList):
     newClassList = []
     for className in classList:
         if any([widget in className for widget in widgetList]):
-            if "." not in className and "#" not in className and ">" not in className:
+            if "#" not in className and ">" not in className:
                 newClassList.append("#IBusCandidate " + className.strip())
     return ", ".join(newClassList)
 
@@ -336,7 +336,7 @@ def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, recursive=False):
         newCSS = _("/*\n Imported from CSS Source File: ") + \
             styleSheet + "\n*/\n\n"
 
-    widgetList = ['*', 'window', 'box', 'label', 'button', 'icon']
+    widgetList = ['*', 'box', 'label', 'button']
 
     with open(styleSheet) as f:
         tokenList = tinycss2.parse_stylesheet(
