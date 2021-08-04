@@ -66,13 +66,11 @@ yay -S ibus-theme-tools
 
 ### Non-GNOME desktop
 
-Change the IBus GTK theme in a non-GNOME Shell desktop environment.
+Change the IBus GTK theme in a non-GNOME Shell desktop environment and supporting to select a background picture or configure border radius.
 
-Run [`ibus_theme_tools.py`](https://github.com/openSUSE/IBus-Theme-Tools/blob/main/ibus_theme_tools/ibus_theme_tools.py) script, select GTK theme according to prompted message.
+Run [`ibus_theme_tools.py`](https://github.com/openSUSE/IBus-Theme-Tools/blob/main/ibus_theme_tools/ibus_theme_tools.py) script, operate according to prompted message.
 
-After changing the GTK theme, the program will automatically add the startup item of changing IBus GTK theme to the current user's `$HOME/.config/autostart/` directory.
-
-Sample startup item file: [org.hollowman.ibus-gtk-theme-customize.desktop](https://github.com/openSUSE/IBus-Theme-Tools/blob/main/org.hollowman.ibus-gtk-theme-customize.desktop)
+After generating the new theme, just select the theme in the system theme configuration.
 
 If you install themes that support GNOME shell style, you can also choose to extract IBus style, but you can only use it on GNOME desktop.
 

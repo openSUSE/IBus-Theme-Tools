@@ -66,13 +66,11 @@ yay -S ibus-theme-tools
 
 ### 非GNOME桌面
 
-在非 GNOME Shell 桌面环境中，可以更改IBus GTK主题。
+在非 GNOME Shell 桌面环境中，可以更改IBus GTK主题，并支持选择背景图片与配置圆角半径。
 
-运行[`ibus_theme_tools.py`](ibus_theme_tools/ibus_theme_tools.py)脚本，按提示操作选择GTK主题即可。
+运行[`ibus_theme_tools.py`](ibus_theme_tools/ibus_theme_tools.py)脚本，按提示操作即可。
 
-更改GTK主题后，程序会自动将更改IBus GTK主题的启动项加入当前用户的`$HOME/.config/autostart/`目录下。
-
-示例启动项文件：[org.hollowman.ibus-gtk-theme-customize.desktop](org.hollowman.ibus-gtk-theme-customize.desktop)
+在主题生成完成后，手动在系统设置中选择新生成的主题即可。
 
 如果你安装了支持GNOME-Shell样式的主题，你还可以选择提取IBus样式，但是只能在GNOME桌面使用。
 
