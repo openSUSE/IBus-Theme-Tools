@@ -240,10 +240,13 @@ def RMUnrelatedGTKStyleClass(string, widgetList):
     newClassList = []
     for className in classList:
         if any([className.strip().startswith(widget) for widget in widgetList]):
-            if "#" not in className:
-                newClassList.append("#IBusCandidate " + className.strip())
-        if className.strip().startswith("box"):
-            newClassList.append(className.strip().replace("box", "#IBusCandidate", 1))
+            if "#" not in className and ">" not in className:
+                if className.strip().startswith('.background'):
+                    newClassList.append(className.strip().replace('.background', "#IBusCandidate", 1))
+                else:
+                    newClassList.append("#IBusCandidate " + className.strip())
+                    if className.strip().startswith("box"):
+                        newClassList.append(className.strip().replace("box", "#IBusCandidate", 1))
     return ", ".join(newClassList)
 
 def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
@@ -410,7 +413,7 @@ def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, re
         newCSS = _("/*\n Imported from CSS Source File: ") + \
             styleSheet + "\n*/\n\n"
 
-    widgetList = ['*', 'box', 'label', 'button']
+    widgetList = ['*', 'box', 'label', 'button', '.background']
 
     fileContent = ""
     if resource:
@@ -430,7 +433,7 @@ def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, re
                     contentStr = tinycss2.serialize(token.content)
                     contentStr = contentStr.replace(
                         "assets/", os.path.split(styleSheet)[0] + "/assets/")
-                    newCSS += classStr + "{" + contentStr + "}\n\n"
+                    newCSS += classStr + " {" + contentStr + "}\n\n"
         elif token.type == 'at-rule' and token.lower_at_keyword == 'import':
             for importToken in token.prelude:
                 if importToken.type == "function" and importToken.name == "url":
