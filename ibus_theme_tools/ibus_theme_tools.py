@@ -15,7 +15,7 @@
 import re
 import glob
 import tinycss2
-from gi.repository import GLib
+from gi.repository import GLib, Gio
 import os
 
 import gettext
@@ -35,6 +35,8 @@ YELLOW_BLUE = "\033[1;33;44m"
 UNDER_LINE = "\033[4m"
 OUTPUT_END = "\033[0m"
 
+gtkResource = ""
+
 
 def getThemePathList():
     pathList = []
@@ -49,6 +51,7 @@ def getThemePathList():
 
 def getAvailableGTKTheme():
     themeNameList = []
+    themeNameLocation = {}
     GtkThemePath = []
     pathList = getThemePathList()
     for path in pathList:
@@ -58,40 +61,130 @@ def getAvailableGTKTheme():
         appendix = ""
         if "gtk-" in filename:
             appendix = ":" + filename.replace("gtk-", "").replace(".css", "")
-        themeNameList.append(os.path.basename(
-            os.path.dirname(os.path.dirname(path))) + appendix)
-    return themeNameList
+        themeName = os.path.basename(
+            os.path.dirname(os.path.dirname(path))) + appendix
+        themeNameList.append(themeName)
+        if themeName in themeNameLocation:
+            themeNameLocation[themeName].append(path)
+        else:
+            themeNameLocation[themeName] = [path]
+    return themeNameList, themeNameLocation
 
 
-def addStartup(themeName):
-    startupDir = os.path.join(GLib.get_user_config_dir(), "autostart")
-    if not os.path.exists(startupDir):
-        os.makedirs(startupDir)
-    with open(os.path.join(startupDir, "org.hollowman.ibus-gtk-theme-customize.desktop"), "w") as f:
-        content = "[Desktop Entry]\n" + \
-            "Name=ibus-gtk-theme-customize\n" + \
-            "Name[zh_CN]=ibus-gtk-主题自定义\n" + \
-            "GenericName=Customize IBus Theme\n" + \
-            "GenericName[zh_CN]=自定义IBus 主题\n" + \
-            "Icon=ibus\n" + \
-            "Exec=bash -c 'ibus exit;GTK_THEME=" + themeName + " ibus-daemon -dx &'\n" + \
-            "Comment=Applying user selected GTK theme for IBus\n" + \
-            "Comment[zh_CN]=应用用户选择的IBus GTK主题\n" + \
-            "Terminal=false\n" + \
-            "Type=Application\n" + \
-            "Categories=System;Settings;IBus;\n" + \
-            "StartupNotify=false\n"
-        f.write(content)
+# def addStartup(themeName):
+#     startupDir = os.path.join(GLib.get_user_config_dir(), "autostart")
+#     if not os.path.exists(startupDir):
+#         os.makedirs(startupDir)
+#     with open(os.path.join(startupDir, "org.hollowman.ibus-gtk-theme-customize.desktop"), "w") as f:
+#         content = "[Desktop Entry]\n" + \
+#             "Name=ibus-gtk-theme-customize\n" + \
+#             "Name[zh_CN]=ibus-gtk-主题自定义\n" + \
+#             "GenericName=Customize IBus Theme\n" + \
+#             "GenericName[zh_CN]=自定义IBus 主题\n" + \
+#             "Icon=ibus\n" + \
+#             "Exec=bash -c 'ibus exit;GTK_THEME=" + themeName + " ibus-daemon -dx &'\n" + \
+#             "Comment=Applying user selected GTK theme for IBus\n" + \
+#             "Comment[zh_CN]=应用用户选择的IBus GTK主题\n" + \
+#             "Terminal=false\n" + \
+#             "Type=Application\n" + \
+#             "Categories=System;Settings;IBus;\n" + \
+#             "StartupNotify=false\n"
+#         f.write(content)
 
 
-def changeGTKTheme():
-    themeNameList = getAvailableGTKTheme()
+def RMUnrelatedGTKStyleClass(string, widgetList):
+    classList = string.split(",")
+    newClassList = []
+    for className in classList:
+        if any([className.strip().startswith(widget) for widget in widgetList]):
+            if "#" not in className and ">" not in className:
+                if className.strip().startswith('.background'):
+                    newClassList.append(className.strip().replace(
+                        '.background', "#IBusCandidate", 1))
+                else:
+                    newClassList.append("#IBusCandidate " + className.strip())
+                    if className.strip().startswith("box"):
+                        newClassList.append(className.strip().replace(
+                            "box", "#IBusCandidate", 1))
+    return ", ".join(newClassList)
+
+
+def GTKCustomizeImage():
+    while True:
+        print("")
+        image = input(
+            YELLOW_BLUE + _("Please enter your image file location (empty to exit file selection): ") + OUTPUT_END)
+        if image:
+            if os.path.isfile(image):
+                cssContent = _("\n/* Customized Background Image */\n") + \
+                    "#IBusCandidate {\n  background: url('" + image + "');\n  "
+                while True:
+                    print("")
+                    print(
+                        BLACK_CYAN + _("Please select repeat mode for your image:") + OUTPUT_END)
+                    print("[" + BLACK_CYAN + "1" + OUTPUT_END + "]\t" + UNDER_LINE +
+                          _("No") + OUTPUT_END)
+                    print("[" + BLACK_CYAN + "2" + OUTPUT_END + "]\t" + UNDER_LINE +
+                          _("Yes") + OUTPUT_END)
+                    modeSelection = input(
+                        YELLOW_BLUE + _("(Empty to be 1): ") + OUTPUT_END)
+                    if modeSelection.isdigit() and int(modeSelection) >= 1 and int(modeSelection) <= 2 or not modeSelection:
+                        if not modeSelection or modeSelection == "1":
+                            cssContent += "background-repeat: no-repeat;\n  "
+                        elif modeSelection == "2":
+                            cssContent += "background-repeat: repeat;\n  "
+                        while True:
+                            print("")
+                            print(
+                                BLACK_CYAN + _("Please select sizing mode for your image:") + OUTPUT_END)
+                            print("[" + BLACK_CYAN + "1" + OUTPUT_END + "]\t" + UNDER_LINE +
+                                  _("Zoom") + OUTPUT_END)
+                            print("[" + BLACK_CYAN + "2" + OUTPUT_END + "]\t" + UNDER_LINE +
+                                  _("Full") + OUTPUT_END)
+                            print("[" + BLACK_CYAN + "3" + OUTPUT_END + "]\t" + UNDER_LINE +
+                                  _("Centered") + OUTPUT_END)
+                            modeSelection = input(
+                                YELLOW_BLUE + _("(Empty to be 1): ") + OUTPUT_END)
+                            if modeSelection.isdigit() and int(modeSelection) >= 1 and int(modeSelection) <= 3 or not modeSelection:
+                                if not modeSelection or modeSelection == "1":
+                                    cssContent += "background-size: cover;\n"
+                                elif modeSelection == "2":
+                                    cssContent += "background-size: contain;\n"
+                                elif modeSelection == "3":
+                                    cssContent += "background-size: cover;\n"
+                                while True:
+                                    print("")
+                                    radiusSetting = input(
+                                        YELLOW_BLUE + _("Please input the image border radius you want to set in px(Empty to not set): ") + OUTPUT_END)
+                                    if radiusSetting.isnumeric() or not radiusSetting:
+                                        if radiusSetting.isnumeric():
+                                            cssContent += "  border-radius: " + radiusSetting + "px;\n}"
+                                        else:
+                                            cssContent += "}"
+                                        return cssContent
+                                    else:
+                                        print(
+                                            READ_YELLOW + _("Error: Please Enter a Number!") + OUTPUT_END + "\n")
+                            else:
+                                print(
+                                    READ_YELLOW + _("Error: Wrong selection!") + OUTPUT_END + "\n")
+                    else:
+                        print(READ_YELLOW +
+                              _("Error: Wrong selection!") + OUTPUT_END + "\n")
+            else:
+                print(READ_YELLOW + _("Error: File Not Exists!") + OUTPUT_END + "\n")
+        else:
+            return ""
+
+
+def exportGTKTheme():
+    themeNameList, themeNameLocation = getAvailableGTKTheme()
     themeNameList = list(set(themeNameList))
     themeNameList.sort()
     count = 1
     while True:
         print(BLACK_CYAN +
-              _("Please select a GTK theme to apply for IBus:") + OUTPUT_END)
+              _("Please select a GTK theme to extract for IBus:") + OUTPUT_END)
         for themeName in themeNameList:
             print("[" + BLACK_CYAN+str(count)+OUTPUT_END + "]\t" +
                   UNDER_LINE + themeName + OUTPUT_END)
@@ -103,15 +196,127 @@ def changeGTKTheme():
             print(_("Goodbye!"))
             exit(0)
         elif selection.isdigit() and int(selection) < count and int(selection) > 0:
-            os.system("ibus exit")
-            os.system("GTK_THEME=" +
-                      themeNameList[int(selection)-1] + " ibus-daemon -dx &")
-            addStartup(themeNameList[int(selection)-1])
-            print(_("Done! Goodbye!"))
-            exit(0)
+            while True:
+                IBusThemeName = themeNameList[int(selection)-1]
+                print("\n" + BLACK_CYAN +
+                      _("Please select a GTK theme for other styles:") + OUTPUT_END)
+                selection = input(
+                    YELLOW_BLUE + _("(Empty to exit): ") + OUTPUT_END)
+                if selection == "q" or not selection:
+                    print(_("Goodbye!"))
+                    exit(0)
+                elif selection.isdigit() and int(selection) < count and int(selection) > 0:
+                    mainThemeName = themeNameList[int(selection)-1]
+                    cssContent = exportIBusGTKThemeCSS(
+                        themeNameLocation[IBusThemeName][-1], themeNameLocation[mainThemeName][-1])
+                    while True:
+                        print("")
+                        print(
+                            BLACK_CYAN + _("Do you need a customized background image for IBus panel?") + OUTPUT_END)
+                        print("[" + BLACK_CYAN + "1" + OUTPUT_END + "]\t" + UNDER_LINE +
+                              _("No") + OUTPUT_END)
+                        print("[" + BLACK_CYAN + "2" + OUTPUT_END + "]\t" + UNDER_LINE +
+                              _("Yes") + OUTPUT_END)
+                        modeSelection = input(
+                            YELLOW_BLUE + _("(Empty to be 1): ") + OUTPUT_END)
+                        if modeSelection.isdigit() and int(modeSelection) >= 1 and int(modeSelection) <= 2 or not modeSelection:
+                            if not modeSelection or modeSelection == "1":
+                                pass
+                            elif modeSelection == "2":
+                                cssContent += GTKCustomizeImage()
+                            themeName = mainThemeName.replace(
+                                ":", "-") + "-IBus-" + IBusThemeName.replace(":", "-")
+                            path = os.path.join(
+                                GLib.get_home_dir(), ".themes", themeName, "gtk-3.0")
+                            if not os.path.exists(path):
+                                os.makedirs(path)
+                            with open(os.path.join(path, "gtk.css"), "w") as f:
+                                f.write(cssContent)
+                            if gtkResource:
+                                with open(gtkResource, "rb") as s:
+                                    with open(os.path.join(path, "gtk.gresource"), "wb") as d:
+                                        d.write(s.read())
+                            # os.system("ibus exit")
+                            # os.system("GTK_THEME=" +
+                            #         themeName + " ibus-daemon -dx &")
+                            # addStartup(themeName)
+                            print(YELLOW_BLUE +
+                                  _("\nNow you can select: ") + themeName)
+                            print(
+                                _("in your desktop GTK theme settings to use the configuration above.") + OUTPUT_END)
+                            print(_("Done! Goodbye!"))
+                            exit(0)
+                        else:
+                            print(
+                                READ_YELLOW + _("Error: Wrong selection!") + OUTPUT_END + "\n")
+                else:
+                    print(READ_YELLOW + _("Error: Wrong selection!") +
+                          OUTPUT_END + "\n")
+                    count = 1
         else:
             print(READ_YELLOW + _("Error: Wrong selection!") + OUTPUT_END + "\n")
             count = 1
+
+
+def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, resource=True, recursive=False):
+    newCSS = _("/*\n Generated by IBus Theme Tools\n") + \
+        _(" Tool Author:") + " Hollow Man <hollowman@hollowman.ml>\n" + \
+        _(" Tool Source Code:") + " " + SOURCE_CODE_URL + "\n" + \
+        _(" Tool Licence:") + " GPLv3\n" + \
+        _(" CSS Source File: ") + styleSheet + "\n" + \
+        "*/\n\n" + \
+        '@import url("' + mainStyleSheet + '");\n\n'
+    if recursive:
+        newCSS = _("/*\n Imported from CSS Source File: ") + \
+            styleSheet + "\n*/\n\n"
+
+    widgetList = ['*', 'box', 'label', 'button', '.background', 'separator']
+
+    fileContent = ""
+    if resource:
+        with open(styleSheet) as f:
+            fileContent = f.read()
+    else:
+        fileContent = styleSheetContent
+    tokenList = tinycss2.parse_stylesheet(
+        fileContent, skip_comments=True, skip_whitespace=True)
+    for token in tokenList:
+        if token.type == "qualified-rule":
+            classStr = tinycss2.serialize(token.prelude)
+            # For IBus candidate page button
+            if any([widget in classStr for widget in widgetList]):
+                classStr = RMUnrelatedGTKStyleClass(classStr, widgetList)
+                if classStr:
+                    contentStr = tinycss2.serialize(token.content)
+                    contentStr = contentStr.replace(
+                        "assets/", os.path.split(styleSheet)[0] + "/assets/")
+                    newCSS += classStr + " {" + contentStr + "}\n\n"
+        elif token.type == 'at-rule' and token.lower_at_keyword == 'import':
+            for importToken in token.prelude:
+                if importToken.type == "function" and importToken.name == "url":
+                    url = tinycss2.serialize(
+                        importToken.arguments).strip("'").strip('"')
+                    oldurl = url
+                    url = os.path.join(
+                        os.path.split(styleSheet)[0], url)
+                    if not os.path.isfile(url):
+                        global gtkResource
+                        gtkResource = os.path.join(
+                            os.path.dirname(styleSheet), "gtk.gresource")
+                        if os.path.isfile(gtkResource):
+                            Gio.Resource.load(gtkResource)._register()
+                            success, content, etag = Gio.File.new_for_uri(
+                                oldurl).load_contents(None)
+                            if success:
+                                content = content.decode("utf-8")
+                                newCSS += exportIBusGTKThemeCSS(
+                                    oldurl, mainStyleSheet, content, False, True) + _("\n/* EOF */\n")
+                        continue
+                    newCSS += exportIBusGTKThemeCSS(
+                        url, mainStyleSheet, "", True, True) + _("\n/* EOF */\n")
+                    break
+
+    return newCSS
 
 # For GNOME Desktop
 
@@ -344,7 +549,7 @@ def main():
         while True:
             print(BLACK_CYAN + _("Please select a mode:") + OUTPUT_END)
             print("[" + BLACK_CYAN + "1" + OUTPUT_END + "]\t" + UNDER_LINE +
-                  _("Change GTK theme for IBus") + OUTPUT_END)
+                  _("Extract an IBus-related GTK theme") + OUTPUT_END)
             print("[" + BLACK_CYAN + "2" + OUTPUT_END + "]\t" + UNDER_LINE +
                   _("Extract an IBus-related GNOME theme stylesheet") + OUTPUT_END)
             print("[" + BLACK_CYAN + "q" + OUTPUT_END + "]\t" +
@@ -357,7 +562,7 @@ def main():
             elif modeSelection.isdigit() and int(modeSelection) >= 1 and int(modeSelection) <= 2 or not modeSelection:
                 if not modeSelection or modeSelection == "1":
                     print("")
-                    changeGTKTheme()
+                    exportGTKTheme()
                 elif modeSelection == "2":
                     print(
                         "\n" + YELLOW_BLUE + _("Note: You can only apply the stylesheet under GNOME.") + OUTPUT_END + "\n")
