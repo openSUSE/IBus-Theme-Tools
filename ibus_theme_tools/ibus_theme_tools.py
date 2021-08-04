@@ -97,7 +97,7 @@ def RMUnrelatedGTKStyleClass(string, widgetList):
     newClassList = []
     for className in classList:
         if any([className.strip().startswith(widget) for widget in widgetList]):
-            if "#" not in className and ">" not in className:
+            if "#" not in className and ">" not in className and " " not in className.strip():
                 if className.strip().startswith('.background'):
                     newClassList.append(className.strip().replace(
                         '.background', "#IBusCandidate", 1))
