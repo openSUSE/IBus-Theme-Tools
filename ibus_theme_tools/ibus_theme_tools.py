@@ -125,12 +125,23 @@ def GTKCustomizeImage():
                                 YELLOW_BLUE + _("(Empty to be 1): ") + OUTPUT_END)
                             if modeSelection.isdigit() and int(modeSelection) >= 1 and int(modeSelection) <= 3 or not modeSelection:
                                 if not modeSelection or modeSelection == "1":
-                                    cssContent += "background-size: cover;\n}"
+                                    cssContent += "background-size: cover;\n"
                                 elif modeSelection == "2":
-                                    cssContent += "background-size: contain;\n}"
+                                    cssContent += "background-size: contain;\n"
                                 elif modeSelection == "3":
-                                    cssContent += "background-size: cover;\n}"
-                                return cssContent
+                                    cssContent += "background-size: cover;\n"
+                                while True:
+                                    print("")
+                                    radiusSetting = input(
+                                        YELLOW_BLUE + _("Please input the image border radius you want to set in px(Empty to not set): ") + OUTPUT_END)
+                                    if radiusSetting.isnumeric() or not radiusSetting:
+                                        if radiusSetting.isnumeric():
+                                            cssContent += "  border-radius: " + radiusSetting + "px;\n}"
+                                        else:
+                                            cssContent += "}"
+                                        return cssContent
+                                    else:
+                                        print(READ_YELLOW + _("Error: Please Enter a Number!") + OUTPUT_END + "\n")
                             else:
                                 print(READ_YELLOW + _("Error: Wrong selection!") + OUTPUT_END + "\n")
                     else:
@@ -413,7 +424,7 @@ def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, re
         newCSS = _("/*\n Imported from CSS Source File: ") + \
             styleSheet + "\n*/\n\n"
 
-    widgetList = ['*', 'box', 'label', 'button', '.background']
+    widgetList = ['*', 'box', 'label', 'button', '.background', 'separator']
 
     fileContent = ""
     if resource:
@@ -427,7 +438,7 @@ def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, re
         if token.type == "qualified-rule":
             classStr = tinycss2.serialize(token.prelude)
             # For IBus candidate page button
-            if any([classStr.strip().startswith(widget) for widget in widgetList]):
+            if any([widget in classStr for widget in widgetList]):
                 classStr = RMUnrelatedGTKStyleClass(classStr, widgetList)
                 if classStr:
                     contentStr = tinycss2.serialize(token.content)
