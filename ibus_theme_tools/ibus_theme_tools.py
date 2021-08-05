@@ -435,7 +435,7 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
                     cleanClassList.remove(".candidate-page-button")
                     classStr = ", ".join(cleanClassList) + " "
 
-                if not ".candidate-" in classStr:
+                if ".candidate-" not in classStr:
                     continue
 
                 classStr = RMUnrelatedStyleClass(classStr)
@@ -459,13 +459,13 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
 
     # Fix system IBus theme inherited in replaced theme
     if popupContent:
-        if not "background" in popupContent:
+        if "background" not in popupContent:
             popupContent += _("  /* Fix system IBus theme background inherited in replaced theme */") + \
                 "\n  background: transparent;\n"
-        if not "border" in popupContent:
+        if "border" not in popupContent:
             popupContent += _("  /* Fix system IBus theme candidate window border inherited in replaced theme */") + \
                 "\n  border: transparent;\n"
-        if not "box-shadow" in popupContent:
+        if "box-shadow" not in popupContent:
             popupContent += _("  /* Fix system IBus theme candidate box shadow inherited in replaced theme */") + \
                 "\n  box-shadow: none;\n"
 
