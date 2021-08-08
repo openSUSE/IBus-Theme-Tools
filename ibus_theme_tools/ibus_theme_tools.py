@@ -350,9 +350,11 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
         _(" CSS Source File: ") + styleSheet + "\n" + \
         _("\n Recommend to use Customize IBus GNOME Shell Extension:") + "\n " + EXTENSION_URL + "\n" + \
         _(" to change IBus theme by selecting this file.\n") + \
-        _("\n If you make any changes to this content after applying this file in above extension, \n") + \
-        _(" please disable and then enable 'custom IME theme' again to make the changes take effect.\n") + \
-        "*/\n\n"
+        "\n " + _("If you make any changes to this content after applying this file in above extension,\n") + \
+        " " + _("for Customize IBus Extension before v68, please disable and then enable 'custom IME theme'\n") + \
+        _(" again to make the changes take effect.\n") + \
+        "\n " + _("Starting from v69, support stylesheets hot reload, CSS changes reflecting in real-time.") + \
+        "\n*/\n\n"
     if recursive:
         newCSS = _("/*\n Imported from CSS Source File: ") + \
             styleSheet + "\n*/\n\n"
@@ -527,9 +529,12 @@ def exportIBusTheme():
                   _("\nNow you can use Customize IBus GNOME Shell Extension:\n") + EXTENSION_URL)
             print(
                 _("to change IBus theme by selecting the extracted stylesheet.") + OUTPUT_END)
-            print(YELLOW_BLUE + _("\nIf you make any changes to the extracted stylesheet after applying the file in above extension,"))
-            print(
-                _("please disable and then enable 'custom IME theme' again to make the changes take effect.") + OUTPUT_END)
+            print(YELLOW_BLUE + "\n" +
+                  _("If you make any changes to this content after applying this file in above extension,\n") +
+                  _("for Customize IBus Extension before v68, please disable and then enable 'custom IME theme'\n") +
+                  _(" again to make the changes take effect.\n") + "\n" +
+                  _("Starting from v69, support stylesheets hot reload, CSS changes reflecting in real-time.") +
+                  OUTPUT_END)
             print(_("\nDone! Goodbye!"))
             exit(0)
         else:

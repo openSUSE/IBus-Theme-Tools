@@ -105,7 +105,7 @@ $EDITOR $HOME/.themes/ibus-custom-theme/gtk-3.0/gtk.css
 
 随后可以使用[自定义 IBus GNOME Shell 扩展](https://extensions.gnome.org/extension/4112/customize-ibus/)导入并应用主题。
 
-*注意：* 如果你在以上扩展中应用了被提取出的样式表后对文件内容作出了改变，请关闭并重新开启`自定义主题`来使改变生效。
+*注意：* ~~如你的 IBus 样式表在应用后作出了更改，请关闭并重新开启对应`自定义主题`来使其生效。~~ 从 v69 开始，支持样式表热重载, CSS 的变化会实时地体现出来。
 
 示例提取出的样式表文件：[exportedIBusTheme.css](exportedIBusTheme.css)
 

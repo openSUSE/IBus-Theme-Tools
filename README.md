@@ -105,7 +105,7 @@ When user chooses a theme from the list, this script will first read the theme C
 
 Then use the [Customize IBus GNOME Shell extension](https://extensions.gnome.org/extension/4112/customize-ibus/) to import and apply themes.
 
-*Note:* If you make any changes to the extracted stylesheet after applying the file in above extension, please disable and then enable `custom IME theme` again to make the changes take effect.
+*Note:* ~~If your IBus style sheet has changed after application, please close and reopen the corresponding `custom IME theme` to make it effective.~~ Starting from v69, now this extension support stylesheets hot reload, CSS changes will reflect in real-time.
 
 Sample extracted stylesheet: [exportedIBusTheme.css](https://github.com/openSUSE/IBus-Theme-Tools/blob/main/exportedIBusTheme.css)
 
