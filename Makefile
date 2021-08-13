@@ -1,7 +1,7 @@
 NAME = IBus-Theme
 PACK = IBus Theme Tools
 PYPACK = ibus_theme_tools
-VERSION = 4.0.0
+VERSION = 4.1.0
 MSGPOS = $(wildcard $(PYPACK)/locale/*/LC_MESSAGES/*.po)
 
 # for translators: `make mergepo` or `make LANG=YOUR_LANG mergepo`

@@ -4,7 +4,7 @@
 pkgname=ibus-theme-tools
 _pkgname=IBus-Theme-Tools
 _commit=fe56fcfb600a270243fd04c210bc9e3818a42e28
-pkgver=4.0.0
+pkgver=4.1.0
 pkgrel=1
 epoch=0
 pkgdesc="Change the IBus GTK theme or extracting IBus style from GNOME Shell theme."
