@@ -4,10 +4,10 @@
 pkgname=ibus-theme-tools
 _pkgname=IBus-Theme-Tools
 _commit=8eb59099c71bcf0e8b9fc38230a0eeec04e77f8d
-pkgver=4.1.0
+pkgver=4.1.1
 pkgrel=1
 epoch=0
-pkgdesc="Change the IBus GTK theme or extracting IBus style from GNOME Shell theme."
+pkgdesc="Generate the IBus GTK or GNOME Shell theme from existing themes."
 arch=('any')
 url="https://github.com/openSUSE/${_pkgname}"
 license=('GPL-3.0+')

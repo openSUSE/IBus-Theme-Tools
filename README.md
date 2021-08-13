@@ -66,7 +66,7 @@ yay -S ibus-theme-tools
 
 ### Non-GNOME desktop
 
-Change the IBus GTK theme in a non-GNOME Shell desktop environment and supporting to select a background picture or configure border radius.
+Generate the IBus GTK theme in a non-GNOME Shell desktop environment and supporting to select a background picture or configure border radius.
 
 Run [`ibus_theme_tools.py`](https://github.com/openSUSE/IBus-Theme-Tools/blob/main/ibus_theme_tools/ibus_theme_tools.py) script, operate according to prompted message.
 

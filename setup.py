@@ -20,8 +20,8 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='ibus-theme-tools',
-      version='4.1.0',
-      description='Change the IBus GTK theme or extracting IBus style from GNOME Shell theme.',
+      version='4.1.1',
+      description='Generate the IBus GTK or GNOME Shell theme from existing themes.',
       url='https://github.com/openSUSE/IBus-Theme-Tools',
       author='Hollow Man (Domain Address)',
       author_email='hollowman@hollowman.ml',

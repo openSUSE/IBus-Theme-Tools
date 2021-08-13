@@ -280,6 +280,7 @@ def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, re
         fileContent = styleSheetContent
     tokenList = tinycss2.parse_stylesheet(
         fileContent, skip_comments=True, skip_whitespace=True)
+    otherDefinitionList = []
     for token in tokenList:
         if token.type == "qualified-rule":
             classStr = tinycss2.serialize(token.prelude)
@@ -291,31 +292,40 @@ def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, re
                     contentStr = contentStr.replace(
                         "assets/", os.path.split(styleSheet)[0] + "/assets/")
                     newCSS += classStr + " {" + contentStr + "}\n\n"
-        elif token.type == 'at-rule' and token.lower_at_keyword == 'import':
-            for importToken in token.prelude:
-                if importToken.type == "function" and importToken.name == "url":
-                    url = tinycss2.serialize(
-                        importToken.arguments).strip("'").strip('"')
-                    oldurl = url
-                    url = os.path.join(
-                        os.path.split(styleSheet)[0], url)
-                    if not os.path.isfile(url):
-                        global gtkResource
-                        gtkResource = os.path.join(
-                            os.path.dirname(styleSheet), "gtk.gresource")
-                        if os.path.isfile(gtkResource):
-                            Gio.Resource.load(gtkResource)._register()
-                            success, content, etag = Gio.File.new_for_uri(
-                                oldurl).load_contents(None)
-                            if success:
-                                content = content.decode("utf-8")
-                                newCSS += exportIBusGTKThemeCSS(
-                                    oldurl, mainStyleSheet, content, False, True) + _("\n/* EOF */\n")
-                        continue
-                    newCSS += exportIBusGTKThemeCSS(
-                        url, mainStyleSheet, "", True, True) + _("\n/* EOF */\n")
-                    break
-
+        elif token.type == 'at-rule':
+            if token.lower_at_keyword == 'import':
+                for importToken in token.prelude:
+                    if importToken.type == "function" and importToken.name == "url":
+                        url = tinycss2.serialize(
+                            importToken.arguments).strip("'").strip('"')
+                        oldurl = url
+                        url = os.path.join(
+                            os.path.split(styleSheet)[0], url)
+                        if not os.path.isfile(url):
+                            global gtkResource
+                            gtkResource = os.path.join(
+                                os.path.dirname(styleSheet), "gtk.gresource")
+                            if os.path.isfile(gtkResource):
+                                Gio.Resource.load(gtkResource)._register()
+                                success, content, etag = Gio.File.new_for_uri(
+                                    oldurl).load_contents(None)
+                                if success:
+                                    content = content.decode("utf-8")
+                                    newCSS += exportIBusGTKThemeCSS(
+                                        oldurl, mainStyleSheet, content, False, True) + _("\n/* EOF */\n")
+                            continue
+                        newCSS += exportIBusGTKThemeCSS(
+                            url, mainStyleSheet, "", True, True) + _("\n/* EOF */\n")
+                        break
+            elif token.lower_at_keyword == 'define-color' or token.lower_at_keyword == 'keyframes':
+                prelude = tinycss2.serialize(token.prelude)
+                content = ';'
+                if token.content:
+                    content = ' {' + tinycss2.serialize(token.content) + '}'
+                otherDefinitionList.append('@' + token.lower_at_keyword + ' ' + prelude.strip() + content + '\n')
+    for otherDefinition in otherDefinitionList:
+        if otherDefinition.split(' ')[1] in newCSS:
+            newCSS += otherDefinition
     return newCSS
 
 # For GNOME Desktop

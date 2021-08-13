@@ -66,7 +66,7 @@ yay -S ibus-theme-tools
 
 ### 非GNOME桌面
 
-在非 GNOME Shell 桌面环境中，可以更改IBus GTK主题，并支持选择背景图片与配置圆角半径。
+在非 GNOME Shell 桌面环境中，生成新的IBus GTK主题，并支持选择背景图片与配置圆角半径。
 
 运行[`ibus_theme_tools.py`](ibus_theme_tools/ibus_theme_tools.py)脚本，按提示操作即可。
 
