@@ -35,7 +35,10 @@ YELLOW_BLUE = "\033[1;33;44m"
 UNDER_LINE = "\033[4m"
 OUTPUT_END = "\033[0m"
 
-gtkResource = ""
+RELATIVEPATTERNLIST = ["'assets/", '"assets/', "'borders/", '"borders/']
+WIDGETLIST = ['*', 'box', 'label', 'button', '.background', 'separator']
+
+gtkResource = []
 
 
 def getThemePathList():
@@ -49,11 +52,10 @@ def getThemePathList():
 
 def handleRelativePath(token, styleSheet):
     path = os.path.split(styleSheet)[0]
-    return tinycss2.serialize(token.content).replace(
-        "'assets/", "'" + path + "/assets/").replace(
-        '"assets/', '"' + path + "/assets/").replace(
-        "'borders/", "'" + path + "/borders/").replace(
-        '"borders/', '"' + path + "/borders/")
+    file = tinycss2.serialize(token.content)
+    for pattern in RELATIVEPATTERNLIST:
+        file = file.replace(pattern, pattern[0] + path + "/assets/")
+    return file
 
 # For Non-GNOME Desktop
 
@@ -101,11 +103,11 @@ def getAvailableGTKTheme():
 #         f.write(content)
 
 
-def RMUnrelatedGTKStyleClass(string, widgetList):
+def RMUnrelatedGTKStyleClass(string):
     classList = string.split(",")
     newClassList = []
     for className in classList:
-        if any([className.strip().startswith(widget) for widget in widgetList]):
+        if any([className.strip().startswith(widget) for widget in WIDGETLIST]):
             if "#" not in className and ">" not in className and " " not in className.strip():
                 if className.strip().startswith('.background'):
                     newClassList.append(className.strip().replace(
@@ -153,15 +155,19 @@ def GTKCustomizeImage():
                                   _("Full") + OUTPUT_END)
                             print("[" + BLACK_CYAN + "3" + OUTPUT_END + "]\t" + UNDER_LINE +
                                   _("Centered") + OUTPUT_END)
+                            print("[" + BLACK_CYAN + "4" + OUTPUT_END + "]\t" + UNDER_LINE +
+                                  _("Stretched") + OUTPUT_END)
                             modeSelection = input(
                                 YELLOW_BLUE + _("(Empty to be 1): ") + OUTPUT_END)
-                            if modeSelection.isdigit() and int(modeSelection) >= 1 and int(modeSelection) <= 3 or not modeSelection:
+                            if modeSelection.isdigit() and int(modeSelection) >= 1 and int(modeSelection) <= 4 or not modeSelection:
                                 if not modeSelection or modeSelection == "1":
                                     cssContent += "background-size: cover;\n"
                                 elif modeSelection == "2":
                                     cssContent += "background-size: contain;\n"
                                 elif modeSelection == "3":
-                                    cssContent += "background-size: cover;\n"
+                                    cssContent += "background-size: auto;\n"
+                                elif modeSelection == "4":
+                                    cssContent += "background-size: 100% 100%;\n"
                                 while True:
                                     print("")
                                     radiusSetting = input(
@@ -206,8 +212,8 @@ def exportGTKTheme():
             print(_("Goodbye!"))
             exit(0)
         elif selection.isdigit() and int(selection) < count and int(selection) > 0:
+            IBusThemeName = themeNameList[int(selection)-1]
             while True:
-                IBusThemeName = themeNameList[int(selection)-1]
                 print("\n" + BLACK_CYAN +
                       _("Please select a GTK theme for other styles:") + OUTPUT_END)
                 selection = input(
@@ -242,10 +248,14 @@ def exportGTKTheme():
                                 os.makedirs(path)
                             with open(os.path.join(path, "gtk.css"), "w") as f:
                                 f.write(cssContent)
+                            if os.path.exists(os.path.join(path, "gtk.gresource")):
+                                os.remove(os.path.join(path, "gtk.gresource"))
                             if gtkResource:
-                                with open(gtkResource, "rb") as s:
-                                    with open(os.path.join(path, "gtk.gresource"), "wb") as d:
-                                        d.write(s.read())
+                                for file in set(gtkResource):
+                                    # FIXME: merge multiple gresource files into one
+                                    with open(file, "rb") as s:
+                                        with open(os.path.join(path, "gtk.gresource"), "ab") as d:
+                                            d.write(s.read())
                             # os.system("ibus exit")
                             # os.system("GTK_THEME=" +
                             #         themeName + " ibus-daemon -dx &")
@@ -279,8 +289,11 @@ def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, re
     if recursive:
         newCSS = _("/*\n Imported from CSS Source File: ") + \
             styleSheet + "\n*/\n\n"
-
-    widgetList = ['*', 'box', 'label', 'button', '.background', 'separator']
+    else:
+        gtkResourceFile = os.path.join(
+            os.path.dirname(mainStyleSheet), "gtk.gresource")
+        if os.path.isfile(gtkResourceFile):
+            gtkResource.append(gtkResourceFile)
 
     fileContent = ""
     if resource:
@@ -288,6 +301,10 @@ def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, re
             fileContent = f.read()
     else:
         fileContent = styleSheetContent
+    gtkResourceFile = os.path.join(
+        os.path.dirname(styleSheet), "gtk.gresource")
+    if os.path.isfile(gtkResourceFile) and any([pattern in fileContent for pattern in RELATIVEPATTERNLIST]):
+        gtkResource.append(gtkResourceFile)
     tokenList = tinycss2.parse_stylesheet(
         fileContent, skip_comments=True, skip_whitespace=True)
     otherDefinitionList = []
@@ -295,8 +312,8 @@ def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, re
         if token.type == "qualified-rule":
             classStr = tinycss2.serialize(token.prelude)
             # For IBus candidate page button
-            if any([widget in classStr for widget in widgetList]):
-                classStr = RMUnrelatedGTKStyleClass(classStr, widgetList)
+            if any([widget in classStr for widget in WIDGETLIST]):
+                classStr = RMUnrelatedGTKStyleClass(classStr)
                 if classStr:
                     contentStr = handleRelativePath(token, styleSheet)
                     newCSS += classStr + " {" + contentStr + "}\n\n"
@@ -310,17 +327,19 @@ def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, re
                         url = os.path.join(
                             os.path.split(styleSheet)[0], url)
                         if not os.path.isfile(url):
-                            global gtkResource
-                            gtkResource = os.path.join(
+                            gtkResourceFile = os.path.join(
                                 os.path.dirname(styleSheet), "gtk.gresource")
-                            if os.path.isfile(gtkResource):
-                                Gio.Resource.load(gtkResource)._register()
+                            if os.path.isfile(gtkResourceFile):
+                                Gio.Resource.load(gtkResourceFile)._register()
                                 success, content, etag = Gio.File.new_for_uri(
                                     oldurl).load_contents(None)
                                 if success:
                                     content = content.decode("utf-8")
-                                    newCSS += exportIBusGTKThemeCSS(
+                                    newFileContent = exportIBusGTKThemeCSS(
                                         oldurl, mainStyleSheet, content, False, True) + _("\n/* EOF */\n")
+                                    newCSS += newFileContent
+                                    if any([pattern in newFileContent for pattern in RELATIVEPATTERNLIST]):
+                                        gtkResource.append(gtkResourceFile)
                             continue
                         newCSS += exportIBusGTKThemeCSS(
                             url, mainStyleSheet, "", True, True) + _("\n/* EOF */\n")
@@ -378,8 +397,8 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
     if recursive:
         newCSS = _("/*\n Imported from CSS Source File: ") + \
             styleSheet + "\n*/\n\n"
+
     # For fix candidate color
-    globalColor = ""
     boxContent = ""
     popupContent = ""
 
@@ -414,7 +433,7 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
                     classStr = ", ".join(cleanClassList) + " "
 
                 # For get candidate color
-                if ".popup-menu" in cleanClassList:
+                if "stage" in cleanClassList:
                     contentStr = handleRelativePath(token, styleSheet)
                     color = re.findall(r' color:(.+?);', contentStr)
                     if color:
@@ -427,6 +446,11 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
                             color = re.findall(r'\tcolor:(.+?);', contentStr)
                             if color:
                                 globalColor = color[0]
+                            else:
+                                color = re.findall(
+                                    r';color:(.+?);', contentStr)
+                                if color:
+                                    globalColor = color[0]
 
                 # For check if need to fix candidate color
                 if ".candidate-box" in cleanClassList:
