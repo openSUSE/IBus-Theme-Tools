@@ -21,6 +21,8 @@ clean:
 	-rm -fR build
 	-rm -fR deb_dist
 	-rm -fR *.tar.gz
+	-rm -fR *.pkg.tar.zst
+	-rm -fR pkg src
 	-rm -fR $(PYPACK).egg-info
 
 %.mo: %.po
