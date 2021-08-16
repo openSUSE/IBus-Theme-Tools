@@ -46,6 +46,15 @@ def getThemePathList():
         x, "themes"), GLib.get_system_data_dirs())))
     return pathList
 
+
+def handleRelativePath(token, styleSheet):
+    path = os.path.split(styleSheet)[0]
+    return tinycss2.serialize(token.content).replace(
+        "'assets/", "'" + path + "/assets/").replace(
+        '"assets/', '"' + path + "/assets/").replace(
+        "'borders/", "'" + path + "/borders/").replace(
+        '"borders/', '"' + path + "/borders/")
+
 # For Non-GNOME Desktop
 
 
@@ -55,7 +64,7 @@ def getAvailableGTKTheme():
     GtkThemePath = []
     pathList = getThemePathList()
     for path in pathList:
-        GtkThemePath.extend(glob.glob(path + "/*/*/gtk*.css"))
+        GtkThemePath.extend(glob.glob(path + "/*/gtk-*/gtk*.css"))
     for path in GtkThemePath:
         filename = os.path.basename(path)
         appendix = ""
@@ -116,6 +125,7 @@ def GTKCustomizeImage():
             YELLOW_BLUE + _("Please enter your image file location (empty to exit file selection): ") + OUTPUT_END)
         if image:
             if os.path.isfile(image):
+                image = os.path.abspath(image)
                 cssContent = _("\n/* Customized Background Image */\n") + \
                     "#IBusCandidate {\n  background: url('" + image + "');\n  "
                 while True:
@@ -288,9 +298,7 @@ def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, re
             if any([widget in classStr for widget in widgetList]):
                 classStr = RMUnrelatedGTKStyleClass(classStr, widgetList)
                 if classStr:
-                    contentStr = tinycss2.serialize(token.content)
-                    contentStr = contentStr.replace(
-                        "assets/", os.path.split(styleSheet)[0] + "/assets/")
+                    contentStr = handleRelativePath(token, styleSheet)
                     newCSS += classStr + " {" + contentStr + "}\n\n"
         elif token.type == 'at-rule':
             if token.lower_at_keyword == 'import':
@@ -321,8 +329,10 @@ def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, re
                 prelude = tinycss2.serialize(token.prelude)
                 content = ';'
                 if token.content:
-                    content = ' {' + tinycss2.serialize(token.content) + '}'
-                otherDefinitionList.append('@' + token.lower_at_keyword + ' ' + prelude.strip() + content + '\n')
+                    content = ' {' + \
+                        handleRelativePath(token, styleSheet) + '}'
+                otherDefinitionList.append(
+                    '@' + token.lower_at_keyword + ' ' + prelude.strip() + content + '\n')
     for otherDefinition in otherDefinitionList:
         if otherDefinition.split(' ')[1] in newCSS:
             newCSS += otherDefinition
@@ -393,8 +403,8 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
                     for cleanClass in cleanClassList:
                         if cleanClass == ".button":
                             # For IBus button radius fix
-                            pageButtonContent += re.sub(r"\n(.+?)border-radius:(.+?);", "", tinycss2.serialize(
-                                token.content))
+                            pageButtonContent += re.sub(
+                                r"\n(.+?)border-radius:(.+?);", "", handleRelativePath(token, styleSheet))
                         elif cleanClass.startswith(".button"):
                             newCleanClassList.append(cleanClass.replace(
                                 ".button", ".candidate-page-button"))
@@ -405,7 +415,7 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
 
                 # For get candidate color
                 if ".popup-menu" in cleanClassList:
-                    contentStr = tinycss2.serialize(token.content)
+                    contentStr = handleRelativePath(token, styleSheet)
                     color = re.findall(r' color:(.+?);', contentStr)
                     if color:
                         globalColor = color[0]
@@ -420,28 +430,27 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
 
                 # For check if need to fix candidate color
                 if ".candidate-box" in cleanClassList:
-                    contentStr = tinycss2.serialize(token.content)
+                    contentStr = handleRelativePath(token, styleSheet)
                     if not (" color:" in contentStr or "\ncolor:" in contentStr):
                         boxContent += contentStr
                         cleanClassList.remove(".candidate-box")
                         classStr = ", ".join(cleanClassList) + " "
 
                 if ".candidate-popup-content" in cleanClassList:
-                    contentStr = tinycss2.serialize(token.content)
-                    popupContent += contentStr
+                    popupContent += handleRelativePath(token, styleSheet)
                     cleanClassList.remove(".candidate-popup-content")
                     classStr = ", ".join(cleanClassList) + " "
 
                 # For check if need to fix border at pointer
                 if ".candidate-popup-boxpointer" in cleanClassList:
-                    contentStr = tinycss2.serialize(token.content)
+                    contentStr = handleRelativePath(token, styleSheet)
                     if not (" border-image:" in contentStr or "\nborder-image:" in contentStr):
                         popupBoxpointerContent += contentStr
                         cleanClassList.remove(".candidate-popup-boxpointer")
                         classStr = ", ".join(cleanClassList) + " "
 
                 if ".candidate-page-button" in cleanClassList:
-                    contentStr = tinycss2.serialize(token.content)
+                    contentStr = handleRelativePath(token, styleSheet)
                     pageButtonContent += _("  /* IBus style page button */") + \
                         contentStr
                     cleanClassList.remove(".candidate-page-button")
@@ -451,9 +460,7 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
                     continue
 
                 classStr = RMUnrelatedStyleClass(classStr)
-                contentStr = tinycss2.serialize(token.content)
-                contentStr = contentStr.replace(
-                    "assets/", os.path.split(styleSheet)[0] + "/assets/")
+                contentStr = handleRelativePath(token, styleSheet)
                 newCSS += classStr + "{" + contentStr + "}\n\n"
             elif token.type == 'at-rule' and token.lower_at_keyword == 'import':
                 for importToken in token.prelude:
