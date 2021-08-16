@@ -401,6 +401,7 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
     # For fix candidate color
     boxContent = ""
     popupContent = ""
+    globalColor = ""
 
     # For fix black border at pointer when system theme is black
     popupBoxpointerContent = ""

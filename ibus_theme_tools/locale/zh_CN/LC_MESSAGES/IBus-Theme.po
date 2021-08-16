@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IBus Theme Tools 4.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-16 22:46+0800\n"
+"POT-Creation-Date: 2021-08-16 23:08+0800\n"
 "PO-Revision-Date: 2021-04-12 12:42+0800\n"
 "Last-Translator: Hollow Man <hollowman@hollowman.ml>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
@@ -42,7 +42,7 @@ msgid "Yes"
 msgstr "是"
 
 #: ibus_theme_tools.py:142 ibus_theme_tools.py:161 ibus_theme_tools.py:237
-#: ibus_theme_tools.py:604
+#: ibus_theme_tools.py:605
 msgid "(Empty to be 1): "
 msgstr "（空选择1）："
 
@@ -77,8 +77,8 @@ msgid "Error: Please Enter a Number!"
 msgstr "错误：请输入一个数！"
 
 #: ibus_theme_tools.py:186 ibus_theme_tools.py:189 ibus_theme_tools.py:271
-#: ibus_theme_tools.py:273 ibus_theme_tools.py:277 ibus_theme_tools.py:582
-#: ibus_theme_tools.py:618
+#: ibus_theme_tools.py:273 ibus_theme_tools.py:277 ibus_theme_tools.py:583
+#: ibus_theme_tools.py:619
 msgid "Error: Wrong selection!"
 msgstr "错误：异常的选择！"
 
@@ -90,16 +90,16 @@ msgstr "错误：文件不存在！"
 msgid "Please select a GTK theme to extract for IBus:"
 msgstr "请选择一个GTK主题来为IBus提取："
 
-#: ibus_theme_tools.py:209 ibus_theme_tools.py:554 ibus_theme_tools.py:602
+#: ibus_theme_tools.py:209 ibus_theme_tools.py:555 ibus_theme_tools.py:603
 msgid "Exit"
 msgstr "退出"
 
-#: ibus_theme_tools.py:210 ibus_theme_tools.py:220 ibus_theme_tools.py:555
+#: ibus_theme_tools.py:210 ibus_theme_tools.py:220 ibus_theme_tools.py:556
 msgid "(Empty to exit): "
 msgstr "（空选择退出）："
 
-#: ibus_theme_tools.py:212 ibus_theme_tools.py:222 ibus_theme_tools.py:557
-#: ibus_theme_tools.py:606
+#: ibus_theme_tools.py:212 ibus_theme_tools.py:222 ibus_theme_tools.py:558
+#: ibus_theme_tools.py:607
 msgid "Goodbye!"
 msgstr "再见！"
 
@@ -159,7 +159,7 @@ msgstr ""
 "/*\n"
 " 引入自样式表文件： "
 
-#: ibus_theme_tools.py:339 ibus_theme_tools.py:345 ibus_theme_tools.py:500
+#: ibus_theme_tools.py:339 ibus_theme_tools.py:345 ibus_theme_tools.py:501
 msgid ""
 "\n"
 "/* EOF */\n"
@@ -179,73 +179,73 @@ msgstr ""
 msgid " to change IBus theme by selecting this file.\n"
 msgstr " 来通过选定此文件改变IBus主题。\n"
 
-#: ibus_theme_tools.py:392 ibus_theme_tools.py:574
+#: ibus_theme_tools.py:392 ibus_theme_tools.py:575
 msgid ""
 "If you make any changes to this content after applying this file in above "
 "extension,\n"
 msgstr "如你的 IBus 样式表在应用后作出了更改，Customize IBus 扩展版本\n"
 
-#: ibus_theme_tools.py:393 ibus_theme_tools.py:575
+#: ibus_theme_tools.py:393 ibus_theme_tools.py:576
 msgid ""
 "for Customize IBus Extension before v68, please disable and then enable "
 "'custom IME theme'\n"
 msgstr "为 v68 之前的请关闭并重新开启对应`自定义主题`来使其生效。\n"
 
-#: ibus_theme_tools.py:394 ibus_theme_tools.py:576
+#: ibus_theme_tools.py:394 ibus_theme_tools.py:577
 msgid " again to make the changes take effect.\n"
 msgstr " \n"
 
-#: ibus_theme_tools.py:395 ibus_theme_tools.py:577
+#: ibus_theme_tools.py:395 ibus_theme_tools.py:578
 msgid ""
 "Starting from v69, support stylesheets hot reload, CSS changes reflecting in "
 "real-time."
 msgstr "从 v69 开始，支持样式表热重载, CSS 的变化会实时地体现出来。"
 
-#: ibus_theme_tools.py:478
+#: ibus_theme_tools.py:479
 msgid "  /* IBus style page button */"
 msgstr "  /* IBUS样式的调页按钮 */"
 
-#: ibus_theme_tools.py:506
+#: ibus_theme_tools.py:507
 msgid "  /* Fix system IBus theme background inherited in replaced theme */"
 msgstr "  /* 修复系统主题IBus背景部分被替换的主题继承 */"
 
-#: ibus_theme_tools.py:509
+#: ibus_theme_tools.py:510
 msgid ""
 "  /* Fix system IBus theme candidate window border inherited in replaced "
 "theme */"
 msgstr "  /* 修复系统主题IBus边框部分被替换的主题继承 */"
 
-#: ibus_theme_tools.py:512
+#: ibus_theme_tools.py:513
 msgid ""
 "  /* Fix system IBus theme candidate box shadow inherited in replaced theme "
 "*/"
 msgstr "  /* 修复系统主题IBus边框阴影部分被替换的主题继承 */"
 
-#: ibus_theme_tools.py:516
+#: ibus_theme_tools.py:517
 msgid "  /* Fix candidate color */"
 msgstr "  /* 修复候选词颜色 */"
 
-#: ibus_theme_tools.py:530
+#: ibus_theme_tools.py:531
 msgid "  /* Fix black border at pointer when system theme is black */\n"
 msgstr "  /* 修复当系统主题为黑色时指示框黑边 */\n"
 
-#: ibus_theme_tools.py:535
+#: ibus_theme_tools.py:536
 msgid "/* Unify system page button and IBus style page button */\n"
 msgstr "/* 结合系统调页按钮和IBUS样式的调页按钮 */\n"
 
-#: ibus_theme_tools.py:548
+#: ibus_theme_tools.py:549
 msgid "Please select a GNOME theme to extract style sheet for IBus:"
 msgstr "请选择一个GNOME主题来为IBus提取样式表："
 
-#: ibus_theme_tools.py:561
+#: ibus_theme_tools.py:562
 msgid "Please enter the path to store generated stylesheet:"
 msgstr "请输入要存储生成的样式表的路径："
 
-#: ibus_theme_tools.py:563
+#: ibus_theme_tools.py:564
 msgid "(Empty to be 'exportedIBusTheme.css' in current directory): "
 msgstr "（空则为当前目录下的 'exportedIBusTheme.css' 文件）： "
 
-#: ibus_theme_tools.py:570
+#: ibus_theme_tools.py:571
 msgid ""
 "\n"
 "Now you can use Customize IBus GNOME Shell Extension:\n"
@@ -253,11 +253,11 @@ msgstr ""
 "\n"
 "现在你可以使用 自定义 IBus GNOME Shell 扩展：\n"
 
-#: ibus_theme_tools.py:572
+#: ibus_theme_tools.py:573
 msgid "to change IBus theme by selecting the extracted stylesheet."
 msgstr "来通过选定被提取出的样式表改变IBus主题。"
 
-#: ibus_theme_tools.py:579
+#: ibus_theme_tools.py:580
 msgid ""
 "\n"
 "Done! Goodbye!"
@@ -265,22 +265,22 @@ msgstr ""
 "\n"
 "完成！再见！"
 
-#: ibus_theme_tools.py:590
+#: ibus_theme_tools.py:591
 msgid "Error: Not in Linux!"
 msgstr "错误：当前系统非Linux！"
 
-#: ibus_theme_tools.py:596
+#: ibus_theme_tools.py:597
 msgid "Please select a mode:"
 msgstr "请选择一个模式："
 
-#: ibus_theme_tools.py:598
+#: ibus_theme_tools.py:599
 msgid "Extract an IBus-related GTK theme"
 msgstr "提取IBus相关GTK主题"
 
-#: ibus_theme_tools.py:600
+#: ibus_theme_tools.py:601
 msgid "Extract an IBus-related GNOME theme stylesheet"
 msgstr "提取IBus相关GNOME主题到一个样式表"
 
-#: ibus_theme_tools.py:614
+#: ibus_theme_tools.py:615
 msgid "Note: You can only apply the stylesheet under GNOME."
 msgstr "注意：你仅可以将样式表应用于GNOME桌面。"
