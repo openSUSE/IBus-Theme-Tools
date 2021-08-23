@@ -35,7 +35,7 @@ YELLOW_BLUE = "\033[1;33;44m"
 UNDER_LINE = "\033[4m"
 OUTPUT_END = "\033[0m"
 
-RELATIVEPATTERNLIST = ["'assets/", '"assets/', "'borders/", '"borders/']
+RELATIVEPATTERN = r'url\([\'"](?!/)(?!.*?:)(.*?)[\'"]\)'
 WIDGETLIST = ['*', 'box', 'label', 'button', '.background', 'separator']
 
 gtkResource = []
@@ -51,11 +51,10 @@ def getThemePathList():
 
 
 def handleRelativePath(token, styleSheet):
-    path = os.path.split(styleSheet)[0]
-    file = tinycss2.serialize(token.content)
-    for pattern in RELATIVEPATTERNLIST:
-        file = file.replace(pattern, pattern[0] + path + "/assets/")
-    return file
+    return re.sub(RELATIVEPATTERN,
+                  r'url("' + os.path.split(styleSheet)[0] + r'/\1")',
+                  tinycss2.serialize(token.content),
+                  flags=re.IGNORECASE)
 
 # For Non-GNOME Desktop
 
@@ -303,7 +302,7 @@ def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, re
         fileContent = styleSheetContent
     gtkResourceFile = os.path.join(
         os.path.dirname(styleSheet), "gtk.gresource")
-    if os.path.isfile(gtkResourceFile) and any([pattern in fileContent for pattern in RELATIVEPATTERNLIST]):
+    if os.path.isfile(gtkResourceFile) and re.search(RELATIVEPATTERN, fileContent, re.IGNORECASE):
         gtkResource.append(gtkResourceFile)
     tokenList = tinycss2.parse_stylesheet(
         fileContent, skip_comments=True, skip_whitespace=True)
@@ -338,7 +337,7 @@ def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, re
                                     newFileContent = exportIBusGTKThemeCSS(
                                         oldurl, mainStyleSheet, content, False, True) + _("\n/* EOF */\n")
                                     newCSS += newFileContent
-                                    if any([pattern in newFileContent for pattern in RELATIVEPATTERNLIST]):
+                                    if re.search(RELATIVEPATTERN, newFileContent, re.IGNORECASE):
                                         gtkResource.append(gtkResourceFile)
                             continue
                         newCSS += exportIBusGTKThemeCSS(
