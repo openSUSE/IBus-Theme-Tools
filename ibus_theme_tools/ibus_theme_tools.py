@@ -36,7 +36,9 @@ UNDER_LINE = "\033[4m"
 OUTPUT_END = "\033[0m"
 
 RELATIVEPATTERN = r'url\([\'"](?!/)(?!.*?:)(.*?)[\'"]\)'
-WIDGETLIST = ['*', 'box', 'label', 'button', '.background', 'separator']
+CLASSLIST = ['#IBusHandle', '#IBusCandidate', '#IBusPreedit']
+WIDGETLIST = ['*', 'box', 'label', 'button', '.background', 'separator', 'widget']
+WIDGETLIST.extend(CLASSLIST)
 
 gtkResource = []
 
@@ -116,6 +118,8 @@ def RMUnrelatedGTKStyleClass(string):
                     if className.strip().startswith("box"):
                         newClassList.append(className.strip().replace(
                             "box", "#IBusCandidate", 1))
+            elif any([className.strip().startswith(widget) for widget in CLASSLIST]):
+                newClassList.append(className.strip())
     return ", ".join(newClassList)
 
 
