@@ -46,7 +46,6 @@ pofile: $(PYPACK)/$(MSGSRC)
 mergepo: potfile pofile
 	cd $(PYPACK); \
 		msgmerge -U $(MSGSRC) $(MSGPOT); \
-		rm -fR $(MSGPOT); \
 		rm -fR $(MSGDIR)/*mo; \
 		rm -fR $(MSGDIR)/*po~
 
