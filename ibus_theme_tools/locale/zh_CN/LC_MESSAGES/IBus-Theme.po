@@ -3,13 +3,12 @@
 # Copyright (C) 2021 THE IBus Theme Tools'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the IBus Theme Tools package.
 # Hollow Man <hollowman@hollowman.ml>, 2021.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: IBus Theme Tools 4.1.2\n"
 "Report-Msgid-Bugs-To: hollowman@hollowman.ml\n"
 "POT-Creation-Date: 2021-08-25 16:44+0800\n"
-"PO-Revision-Date: 2021-08-25 14:40+0000\n"
+"PO-Revision-Date: 2021-08-25 17:38+0000\n"
 "Last-Translator: Hollow Man <hollowman@hollowman.ml>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "ibus-theme-tools/ibus-theme/zh_Hans/>\n"
