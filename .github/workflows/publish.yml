@@ -51,7 +51,7 @@ jobs:
       - name: Build a binary wheel and a source tarball
         run: >-
           python -m
-          build twine
+          build
           --sdist
           --wheel
           --outdir dist/
@@ -66,21 +66,21 @@ jobs:
 
       - name: Prepare for upload
         run: |
-         cp dist/${{ env.NAME }}-*.whl ${{ env.NAME }}-${{ env.VERSION }}-py3-none-any.whl
+         cp dist/${{ env.NAME }}-${{ env.VERSION_NUM }}-*.whl ${{ env.NAME }}-${{ env.VERSION_NUM }}-py3-none-any.whl
 
       - name: Upload Zipped Files to release
         uses: svenstaro/upload-release-action@master
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ env.NAME }}-${{ env.VERSION }}-py3-none-any.whl
+          file: ${{ env.NAME }}-${{ env.VERSION_NUM }}-py3-none-any.whl
           tag: ${{ env.VERSION }}
           overwrite: true
 
       - name: Upload Zipped Files to Artifact
         uses: actions/upload-artifact@master
         with:
-          name: ${{ env.NAME }}-${{ env.VERSION }}-py3-none-any.whl
-          path: ${{ env.NAME }}-${{ env.VERSION }}-py3-none-any.whl
+          name: ${{ env.NAME }}-${{ env.VERSION_NUM }}-py3-none-any.whl
+          path: ${{ env.NAME }}-${{ env.VERSION_NUM }}-py3-none-any.whl
 
       - name: Publish distribution to PyPI
         uses: pypa/gh-action-pypi-publish@master
