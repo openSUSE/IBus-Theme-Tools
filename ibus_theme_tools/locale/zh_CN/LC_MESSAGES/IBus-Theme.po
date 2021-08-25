@@ -7,19 +7,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: IBus Theme Tools 4.1.2\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: hollowman@hollowman.ml\n"
 "POT-Creation-Date: 2021-08-24 13:59+0800\n"
-"PO-Revision-Date: 2021-04-12 12:42+0800\n"
+"PO-Revision-Date: 2021-08-25 14:40+0000\n"
 "Last-Translator: Hollow Man <hollowman@hollowman.ml>\n"
-"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"ibus-theme-tools/ibus-theme/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.8.1-dev\n"
 
 #: ibus_theme_tools.py:130
 msgid "Please enter your image file location (empty to exit file selection): "
-msgstr "请输入你的图片文件地址（空为退出文件选择）："
+msgstr "请输入你的图片文件地址（空为退出文件选择）： "
 
 #: ibus_theme_tools.py:134
 msgid ""
@@ -44,7 +47,7 @@ msgstr "是"
 #: ibus_theme_tools.py:145 ibus_theme_tools.py:164 ibus_theme_tools.py:240
 #: ibus_theme_tools.py:608
 msgid "(Empty to be 1): "
-msgstr "（空选择1）："
+msgstr "（空选择1）： "
 
 #: ibus_theme_tools.py:154
 msgid "Please select sizing mode for your image:"
@@ -70,7 +73,7 @@ msgstr "拉伸"
 msgid ""
 "Please input the image border radius you want to set in px(Empty to not "
 "set): "
-msgstr "请输入你想设置的圆角半径px像素数值（空为不设置）："
+msgstr "请输入你想设置的圆角半径px像素数值（空为不设置）： "
 
 #: ibus_theme_tools.py:186
 msgid "Error: Please Enter a Number!"
@@ -96,7 +99,7 @@ msgstr "退出"
 
 #: ibus_theme_tools.py:213 ibus_theme_tools.py:223 ibus_theme_tools.py:559
 msgid "(Empty to exit): "
-msgstr "（空选择退出）："
+msgstr "（空选择退出）： "
 
 #: ibus_theme_tools.py:215 ibus_theme_tools.py:225 ibus_theme_tools.py:561
 #: ibus_theme_tools.py:610
