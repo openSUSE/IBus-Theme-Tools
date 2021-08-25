@@ -9,13 +9,13 @@
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/openSUSE/IBus-Theme-Tools.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/openSUSE/IBus-Theme-Tools/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/openSUSE/IBus-Theme-Tools.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/openSUSE/IBus-Theme-Tools/context:python)
 
-[English](README.md)
-
-[Python库依赖](../../network/dependencies)
-
 ### 欢迎在 Weblate 中贡献你的翻译！
 
 [![翻译状态](https://hosted.weblate.org/widgets/ibus-theme-tools/-/287x66-grey.png)](https://hosted.weblate.org/engage/ibus-theme-tools/)
+
+[English](README.md)
+
+[Python库依赖](../../network/dependencies)
 
 ## 前置知识
 

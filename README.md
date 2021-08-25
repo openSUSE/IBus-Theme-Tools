@@ -9,13 +9,13 @@
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/openSUSE/IBus-Theme-Tools.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/openSUSE/IBus-Theme-Tools/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/openSUSE/IBus-Theme-Tools.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/openSUSE/IBus-Theme-Tools/context:python)
 
-[中文 Chinese](https://github.com/openSUSE/IBus-Theme-Tools/blob/main/README_CN.md)
-
-[Python Library Dependency](https://github.com/openSUSE/IBus-Theme-Tools/network/dependencies)
-
 ### Welcome to contribute your translation on Weblate!
 
 [![Translation Status](https://hosted.weblate.org/widgets/ibus-theme-tools/-/287x66-grey.png)](https://hosted.weblate.org/engage/ibus-theme-tools/)
+
+[中文 Chinese](https://github.com/openSUSE/IBus-Theme-Tools/blob/main/README_CN.md)
+
+[Python Library Dependency](https://github.com/openSUSE/IBus-Theme-Tools/network/dependencies)
 
 ## Pre-knowledge
 
