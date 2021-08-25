@@ -13,6 +13,10 @@
 
 [Python Library Dependency](https://github.com/openSUSE/IBus-Theme-Tools/network/dependencies)
 
+### Welcome to contribute your translation on Weblate!
+
+[![Translation Status](https://hosted.weblate.org/widgets/ibus-theme-tools/-/287x66-grey.png)](https://hosted.weblate.org/engage/ibus-theme-tools/)
+
 ## Pre-knowledge
 
 IBus has its front-end based on GTK, and GNOME replace that front-end with its GJS version to make it more unified with GNOME.

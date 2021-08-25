@@ -13,6 +13,10 @@
 
 [Python库依赖](../../network/dependencies)
 
+### 欢迎在 Weblate 中贡献你的翻译！
+
+[![翻译状态](https://hosted.weblate.org/widgets/ibus-theme-tools/-/287x66-grey.png)](https://hosted.weblate.org/engage/ibus-theme-tools/)
+
 ## 前置知识
 
 IBus 的前端是基于 GTK 的，而 GNOME 用它的 GJS 版本取代了这个前端，使其与 GNOME 更加统一。
