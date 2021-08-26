@@ -1,4 +1,4 @@
-# Chinese translations for IBus Theme Tools package
+# Chinese (Simplified) translations for IBus Theme Tools package
 # IBus Theme Tools 软件包的简体中文翻译.
 # Copyright (C) 2021 THE IBus Theme Tools'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the IBus Theme Tools package.
