@@ -11,7 +11,7 @@
 
 ### 欢迎在 Weblate 中贡献你的翻译！
 
-[![翻译状态](https://hosted.weblate.org/widgets/ibus-theme-tools/-/287x66-grey.png)](https://hosted.weblate.org/engage/ibus-theme-tools/)
+[![翻译状态](https://hosted.weblate.org/widgets/ibus-customize/-/287x66-grey.png)](https://hosted.weblate.org/engage/ibus-customize/)
 
 [English](README.md)
 

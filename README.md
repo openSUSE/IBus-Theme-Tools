@@ -11,7 +11,7 @@
 
 ### Welcome to contribute your translation on Weblate!
 
-[![Translation Status](https://hosted.weblate.org/widgets/ibus-theme-tools/-/287x66-grey.png)](https://hosted.weblate.org/engage/ibus-theme-tools/)
+[![Translation Status](https://hosted.weblate.org/widgets/ibus-customize/-/287x66-grey.png)](https://hosted.weblate.org/engage/ibus-customize/)
 
 [中文 Chinese](https://github.com/openSUSE/IBus-Theme-Tools/blob/main/README_CN.md)
 
