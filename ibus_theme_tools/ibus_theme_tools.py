@@ -591,8 +591,7 @@ def main():
     try:
         desktopEnv = os.environ["XDG_CURRENT_DESKTOP"].split(":")
     except Exception:
-        print(READ_YELLOW + _("Error: Not in Linux!") + OUTPUT_END)
-        exit(1)
+        desktopEnv = ""
     if "GNOME" in desktopEnv:
         exportIBusTheme()
     else:
