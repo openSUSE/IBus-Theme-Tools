@@ -17,6 +17,7 @@ import glob
 import tinycss2
 from gi.repository import GLib, Gio
 import os
+import imghdr
 
 import gettext
 APP_NAME = "IBus-Theme"
@@ -124,74 +125,105 @@ def RMUnrelatedGTKStyleClass(string):
 
 
 def GTKCustomizeImage():
+    print("")
     while True:
-        print("")
         image = input(
-            YELLOW_BLUE + _("Please enter your image file location (empty to exit file selection): ") + OUTPUT_END)
+            YELLOW_BLUE + _("Please enter your image file path (empty to exit file selection): ") + OUTPUT_END)
         if image:
-            if os.path.isfile(image):
-                image = os.path.abspath(image)
-                cssContent = _("\n/* Customized Background Image */\n") + \
-                    "#IBusCandidate {\n  background: url('" + image + "');\n  "
-                while True:
+            fileList = glob.glob(os.path.abspath(os.path.expandvars(os.path.expanduser(image))))
+            if fileList:
+                image = ""
+                if len(fileList) == 1:
+                    image = fileList[0]
+                else:
+                    print("")
+                    print(BLACK_CYAN +
+                        _("Please select a image file:") + OUTPUT_END)
+                    count = 1
+                    for file in fileList:
+                        print("[" + BLACK_CYAN+str(count)+OUTPUT_END + "]\t" +
+                            UNDER_LINE + file + OUTPUT_END)
+                        count += 1
+                    print("[" + BLACK_CYAN + "q" + OUTPUT_END + "]\t" +
+                        READ_YELLOW + _("Re-Enter Path") + OUTPUT_END)
+                    while True:
+                        selection = input(YELLOW_BLUE + _("(Empty to Re-Enter Path): ") + OUTPUT_END)
+                        if selection == "q" or not selection:
+                            break
+                        elif selection.isdigit() and int(selection) < count and int(selection) > 0:
+                            if os.path.isfile(fileList[int(selection)-1]) and imghdr.what(fileList[int(selection)-1]):
+                                image = fileList[int(selection)-1]
+                                break
+                            else:
+                                print(READ_YELLOW + _("Error: Not an Image File!") + OUTPUT_END + "\n")
+                        else:
+                            print(READ_YELLOW + _("Error: Wrong selection!") + OUTPUT_END + "\n")
+                if not image:
+                    continue
+                elif os.path.isfile(image) and imghdr.what(image):
+                    cssContent = _("\n/* Customized Background Image */\n") + \
+                        "#IBusCandidate {\n  background: url('" + image + "');\n  "
                     print("")
                     print(
                         BLACK_CYAN + _("Please select repeat mode for your image:") + OUTPUT_END)
                     print("[" + BLACK_CYAN + "1" + OUTPUT_END + "]\t" + UNDER_LINE +
-                          _("No") + OUTPUT_END)
+                        _("No") + OUTPUT_END)
                     print("[" + BLACK_CYAN + "2" + OUTPUT_END + "]\t" + UNDER_LINE +
-                          _("Yes") + OUTPUT_END)
-                    modeSelection = input(
-                        YELLOW_BLUE + _("(Empty to be 1): ") + OUTPUT_END)
-                    if modeSelection.isdigit() and int(modeSelection) >= 1 and int(modeSelection) <= 2 or not modeSelection:
-                        if not modeSelection or modeSelection == "1":
-                            cssContent += "background-repeat: no-repeat;\n  "
-                        elif modeSelection == "2":
-                            cssContent += "background-repeat: repeat;\n  "
-                        while True:
+                        _("Yes") + OUTPUT_END)
+                    while True:
+                        modeSelection = input(
+                            YELLOW_BLUE + _("(Empty to be 1): ") + OUTPUT_END)
+                        if modeSelection.isdigit() and int(modeSelection) >= 1 and int(modeSelection) <= 2 or not modeSelection:
+                            if not modeSelection or modeSelection == "1":
+                                cssContent += "background-repeat: no-repeat;\n  "
+                            elif modeSelection == "2":
+                                cssContent += "background-repeat: repeat;\n  "
                             print("")
                             print(
                                 BLACK_CYAN + _("Please select sizing mode for your image:") + OUTPUT_END)
                             print("[" + BLACK_CYAN + "1" + OUTPUT_END + "]\t" + UNDER_LINE +
-                                  _("Zoom") + OUTPUT_END)
+                                _("Zoom") + OUTPUT_END)
                             print("[" + BLACK_CYAN + "2" + OUTPUT_END + "]\t" + UNDER_LINE +
-                                  _("Full") + OUTPUT_END)
+                                _("Full") + OUTPUT_END)
                             print("[" + BLACK_CYAN + "3" + OUTPUT_END + "]\t" + UNDER_LINE +
-                                  _("Centered") + OUTPUT_END)
+                                _("Centered") + OUTPUT_END)
                             print("[" + BLACK_CYAN + "4" + OUTPUT_END + "]\t" + UNDER_LINE +
-                                  _("Stretched") + OUTPUT_END)
-                            modeSelection = input(
-                                YELLOW_BLUE + _("(Empty to be 1): ") + OUTPUT_END)
-                            if modeSelection.isdigit() and int(modeSelection) >= 1 and int(modeSelection) <= 4 or not modeSelection:
-                                if not modeSelection or modeSelection == "1":
-                                    cssContent += "background-size: cover;\n"
-                                elif modeSelection == "2":
-                                    cssContent += "background-size: contain;\n"
-                                elif modeSelection == "3":
-                                    cssContent += "background-size: auto;\n"
-                                elif modeSelection == "4":
-                                    cssContent += "background-size: 100% 100%;\n"
-                                while True:
+                                _("Stretched") + OUTPUT_END)
+                            while True:
+                                modeSelection = input(
+                                    YELLOW_BLUE + _("(Empty to be 1): ") + OUTPUT_END)
+                                if modeSelection.isdigit() and int(modeSelection) >= 1 and int(modeSelection) <= 4 or not modeSelection:
+                                    if not modeSelection or modeSelection == "1":
+                                        cssContent += "background-size: cover;\n"
+                                    elif modeSelection == "2":
+                                        cssContent += "background-size: contain;\n"
+                                    elif modeSelection == "3":
+                                        cssContent += "background-size: auto;\n"
+                                    elif modeSelection == "4":
+                                        cssContent += "background-size: 100% 100%;\n"
                                     print("")
-                                    radiusSetting = input(
-                                        YELLOW_BLUE + _("Please input the image border radius you want to set in px(Empty to not set): ") + OUTPUT_END)
-                                    if radiusSetting.isnumeric() or not radiusSetting:
-                                        if radiusSetting.isnumeric():
-                                            cssContent += "  border-radius: " + radiusSetting + "px;\n}"
+                                    while True:
+                                        radiusSetting = input(
+                                            YELLOW_BLUE + _("Please input the image border radius you want to set in px(Empty to not set): ") + OUTPUT_END)
+                                        if radiusSetting.isnumeric() or not radiusSetting:
+                                            if radiusSetting.isnumeric():
+                                                cssContent += "  border-radius: " + radiusSetting + "px;\n}"
+                                            else:
+                                                cssContent += "}"
+                                            return cssContent
                                         else:
-                                            cssContent += "}"
-                                        return cssContent
-                                    else:
-                                        print(
-                                            READ_YELLOW + _("Error: Please Enter a Number!") + OUTPUT_END + "\n")
-                            else:
-                                print(
-                                    READ_YELLOW + _("Error: Wrong selection!") + OUTPUT_END + "\n")
-                    else:
-                        print(READ_YELLOW +
-                              _("Error: Wrong selection!") + OUTPUT_END + "\n")
+                                            print(
+                                                READ_YELLOW + _("Error: Please Enter a Number!") + OUTPUT_END + "\n")
+                                else:
+                                    print(
+                                        READ_YELLOW + _("Error: Wrong selection!") + OUTPUT_END + "\n")
+                        else:
+                            print(READ_YELLOW +
+                                _("Error: Wrong selection!") + OUTPUT_END + "\n")
+                else:
+                    print(READ_YELLOW + _("Error: Not an Image File!") + OUTPUT_END + "\n")
             else:
-                print(READ_YELLOW + _("Error: File Not Exists!") + OUTPUT_END + "\n")
+                print(READ_YELLOW + _("Error: Path Not Exists!") + OUTPUT_END + "\n")
         else:
             return ""
 
@@ -201,24 +233,24 @@ def exportGTKTheme():
     themeNameList = list(set(themeNameList))
     themeNameList.sort()
     count = 1
+    print(BLACK_CYAN +
+            _("Please select a GTK theme to extract for IBus:") + OUTPUT_END)
+    for themeName in themeNameList:
+        print("[" + BLACK_CYAN+str(count)+OUTPUT_END + "]\t" +
+                UNDER_LINE + themeName + OUTPUT_END)
+        count += 1
+    print("[" + BLACK_CYAN + "q" + OUTPUT_END + "]\t" +
+            READ_YELLOW + _("Exit") + OUTPUT_END)
     while True:
-        print(BLACK_CYAN +
-              _("Please select a GTK theme to extract for IBus:") + OUTPUT_END)
-        for themeName in themeNameList:
-            print("[" + BLACK_CYAN+str(count)+OUTPUT_END + "]\t" +
-                  UNDER_LINE + themeName + OUTPUT_END)
-            count += 1
-        print("[" + BLACK_CYAN + "q" + OUTPUT_END + "]\t" +
-              READ_YELLOW + _("Exit") + OUTPUT_END)
         selection = input(YELLOW_BLUE + _("(Empty to exit): ") + OUTPUT_END)
         if selection == "q" or not selection:
             print(_("Goodbye!"))
             exit(0)
         elif selection.isdigit() and int(selection) < count and int(selection) > 0:
             IBusThemeName = themeNameList[int(selection)-1]
+            print("\n" + BLACK_CYAN +
+                    _("Please select a GTK theme for other styles:") + OUTPUT_END)
             while True:
-                print("\n" + BLACK_CYAN +
-                      _("Please select a GTK theme for other styles:") + OUTPUT_END)
                 selection = input(
                     YELLOW_BLUE + _("(Empty to exit): ") + OUTPUT_END)
                 if selection == "q" or not selection:
@@ -228,14 +260,14 @@ def exportGTKTheme():
                     mainThemeName = themeNameList[int(selection)-1]
                     cssContent = exportIBusGTKThemeCSS(
                         themeNameLocation[IBusThemeName][-1], themeNameLocation[mainThemeName][-1])
+                    print("")
+                    print(
+                        BLACK_CYAN + _("Do you need a customized background image for IBus panel?") + OUTPUT_END)
+                    print("[" + BLACK_CYAN + "1" + OUTPUT_END + "]\t" + UNDER_LINE +
+                            _("No") + OUTPUT_END)
+                    print("[" + BLACK_CYAN + "2" + OUTPUT_END + "]\t" + UNDER_LINE +
+                            _("Yes") + OUTPUT_END)
                     while True:
-                        print("")
-                        print(
-                            BLACK_CYAN + _("Do you need a customized background image for IBus panel?") + OUTPUT_END)
-                        print("[" + BLACK_CYAN + "1" + OUTPUT_END + "]\t" + UNDER_LINE +
-                              _("No") + OUTPUT_END)
-                        print("[" + BLACK_CYAN + "2" + OUTPUT_END + "]\t" + UNDER_LINE +
-                              _("Yes") + OUTPUT_END)
                         modeSelection = input(
                             YELLOW_BLUE + _("(Empty to be 1): ") + OUTPUT_END)
                         if modeSelection.isdigit() and int(modeSelection) >= 1 and int(modeSelection) <= 2 or not modeSelection:
@@ -275,10 +307,8 @@ def exportGTKTheme():
                 else:
                     print(READ_YELLOW + _("Error: Wrong selection!") +
                           OUTPUT_END + "\n")
-                    count = 1
         else:
             print(READ_YELLOW + _("Error: Wrong selection!") + OUTPUT_END + "\n")
-            count = 1
 
 
 def exportIBusGTKThemeCSS(styleSheet, mainStyleSheet, styleSheetContent=None, resource=True, recursive=False):
@@ -547,15 +577,15 @@ def exportIBusTheme():
     themeList = list(set(themeList))
     themeList.sort()
     count = 1
+    print(BLACK_CYAN +
+            _("Please select a GNOME theme to extract style sheet for IBus:") + OUTPUT_END)
+    for theme in themeList:
+        print("[" + BLACK_CYAN+str(count)+OUTPUT_END + "]\t" +
+                UNDER_LINE + theme.replace("/gnome-shell/gnome-shell.css", "") + OUTPUT_END)
+        count += 1
+    print("[" + BLACK_CYAN + "q" + OUTPUT_END + "]\t" +
+            READ_YELLOW + _("Exit") + OUTPUT_END)
     while True:
-        print(BLACK_CYAN +
-              _("Please select a GNOME theme to extract style sheet for IBus:") + OUTPUT_END)
-        for theme in themeList:
-            print("[" + BLACK_CYAN+str(count)+OUTPUT_END + "]\t" +
-                  UNDER_LINE + theme.replace("/gnome-shell/gnome-shell.css", "") + OUTPUT_END)
-            count += 1
-        print("[" + BLACK_CYAN + "q" + OUTPUT_END + "]\t" +
-              READ_YELLOW + _("Exit") + OUTPUT_END)
         selection = input(YELLOW_BLUE + _("(Empty to exit): ") + OUTPUT_END)
         if selection == "q" or not selection:
             print(_("Goodbye!"))
@@ -584,7 +614,6 @@ def exportIBusTheme():
             exit(0)
         else:
             print(READ_YELLOW + _("Error: Wrong selection!") + OUTPUT_END + "\n")
-            count = 1
 
 
 def main():
@@ -595,14 +624,14 @@ def main():
     if "GNOME" in desktopEnv:
         exportIBusTheme()
     else:
+        print(BLACK_CYAN + _("Please select a mode:") + OUTPUT_END)
+        print("[" + BLACK_CYAN + "1" + OUTPUT_END + "]\t" + UNDER_LINE +
+                _("Extract an IBus-related GTK theme") + OUTPUT_END)
+        print("[" + BLACK_CYAN + "2" + OUTPUT_END + "]\t" + UNDER_LINE +
+                _("Extract an IBus-related GNOME theme stylesheet") + OUTPUT_END)
+        print("[" + BLACK_CYAN + "q" + OUTPUT_END + "]\t" +
+                READ_YELLOW + _("Exit") + OUTPUT_END)
         while True:
-            print(BLACK_CYAN + _("Please select a mode:") + OUTPUT_END)
-            print("[" + BLACK_CYAN + "1" + OUTPUT_END + "]\t" + UNDER_LINE +
-                  _("Extract an IBus-related GTK theme") + OUTPUT_END)
-            print("[" + BLACK_CYAN + "2" + OUTPUT_END + "]\t" + UNDER_LINE +
-                  _("Extract an IBus-related GNOME theme stylesheet") + OUTPUT_END)
-            print("[" + BLACK_CYAN + "q" + OUTPUT_END + "]\t" +
-                  READ_YELLOW + _("Exit") + OUTPUT_END)
             modeSelection = input(
                 YELLOW_BLUE + _("(Empty to be 1): ") + OUTPUT_END)
             if modeSelection == "q":
