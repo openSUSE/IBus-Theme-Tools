@@ -38,7 +38,8 @@ OUTPUT_END = "\033[0m"
 
 RELATIVEPATTERN = r'url\([\'"](?!/)(?!.*?:)(.*?)[\'"]\)'
 CLASSLIST = ['#IBusHandle', '#IBusCandidate', '#IBusPreedit']
-WIDGETLIST = ['*', 'box', 'label', 'button', '.background', 'separator', 'widget']
+WIDGETLIST = ['*', 'box', 'label', 'button',
+              '.background', 'separator', 'widget']
 WIDGETLIST.extend(CLASSLIST)
 
 gtkResource = []
@@ -130,7 +131,8 @@ def GTKCustomizeImage():
         image = input(
             YELLOW_BLUE + _("Please enter your image file path (empty to exit file selection): ") + OUTPUT_END)
         if image:
-            fileList = glob.glob(os.path.abspath(os.path.expandvars(os.path.expanduser(image))))
+            fileList = glob.glob(os.path.abspath(
+                os.path.expandvars(os.path.expanduser(image))))
             if fileList:
                 image = ""
                 if len(fileList) == 1:
@@ -138,16 +140,17 @@ def GTKCustomizeImage():
                 else:
                     print("")
                     print(BLACK_CYAN +
-                        _("Please select a image file:") + OUTPUT_END)
+                          _("Please select a image file:") + OUTPUT_END)
                     count = 1
                     for file in fileList:
                         print("[" + BLACK_CYAN+str(count)+OUTPUT_END + "]\t" +
-                            UNDER_LINE + file + OUTPUT_END)
+                              UNDER_LINE + file + OUTPUT_END)
                         count += 1
                     print("[" + BLACK_CYAN + "q" + OUTPUT_END + "]\t" +
-                        READ_YELLOW + _("Re-Enter Path") + OUTPUT_END)
+                          READ_YELLOW + _("Re-Enter Path") + OUTPUT_END)
                     while True:
-                        selection = input(YELLOW_BLUE + _("(Empty to Re-Enter Path): ") + OUTPUT_END)
+                        selection = input(
+                            YELLOW_BLUE + _("(Empty to Re-Enter Path): ") + OUTPUT_END)
                         if selection == "q" or not selection:
                             break
                         elif selection.isdigit() and int(selection) < count and int(selection) > 0:
@@ -155,21 +158,24 @@ def GTKCustomizeImage():
                                 image = fileList[int(selection)-1]
                                 break
                             else:
-                                print(READ_YELLOW + _("Error: Not an Image File!") + OUTPUT_END + "\n")
+                                print(
+                                    READ_YELLOW + _("Error: Not an Image File!") + OUTPUT_END + "\n")
                         else:
-                            print(READ_YELLOW + _("Error: Wrong selection!") + OUTPUT_END + "\n")
+                            print(
+                                READ_YELLOW + _("Error: Wrong selection!") + OUTPUT_END + "\n")
                 if not image:
                     continue
                 elif os.path.isfile(image) and imghdr.what(image):
                     cssContent = _("\n/* Customized Background Image */\n") + \
-                        "#IBusCandidate {\n  background: url('" + image + "');\n  "
+                        "#IBusCandidate {\n  background: url('" + \
+                        image + "');\n  "
                     print("")
                     print(
                         BLACK_CYAN + _("Please select repeat mode for your image:") + OUTPUT_END)
                     print("[" + BLACK_CYAN + "1" + OUTPUT_END + "]\t" + UNDER_LINE +
-                        _("No") + OUTPUT_END)
+                          _("No") + OUTPUT_END)
                     print("[" + BLACK_CYAN + "2" + OUTPUT_END + "]\t" + UNDER_LINE +
-                        _("Yes") + OUTPUT_END)
+                          _("Yes") + OUTPUT_END)
                     while True:
                         modeSelection = input(
                             YELLOW_BLUE + _("(Empty to be 1): ") + OUTPUT_END)
@@ -182,13 +188,13 @@ def GTKCustomizeImage():
                             print(
                                 BLACK_CYAN + _("Please select sizing mode for your image:") + OUTPUT_END)
                             print("[" + BLACK_CYAN + "1" + OUTPUT_END + "]\t" + UNDER_LINE +
-                                _("Zoom") + OUTPUT_END)
+                                  _("Zoom") + OUTPUT_END)
                             print("[" + BLACK_CYAN + "2" + OUTPUT_END + "]\t" + UNDER_LINE +
-                                _("Full") + OUTPUT_END)
+                                  _("Full") + OUTPUT_END)
                             print("[" + BLACK_CYAN + "3" + OUTPUT_END + "]\t" + UNDER_LINE +
-                                _("Centered") + OUTPUT_END)
+                                  _("Centered") + OUTPUT_END)
                             print("[" + BLACK_CYAN + "4" + OUTPUT_END + "]\t" + UNDER_LINE +
-                                _("Stretched") + OUTPUT_END)
+                                  _("Stretched") + OUTPUT_END)
                             while True:
                                 modeSelection = input(
                                     YELLOW_BLUE + _("(Empty to be 1): ") + OUTPUT_END)
@@ -219,9 +225,10 @@ def GTKCustomizeImage():
                                         READ_YELLOW + _("Error: Wrong selection!") + OUTPUT_END + "\n")
                         else:
                             print(READ_YELLOW +
-                                _("Error: Wrong selection!") + OUTPUT_END + "\n")
+                                  _("Error: Wrong selection!") + OUTPUT_END + "\n")
                 else:
-                    print(READ_YELLOW + _("Error: Not an Image File!") + OUTPUT_END + "\n")
+                    print(READ_YELLOW + _("Error: Not an Image File!") +
+                          OUTPUT_END + "\n")
             else:
                 print(READ_YELLOW + _("Error: Path Not Exists!") + OUTPUT_END + "\n")
         else:
@@ -234,13 +241,13 @@ def exportGTKTheme():
     themeNameList.sort()
     count = 1
     print(BLACK_CYAN +
-            _("Please select a GTK theme to extract for IBus:") + OUTPUT_END)
+          _("Please select a GTK theme to extract for IBus:") + OUTPUT_END)
     for themeName in themeNameList:
         print("[" + BLACK_CYAN+str(count)+OUTPUT_END + "]\t" +
-                UNDER_LINE + themeName + OUTPUT_END)
+              UNDER_LINE + themeName + OUTPUT_END)
         count += 1
     print("[" + BLACK_CYAN + "q" + OUTPUT_END + "]\t" +
-            READ_YELLOW + _("Exit") + OUTPUT_END)
+          READ_YELLOW + _("Exit") + OUTPUT_END)
     while True:
         selection = input(YELLOW_BLUE + _("(Empty to exit): ") + OUTPUT_END)
         if selection == "q" or not selection:
@@ -249,7 +256,7 @@ def exportGTKTheme():
         elif selection.isdigit() and int(selection) < count and int(selection) > 0:
             IBusThemeName = themeNameList[int(selection)-1]
             print("\n" + BLACK_CYAN +
-                    _("Please select a GTK theme for other styles:") + OUTPUT_END)
+                  _("Please select a GTK theme for other styles:") + OUTPUT_END)
             while True:
                 selection = input(
                     YELLOW_BLUE + _("(Empty to exit): ") + OUTPUT_END)
@@ -264,9 +271,9 @@ def exportGTKTheme():
                     print(
                         BLACK_CYAN + _("Do you need a customized background image for IBus panel?") + OUTPUT_END)
                     print("[" + BLACK_CYAN + "1" + OUTPUT_END + "]\t" + UNDER_LINE +
-                            _("No") + OUTPUT_END)
+                          _("No") + OUTPUT_END)
                     print("[" + BLACK_CYAN + "2" + OUTPUT_END + "]\t" + UNDER_LINE +
-                            _("Yes") + OUTPUT_END)
+                          _("Yes") + OUTPUT_END)
                     while True:
                         modeSelection = input(
                             YELLOW_BLUE + _("(Empty to be 1): ") + OUTPUT_END)
@@ -578,13 +585,13 @@ def exportIBusTheme():
     themeList.sort()
     count = 1
     print(BLACK_CYAN +
-            _("Please select a GNOME theme to extract style sheet for IBus:") + OUTPUT_END)
+          _("Please select a GNOME theme to extract style sheet for IBus:") + OUTPUT_END)
     for theme in themeList:
         print("[" + BLACK_CYAN+str(count)+OUTPUT_END + "]\t" +
-                UNDER_LINE + theme.replace("/gnome-shell/gnome-shell.css", "") + OUTPUT_END)
+              UNDER_LINE + theme.replace("/gnome-shell/gnome-shell.css", "") + OUTPUT_END)
         count += 1
     print("[" + BLACK_CYAN + "q" + OUTPUT_END + "]\t" +
-            READ_YELLOW + _("Exit") + OUTPUT_END)
+          READ_YELLOW + _("Exit") + OUTPUT_END)
     while True:
         selection = input(YELLOW_BLUE + _("(Empty to exit): ") + OUTPUT_END)
         if selection == "q" or not selection:
@@ -626,11 +633,11 @@ def main():
     else:
         print(BLACK_CYAN + _("Please select a mode:") + OUTPUT_END)
         print("[" + BLACK_CYAN + "1" + OUTPUT_END + "]\t" + UNDER_LINE +
-                _("Extract an IBus-related GTK theme") + OUTPUT_END)
+              _("Extract an IBus-related GTK theme") + OUTPUT_END)
         print("[" + BLACK_CYAN + "2" + OUTPUT_END + "]\t" + UNDER_LINE +
-                _("Extract an IBus-related GNOME theme stylesheet") + OUTPUT_END)
+              _("Extract an IBus-related GNOME theme stylesheet") + OUTPUT_END)
         print("[" + BLACK_CYAN + "q" + OUTPUT_END + "]\t" +
-                READ_YELLOW + _("Exit") + OUTPUT_END)
+              READ_YELLOW + _("Exit") + OUTPUT_END)
         while True:
             modeSelection = input(
                 YELLOW_BLUE + _("(Empty to be 1): ") + OUTPUT_END)
