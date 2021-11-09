@@ -22,7 +22,10 @@ clean:
 	-rm -fR deb_dist
 	-rm -fR *.tar.gz
 	-rm -fR *.pkg.tar.zst
+	-rm -fR *.pkg
 	-rm -fR pkg src
+	-rm -fR bsd/usr
+	-rm -fR bsd/plist
 	-rm -fR $(PYPACK).egg-info
 
 %.mo: %.po
@@ -59,6 +62,17 @@ ppa: deb
 	cd deb_dist; \
 		debsign *source.changes; \
 		dput ibus-theme-tools *source.changes
+
+bsdbuild:
+	python setup.py install --root="`pwd`/bsd" --optimize=1
+	cd bsd; \
+		for dir in `find usr -type f`; do \
+			echo $$dir >> plist; \
+		done
+
+bsd: bsdbuild
+	cd bsd; \
+		pkg create -m . -r . -p plist -o ..
 
 arch:
 	makepkg --printsrcinfo > .SRCINFO
