@@ -1,5 +1,5 @@
 name: ibus-theme-tools
-version: 4.1.3
+version: 4.2.0
 origin: sysutils/ibus-theme-tools
 comment: "IBus Theme Tools"
 desc: "Generate the IBus GTK or GNOME Shell theme from existing themes."
