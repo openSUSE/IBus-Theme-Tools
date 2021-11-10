@@ -20,7 +20,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='ibus-theme-tools',
-      version='4.1.3',
+      version='4.2.0',
       description='Generate the IBus GTK or GNOME Shell theme from existing themes.',
       url='https://github.com/openSUSE/IBus-Theme-Tools',
       author='Hollow Man (Domain Address)',
@@ -28,7 +28,7 @@ setup(name='ibus-theme-tools',
       license='GPL-3.0-or-later',
       install_requires=['tinycss2'],
       packages=['ibus_theme_tools'],
-      package_data={'ibus_theme_tools': ['locale/**/LC_MESSAGES/*.mo']},
+      package_data={'ibus_theme_tools': ['locale/**/LC_MESSAGES/*.mo', 'merge-gresource.sh']},
       entry_points={'console_scripts': [
           'ibus-theme-tools=ibus_theme_tools.ibus_theme_tools:main']},
       long_description=long_description,
