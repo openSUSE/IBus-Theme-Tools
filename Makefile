@@ -64,6 +64,12 @@ ppa: deb
 		debsign *source.changes; \
 		dput ibus-theme-tools *source.changes
 
+edigest:
+	cd portage/app-i18n/ibus-theme-tools; ebuild *.ebuild digest
+
+emerge:
+	cd portage/app-i18n/ibus-theme-tools; pkexec ebuild `pwd`/*.ebuild merge
+
 pkg:
 	cd bsd; make makesum; PACKAGES=`pwd` make package; mv All/*.pkg ..
 
