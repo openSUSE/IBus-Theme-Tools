@@ -56,7 +56,7 @@ cd IBus-Theme-Tools && python3 setup.py install
 ibus-theme-tools
 ```
 
-如果你使用 Arch Linux, 也可使用 AUR 安装为系统插件:
+如果你使用 Arch Linux, 也可使用 AUR 安装:
 
 ```bash
 yay -S ibus-theme-tools
@@ -64,7 +64,29 @@ yay -S ibus-theme-tools
 
 [![AUR](https://aur.archlinux.org/css/archnavbar/aurlogo.png)](https://aur.archlinux.org/packages/ibus-theme-tools/)
 
-[Ubuntu PPA](https://launchpad.net/~hollowman86/+archive/ubuntu/ibus-theme-tools)
+openSUSE 可以直接通过[ymp 文件](https://software.opensuse.org/ymp/home:hollowman/openSUSE_Factory/ibus-theme-tools.ymp)安装。
+
+你可以通过 [OpenSUSE OBS](https://software.opensuse.org//download.html?project=home%3Ahollowman&package=ibus-theme-tools) 下载绝大部分 Linux 发行版对应的相关安装包后安装。
+
+Ubuntu 可使用 [PPA](https://launchpad.net/~hollowman86/+archive/ubuntu/ibus-theme-tools) 安装:
+
+```bash
+sudo add-apt-repository ppa:hollowman86/ibus-theme-tools
+sudo apt-get update
+```
+
+对于 Gentoo，运行以下命令安装:
+
+```bash
+git clone https://github.com/openSUSE/IBus-Theme-Tools.git
+cd IBus-Theme-Tools && make emerge
+```
+
+对于 NixOS:
+
+```bash
+sudo nix-env -i ibus-theme-tools
+```
 
 ## 实现功能
 
