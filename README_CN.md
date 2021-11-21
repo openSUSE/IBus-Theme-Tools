@@ -88,6 +88,13 @@ cd IBus-Theme-Tools && make emerge
 sudo nix-env -i ibus-theme-tools
 ```
 
+对于 Guix:
+
+```bash
+curl -o /tmp/guix.scm https://raw.githubusercontent.com/openSUSE/IBus-Theme-Tools/main/guix.scm
+guix package -f /tmp/guix.scm
+```
+
 ## 实现功能
 
 ### 非GNOME桌面
