@@ -91,8 +91,7 @@ sudo nix-env -i ibus-theme-tools
 对于 Guix:
 
 ```bash
-curl -o /tmp/guix.scm https://raw.githubusercontent.com/openSUSE/IBus-Theme-Tools/main/guix.scm
-guix package -f /tmp/guix.scm
+guix install ibus-theme-tools
 ```
 
 ## 实现功能

@@ -21,9 +21,7 @@
        "0i8vwnikwd1bfpv4xlgzc51gn6s18q58nqhvcdiyjzcmy3z344c2"))))
   (build-system python-build-system)
   (arguments
-   '(#:phases
-     (modify-phases %standard-phases
-       (delete 'check))))
+   `(#:tests? #f)) ; No tests
   (propagated-inputs
    `(("python-tinycss2" ,python-tinycss2)
      ("python-pygobject" ,python-pygobject)))
@@ -31,6 +29,6 @@
    `(("gettext" ,gettext-minimal)))
   (home-page "https://github.com/openSUSE/IBus-Theme-Tools")
   (synopsis "Tool for IBus Themes")
-  (description "IBus Theme Tools can generate the IBus GTK or
-GNOME Shell theme from existing themes.")
+  (description "IBus Theme Tools can extract IBus-specific settings from
+GTK themes to apply both within and without GNOME Shell.")
   (license gpl3+))

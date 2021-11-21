@@ -70,6 +70,9 @@ edigest:
 emerge:
 	cd portage/app-i18n/ibus-theme-tools; pkexec ebuild `pwd`/*.ebuild merge
 
+guix:
+	guix package -f guix.scm
+
 pkg:
 	cd bsd; make makesum; PACKAGES=`pwd` make package; mv All/*.pkg ..
 
