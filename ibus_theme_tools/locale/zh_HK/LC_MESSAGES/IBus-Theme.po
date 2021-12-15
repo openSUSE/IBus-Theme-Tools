@@ -2,14 +2,14 @@
 # IBus Theme Tools 軟件包的繁體中文翻譯.
 # Copyright (C) 2021 THE IBus Theme Tools'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the IBus Theme Tools package.
-# Hollow Man <hollowman@hollowman.ml>, 2021.
+# Hollow Man <hollowman@opensuse.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: IBus Theme Tools 4.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-10 14:21+0800\n"
 "PO-Revision-Date: 2021-08-25 17:38+0000\n"
-"Last-Translator: Hollow Man <hollowman@hollowman.ml>\n"
+"Last-Translator: Hollow Man <hollowman@opensuse.org>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/"
 "projects/customize-ibus/customize-ibus/zh_Hant_HK/>\n"
 "Language: zh_HK\n"

@@ -1,4 +1,4 @@
-# Created by: Hollow Man <hollowman@hollowman.ml>
+# Created by: Hollow Man <hollowman@opensuse.org>
 
 PORTNAME=		ibus-theme-tools
 PORTVERSION=	4.2.0
@@ -6,7 +6,7 @@ DISTVERSIONPREFIX=	v
 CATEGORIES=	deskutils python
 DIST_SUBDIR=	python
 
-MAINTAINER=	hollowman@hollowman.ml
+MAINTAINER=	hollowman@opensuse.org
 COMMENT=		IBus Theme Tools
 
 LICENSE=		GPLv3+

@@ -3,7 +3,7 @@
 # vim: set et ts=4 sw=4:
 '''
   IBus Theme Tools
-  Author:  Hollow Man <hollowman@hollowman.ml>
+  Author:  Hollow Man <hollowman@opensuse.org>
 
   Copyright © 2021 Hollow Man(@HollowMan6). All rights reserved.
 
@@ -24,7 +24,7 @@ setup(name='ibus-theme-tools',
       description='Generate the IBus GTK or GNOME Shell theme from existing themes.',
       url='https://github.com/openSUSE/IBus-Theme-Tools',
       author='Hollow Man (Domain Address)',
-      author_email='hollowman@hollowman.ml',
+      author_email='hollowman@opensuse.org',
       license='GPL-3.0-or-later',
       install_requires=['tinycss2'],
       packages=['ibus_theme_tools'],
