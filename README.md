@@ -62,6 +62,14 @@ If you use Arch Linux, you can also use AUR to install:
 yay -S ibus-theme-tools
 ```
 
+(For Manjaro user, since unlike Arch Linux, the dependency `python-tinycss2` is not included in the official package repository. You can install that dependency using the pkg file by manually downloading it from the Arch Linux community repository just like the following example)
+
+```bash
+wget https://ftp5.gwdg.de/pub/linux/archlinux/community/os/x86_64/python-tinycss2-1.1.1-1-any.pkg.tar.zst
+sudo pacman -U python-tinycss2-1.1.1-1-any.pkg.tar.zst
+rm python-tinycss2-1.1.1-1-any.pkg.tar.zst
+```
+
 [![AUR](https://aur.archlinux.org/css/archnavbar/aurlogo.png)](https://aur.archlinux.org/packages/ibus-theme-tools/)
 
 For openSUSE, you can install directly through the [ymp file](https://software.opensuse.org/ymp/home:hollowman/openSUSE_Factory/ibus-theme-tools.ymp).

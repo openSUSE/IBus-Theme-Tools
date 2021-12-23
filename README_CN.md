@@ -62,6 +62,14 @@ ibus-theme-tools
 yay -S ibus-theme-tools
 ```
 
+（对于Manjaro用户，因为与Arch Linux不同，官方软件包仓库中不包含本软件的依赖项`python-tinycss2`。您可以从Arch Linux社区仓库手动下载它的pkg文件，就如同下面的示例进行依赖项`python-tinycss2`的安装）
+
+```bash
+wget https://ftp5.gwdg.de/pub/linux/archlinux/community/os/x86_64/python-tinycss2-1.1.1-1-any.pkg.tar.zst
+sudo pacman -U python-tinycss2-1.1.1-1-any.pkg.tar.zst
+rm python-tinycss2-1.1.1-1-any.pkg.tar.zst
+```
+
 [![AUR](https://aur.archlinux.org/css/archnavbar/aurlogo.png)](https://aur.archlinux.org/packages/ibus-theme-tools/)
 
 openSUSE 可以直接通过[ymp 文件](https://software.opensuse.org/ymp/home:hollowman/openSUSE_Factory/ibus-theme-tools.ymp)安装。
