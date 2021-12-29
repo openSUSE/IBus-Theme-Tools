@@ -557,6 +557,9 @@ def exportIBusGNOMEThemeCSS(styleSheet, recursive=False):
         if "box-shadow" not in popupContent:
             popupContent += _("  /* Fix system IBus theme candidate box shadow inherited in replaced theme */") + \
                 "\n  box-shadow: none;\n"
+        if "margin" not in popupContent:
+            popupContent += _("  /* Fix system IBus theme margin inherited in replaced theme */") + \
+                "\n  margin: 0px;\n"
 
     # Fix candidate color
     colorString = _("  /* Fix candidate color */") + \

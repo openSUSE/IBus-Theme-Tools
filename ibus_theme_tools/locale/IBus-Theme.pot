@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IBus Theme Tools 4.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-15 14:36+0800\n"
+"POT-Creation-Date: 2021-12-29 20:00+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,7 +39,7 @@ msgstr ""
 
 #: ibus_theme_tools.py:165 ibus_theme_tools.py:225 ibus_theme_tools.py:228
 #: ibus_theme_tools.py:319 ibus_theme_tools.py:321 ibus_theme_tools.py:324
-#: ibus_theme_tools.py:628 ibus_theme_tools.py:662
+#: ibus_theme_tools.py:631 ibus_theme_tools.py:665
 msgid "Error: Wrong selection!"
 msgstr ""
 
@@ -62,7 +62,7 @@ msgid "Yes"
 msgstr ""
 
 #: ibus_theme_tools.py:181 ibus_theme_tools.py:200 ibus_theme_tools.py:283
-#: ibus_theme_tools.py:648
+#: ibus_theme_tools.py:651
 msgid "(Empty to be 1): "
 msgstr ""
 
@@ -104,16 +104,16 @@ msgstr ""
 msgid "Please select a GTK theme to extract for IBus:"
 msgstr ""
 
-#: ibus_theme_tools.py:250 ibus_theme_tools.py:599 ibus_theme_tools.py:645
+#: ibus_theme_tools.py:250 ibus_theme_tools.py:602 ibus_theme_tools.py:648
 msgid "Exit"
 msgstr ""
 
-#: ibus_theme_tools.py:252 ibus_theme_tools.py:601
+#: ibus_theme_tools.py:252 ibus_theme_tools.py:604
 msgid "(Empty to exit): "
 msgstr ""
 
-#: ibus_theme_tools.py:254 ibus_theme_tools.py:264 ibus_theme_tools.py:603
-#: ibus_theme_tools.py:650
+#: ibus_theme_tools.py:254 ibus_theme_tools.py:264 ibus_theme_tools.py:606
+#: ibus_theme_tools.py:653
 msgid "Goodbye!"
 msgstr ""
 
@@ -187,23 +187,23 @@ msgstr ""
 msgid " to change IBus theme by selecting this file.\n"
 msgstr ""
 
-#: ibus_theme_tools.py:437 ibus_theme_tools.py:620
+#: ibus_theme_tools.py:437 ibus_theme_tools.py:623
 msgid ""
 "If you make any changes to this content after applying this file in above "
 "extension,\n"
 msgstr ""
 
-#: ibus_theme_tools.py:438 ibus_theme_tools.py:621
+#: ibus_theme_tools.py:438 ibus_theme_tools.py:624
 msgid ""
 "for Customize IBus Extension before v68, please disable and then enable "
 "'custom IME theme'\n"
 msgstr ""
 
-#: ibus_theme_tools.py:439 ibus_theme_tools.py:622
+#: ibus_theme_tools.py:439 ibus_theme_tools.py:625
 msgid " again to make the changes take effect.\n"
 msgstr ""
 
-#: ibus_theme_tools.py:440 ibus_theme_tools.py:623
+#: ibus_theme_tools.py:440 ibus_theme_tools.py:626
 msgid ""
 "Starting from v69, support stylesheets hot reload, CSS changes reflecting in "
 "real-time."
@@ -229,58 +229,62 @@ msgid ""
 "*/"
 msgstr ""
 
-#: ibus_theme_tools.py:562
+#: ibus_theme_tools.py:561
+msgid "  /* Fix system IBus theme margin inherited in replaced theme */"
+msgstr ""
+
+#: ibus_theme_tools.py:565
 msgid "  /* Fix candidate color */"
 msgstr ""
 
-#: ibus_theme_tools.py:576
+#: ibus_theme_tools.py:579
 msgid "  /* Fix black border at pointer when system theme is black */\n"
 msgstr ""
 
-#: ibus_theme_tools.py:581
+#: ibus_theme_tools.py:584
 msgid "/* Unify system page button and IBus style page button */\n"
 msgstr ""
 
-#: ibus_theme_tools.py:593
+#: ibus_theme_tools.py:596
 msgid "Please select a GNOME theme to extract style sheet for IBus:"
 msgstr ""
 
-#: ibus_theme_tools.py:607
+#: ibus_theme_tools.py:610
 msgid "Please enter the path to store generated stylesheet:"
 msgstr ""
 
-#: ibus_theme_tools.py:609
+#: ibus_theme_tools.py:612
 msgid "(Empty to be 'exportedIBusTheme.css' in current directory): "
 msgstr ""
 
-#: ibus_theme_tools.py:616
+#: ibus_theme_tools.py:619
 msgid ""
 "\n"
 "Now you can use Customize IBus GNOME Shell Extension:\n"
 msgstr ""
 
-#: ibus_theme_tools.py:618
+#: ibus_theme_tools.py:621
 msgid "to change IBus theme by selecting the extracted stylesheet."
 msgstr ""
 
-#: ibus_theme_tools.py:625
+#: ibus_theme_tools.py:628
 msgid ""
 "\n"
 "Done! Goodbye!"
 msgstr ""
 
-#: ibus_theme_tools.py:639
+#: ibus_theme_tools.py:642
 msgid "Please select a mode:"
 msgstr ""
 
-#: ibus_theme_tools.py:641
+#: ibus_theme_tools.py:644
 msgid "Extract an IBus-related GTK theme"
 msgstr ""
 
-#: ibus_theme_tools.py:643
+#: ibus_theme_tools.py:646
 msgid "Extract an IBus-related GNOME theme stylesheet"
 msgstr ""
 
-#: ibus_theme_tools.py:658
+#: ibus_theme_tools.py:661
 msgid "Note: You can only apply the stylesheet under GNOME."
 msgstr ""
