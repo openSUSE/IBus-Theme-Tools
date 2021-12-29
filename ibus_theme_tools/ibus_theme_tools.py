@@ -143,9 +143,10 @@ def GTKCustomizeImage():
                           _("Please select a image file:") + OUTPUT_END)
                     count = 1
                     for file in fileList:
-                        print("[" + BLACK_CYAN+str(count)+OUTPUT_END + "]\t" +
-                              UNDER_LINE + file + OUTPUT_END)
-                        count += 1
+                        if os.path.isfile(file):
+                            print("[" + BLACK_CYAN+str(count)+OUTPUT_END + "]\t" +
+                                  UNDER_LINE + file + OUTPUT_END)
+                            count += 1
                     print("[" + BLACK_CYAN + "q" + OUTPUT_END + "]\t" +
                           READ_YELLOW + _("Re-Enter Path") + OUTPUT_END)
                     while True:
@@ -606,17 +607,58 @@ def exportIBusTheme():
             print(_("Goodbye!"))
             exit(0)
         elif selection.isdigit() and int(selection) < count and int(selection) > 0:
-            print("\n" +
-                  BLACK_CYAN + _("Please enter the path to store generated stylesheet:") + OUTPUT_END)
-            path = input(
-                YELLOW_BLUE + _("(Empty to be 'exportedIBusTheme.css' in current directory): ") + OUTPUT_END)
-            if not path:
-                path = "exportedIBusTheme.css"
+            while True:
+                print("\n" +
+                      BLACK_CYAN + _("Please enter the path to store generated stylesheet:") + OUTPUT_END)
+                path = input(
+                    YELLOW_BLUE + _("(Empty to be 'exportedIBusTheme.css' in current directory): ") + OUTPUT_END)
+                if not path:
+                    path = "exportedIBusTheme.css"
+                fileList = glob.glob(os.path.abspath(
+                    os.path.expandvars(os.path.expanduser(path))))
+                if fileList:
+                    if len(fileList) == 1:
+                        path = fileList[0]
+                    else:
+                        print("")
+                        print(BLACK_CYAN +
+                              _("Please select a CSS file:") + OUTPUT_END)
+                        count = 1
+                        UnusedFileList = []
+                        for file in fileList:
+                            if os.path.isdir(file) or os.path.splitext(file)[1] == ".css":
+                                print("[" + BLACK_CYAN+str(count)+OUTPUT_END + "]\t" +
+                                      UNDER_LINE + file + OUTPUT_END)
+                                count += 1
+                            else:
+                                UnusedFileList.append(file)
+                        for file in UnusedFileList:
+                            fileList.remove(file)
+                        print("[" + BLACK_CYAN + "q" + OUTPUT_END + "]\t" +
+                              READ_YELLOW + _("Re-Enter Path") + OUTPUT_END)
+                        while True:
+                            choice = input(
+                                YELLOW_BLUE + _("(Empty to Re-Enter Path): ") + OUTPUT_END)
+                            if choice == "q" or not choice:
+                                path = ""
+                                break
+                            elif choice.isdigit() and int(choice) < count and int(choice) > 0:
+                                path = fileList[int(choice)-1]
+                                break
+                            else:
+                                print(
+                                    READ_YELLOW + _("Error: Wrong selection!") + OUTPUT_END + "\n")
+                if path:
+                    if os.path.isdir(path):
+                        path = os.path.join(path, "exportedIBusTheme.css")
+                    break
             newCSS = exportIBusGNOMEThemeCSS(themeList[int(selection)-1])
+            path = os.path.abspath(os.path.expandvars(os.path.expanduser(path)))
             with open(path, "w") as f:
                 f.write(newCSS)
             print(YELLOW_BLUE +
-                  _("\nNow you can use Customize IBus GNOME Shell Extension:\n") + EXTENSION_URL)
+                  _("\nCSS file generated at:") + path)
+            print(_("\nNow you can use Customize IBus GNOME Shell Extension:\n") + EXTENSION_URL)
             print(
                 _("to change IBus theme by selecting the extracted stylesheet.") + OUTPUT_END)
             print(YELLOW_BLUE + "\n" +
