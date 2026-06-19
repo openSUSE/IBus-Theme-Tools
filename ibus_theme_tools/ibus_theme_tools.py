@@ -17,7 +17,6 @@ import glob
 import tinycss2
 from gi.repository import GLib, Gio
 import os
-import imghdr
 
 import gettext
 APP_NAME = "IBus-Theme"
@@ -43,6 +42,33 @@ WIDGETLIST = ['*', 'box', 'label', 'button',
 WIDGETLIST.extend(CLASSLIST)
 
 gtkResource = []
+
+
+def _is_image_file(file_path):
+    try:
+        with open(file_path, "rb") as image_file:
+            header = image_file.read(32)
+    except OSError:
+        return False
+
+    return (
+        header[6:10] in (b"JFIF", b"Exif")
+        or header.startswith(b"\211PNG\r\n\032\n")
+        or header[:6] in (b"GIF87a", b"GIF89a")
+        or header[:2] in (b"MM", b"II")
+        or header.startswith(b"\001\332")
+        or (
+            len(header) >= 3
+            and header[0] == ord(b"P")
+            and header[1] in b"123456"
+            and header[2] in b" \t\n\r"
+        )
+        or header.startswith(b"\x59\xA6\x6A\x95")
+        or header.startswith(b"#define ")
+        or header.startswith(b"BM")
+        or (header.startswith(b"RIFF") and header[8:12] == b"WEBP")
+        or header.startswith(b"\x76\x2f\x31\x01")
+    )
 
 
 def getThemePathList():
@@ -155,7 +181,10 @@ def GTKCustomizeImage():
                         if selection == "q" or not selection:
                             break
                         elif selection.isdigit() and int(selection) < count and int(selection) > 0:
-                            if os.path.isfile(fileList[int(selection)-1]) and imghdr.what(fileList[int(selection)-1]):
+                            if (
+                                os.path.isfile(fileList[int(selection)-1])
+                                and _is_image_file(fileList[int(selection)-1])
+                            ):
                                 image = fileList[int(selection)-1]
                                 break
                             else:
@@ -166,7 +195,7 @@ def GTKCustomizeImage():
                                 READ_YELLOW + _("Error: Wrong selection!") + OUTPUT_END + "\n")
                 if not image:
                     continue
-                elif os.path.isfile(image) and imghdr.what(image):
+                elif os.path.isfile(image) and _is_image_file(image):
                     cssContent = _("\n/* Customized Background Image */\n") + \
                         "#IBusCandidate {\n  background: url('" + \
                         image + "');\n  "
